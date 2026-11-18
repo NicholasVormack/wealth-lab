@@ -151,6 +151,42 @@ const toolDirs = fs.existsSync(path.join(OUTPUT, "micro-tools"))
 const unlinkedTools = toolDirs.filter((d) => !hub.includes(`micro-tools/${d}/`));
 if (unlinkedTools.length) err(`hub page does not link ${unlinkedTools.length} tool(s): ${unlinkedTools.join(", ")}`);
 
+/* --------------------------------------------------------- email capture */
+
+// A signup form is only useful if it posts to a real provider endpoint. An
+// empty or relative action POSTs back to the tool page and silently drops the
+// address, which is exactly the kind of false surface this site must not ship.
+const captureConfigPath = path.join(LAB, "capture.config.json");
+let captureConfigured = false;
+if (fs.existsSync(captureConfigPath)) {
+  try {
+    captureConfigured = String(JSON.parse(fs.readFileSync(captureConfigPath, "utf8")).formAction || "").trim().length > 0;
+  } catch {
+    err("capture.config.json is not valid JSON");
+  }
+}
+
+const capturePages = htmlFiles.filter((f) => fs.readFileSync(f, "utf8").includes("email-capture:start"));
+for (const file of capturePages) {
+  const action = (fs.readFileSync(file, "utf8").match(/<form action="([^"]*)"/) || [])[1] || "";
+  if (!/^https?:\/\//i.test(action)) {
+    err(`${relPath(file)}: email capture form action is not an absolute http(s) URL ("${action}")`);
+  }
+}
+
+if (captureConfigured) {
+  const noForm = toolDirs.filter(
+    (d) => !fs.readFileSync(path.join(OUTPUT, "micro-tools", d, "index.html"), "utf8").includes("email-capture:start")
+  );
+  if (noForm.length) {
+    err(`${noForm.length} tool page(s) missing the email capture form (run asset-builder): ${noForm.join(", ")}`);
+  }
+} else if (capturePages.length) {
+  err(`${capturePages.length} page(s) ship an email capture form but capture.config.json has no formAction`);
+} else {
+  warn("email capture: no formAction in capture.config.json — no signup form ships");
+}
+
 /* ------------------------------------------------------------ titles + meta */
 
 const titles = new Map();

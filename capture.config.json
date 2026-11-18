@@ -1,0 +1,27 @@
+{
+  "_instructions": [
+    "One config drives the email capture form on every micro-tool page.",
+    "1. Create a free account with an email provider and find the HTML form action URL",
+    "   it gives you for an embedded form.",
+    "2. Paste that URL into formAction below, then run: npm run build && npm run verify",
+    "3. Set emailField to the field name your provider expects. Examples:",
+    "   Kit (ConvertKit)  -> https://app.kit.com/forms/FORM_ID/subscriptions , emailField: email_address",
+    "   Mailchimp         -> https://YOUR.usX.list-manage.com/subscribe/post?u=...&id=... , emailField: EMAIL",
+    "   MailerLite        -> https://assets.mailerlite.com/jsonp/... , emailField: fields[email]",
+    "   Buttondown        -> https://buttondown.com/api/emails/embed-subscribe/USERNAME , emailField: email",
+    "4. While formAction is empty NO form is rendered anywhere. That is deliberate:",
+    "   a signup box that cannot deliver an address is worse than no signup box.",
+    "",
+    "DO NOT put an API key or secret in this file. This repository is public and the",
+    "site is static, so anything here is served to every visitor. API keys belong in",
+    ".env (gitignored) for the operator scripts only, never in a page."
+  ],
+  "formAction": "",
+  "method": "post",
+  "emailField": "email_address",
+  "hiddenFields": {},
+  "heading": "Get one practical money tool a week",
+  "blurb": "One short email with a tool that does something useful. No sales emails, no daily drip.",
+  "buttonLabel": "Send it to me",
+  "note": "We store your address with our email provider and never sell it."
+}

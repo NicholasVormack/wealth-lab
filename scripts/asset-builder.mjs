@@ -599,7 +599,7 @@ ${published.map((a) => `        <li><a href="articles/${a.slug}/index.html">${es
 <div class="container">
   <header>
     <h1>Wealth Lab</h1>
-    <p class="sub">Free browser tools for the math behind making money online. Everything runs locally in your browser — no signup, no ads, no email, no uploads.</p>
+    <p class="sub">Free browser tools for the math behind making money online. Everything runs locally in your browser — no signup, no ads, no uploads.</p>
     <div class="stats">
       <div><b>${tools.length}</b> tools</div>
       <div><b>${published.length}</b> guides</div>
@@ -623,7 +623,7 @@ ${guides}
     <a href="privacy-policy.html">Privacy</a> &middot;
     <a href="terms-of-service.html">Terms</a> &middot;
     <a href="affiliate-disclosure.html">Affiliate disclosure</a><br />
-    Built by Wealth Lab &bull; Some outbound links are affiliate links.
+    Built by Wealth Lab &bull; No ads, no trackers, no account needed.
   </div>
 </div>
 </body>
@@ -661,6 +661,108 @@ function writeCname(siteUrl) {
   }
   fs.writeFileSync(cnamePath, `${host}\n`);
   log(`Wrote output/CNAME -> ${host}`);
+}
+
+/* ---------------------------------------------------------- email capture */
+
+const CAPTURE_CONFIG_PATH = path.join(LAB, "capture.config.json");
+const CAPTURE_START = "<!-- email-capture:start -->";
+const CAPTURE_END = "<!-- email-capture:end -->";
+
+function readCaptureConfig() {
+  let raw = {};
+  if (fs.existsSync(CAPTURE_CONFIG_PATH)) {
+    try {
+      raw = JSON.parse(fs.readFileSync(CAPTURE_CONFIG_PATH, "utf8"));
+    } catch (e) {
+      log(`capture.config.json is not valid JSON (${e.message}) — no form rendered`);
+      raw = {};
+    }
+  }
+  return {
+    formAction: String(raw.formAction || "").trim(),
+    method: /^get$/i.test(raw.method || "") ? "get" : "post",
+    emailField: String(raw.emailField || "email").trim(),
+    hiddenFields:
+      raw.hiddenFields && typeof raw.hiddenFields === "object" && !Array.isArray(raw.hiddenFields)
+        ? raw.hiddenFields
+        : {},
+    heading: String(raw.heading || "Get one practical money tool a week"),
+    blurb: String(raw.blurb || "One short email with a tool that does something useful."),
+    buttonLabel: String(raw.buttonLabel || "Send it to me"),
+    note: String(raw.note || "We store your address with our email provider."),
+  };
+}
+
+function captureBlock(config, file) {
+  const root = relativeRoot(file);
+  const privacy = root === "." ? "privacy-policy.html" : `${root}/privacy-policy.html`;
+  const hidden = Object.entries(config.hiddenFields)
+    .map(([name, value]) => `    <input type="hidden" name="${escapeHtml(name)}" value="${escapeHtml(value)}" />`)
+    .join("\n");
+
+  // Self-contained markup and styles: tool pages each carry their own CSS and
+  // must not need editing when the form changes. No JavaScript is involved —
+  // a native form POST to the provider is what works on static hosting.
+  return `${CAPTURE_START}
+<section class="wl-capture" aria-labelledby="wl-capture-title">
+  <style>
+    .wl-capture { margin-top: 32px; padding: 22px; border: 1px solid #334155; border-radius: 12px; background: rgba(8, 51, 68, 0.35); }
+    .wl-capture h2 { font-size: 17px; margin: 0 0 6px; color: #f1f5f9; }
+    .wl-capture p { font-size: 13px; color: #94a3b8; margin: 0 0 14px; line-height: 1.55; }
+    .wl-capture form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .wl-capture label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .wl-capture input[type="email"] { flex: 1 1 200px; min-width: 0; padding: 12px 14px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 15px; }
+    .wl-capture input[type="email"]:focus { outline: none; border-color: #22d3ee; }
+    .wl-capture button { padding: 12px 20px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
+    .wl-capture button:hover { background: #67e8f9; }
+    .wl-capture .wl-capture-note { font-size: 11px; color: #64748b; margin: 10px 0 0; }
+    .wl-capture .wl-capture-note a { color: #22d3ee; text-decoration: none; }
+  </style>
+  <h2 id="wl-capture-title">${escapeHtml(config.heading)}</h2>
+  <p>${escapeHtml(config.blurb)}</p>
+  <form action="${escapeHtml(config.formAction)}" method="${config.method}" class="wl-capture-form">
+    <label for="wl-capture-email">Email address</label>
+    <input id="wl-capture-email" type="email" name="${escapeHtml(config.emailField)}" placeholder="you@example.com" autocomplete="email" required />
+${hidden}
+    <button type="submit">${escapeHtml(config.buttonLabel)}</button>
+  </form>
+  <p class="wl-capture-note">${escapeHtml(config.note)} <a href="${privacy}">Privacy</a>.</p>
+</section>
+${CAPTURE_END}`;
+}
+
+/**
+ * Keep the published site in exact sync with capture.config.json: refresh the
+ * block when an endpoint is configured, and remove it entirely when it is not.
+ * Idempotent, so running the builder repeatedly never stacks the form.
+ */
+function injectEmailCapture(tools) {
+  const config = readCaptureConfig();
+  const existingBlock = new RegExp(`${CAPTURE_START}[\\s\\S]*?${CAPTURE_END}\\n?`, "g");
+  let added = 0;
+  let stripped = 0;
+
+  for (const tool of tools) {
+    const before = fs.readFileSync(tool.file, "utf8");
+    const hadBlock = before.includes(CAPTURE_START);
+    let html = before.replace(existingBlock, "");
+
+    if (config.formAction) {
+      const block = captureBlock(config, tool.file);
+      const footerAt = html.indexOf('<div class="footer">');
+      html = footerAt === -1
+        ? html.replace(/<\/body>/i, `${block}\n</body>`)
+        : `${html.slice(0, footerAt)}${block}\n${html.slice(footerAt)}`;
+      added++;
+    } else if (hadBlock) {
+      stripped++;
+    }
+
+    if (html !== before) fs.writeFileSync(tool.file, html);
+  }
+
+  return { configured: Boolean(config.formAction), added, stripped };
 }
 
 /* -------------------------------------------------------------------- main */
@@ -711,6 +813,10 @@ function build() {
   };
   walk(OUTPUT);
   const nav = normalizePages(allHtml.filter((f) => f !== path.join(OUTPUT, "index.html")), siteUrl);
+
+  // 2a. One email capture surface on every tool page, driven by
+  // capture.config.json. With no formAction configured nothing is rendered.
+  const capture = injectEmailCapture(tools);
 
   // 2b. Operator-only files must never ship: these were dashboards that
   // presented hardcoded numbers as if they had been measured.
@@ -763,6 +869,11 @@ function build() {
   }
   log(`Hub page rebuilt: ${tools.length} tools + ${hub.publishedCount} guides linked`);
   log(`Nav: ${nav.backLinksAdded} back-links added, ${nav.footerLinksFixed} dead footer links fixed, ${nav.canonicalsAdded} canonicals added, ${nav.rootLinksFixed} root-relative link fixes`);
+  log(
+    capture.configured
+      ? `Email capture: form on ${capture.added} tool page(s)${capture.stripped ? `, ${capture.stripped} stale block(s) removed` : ""}`
+      : "Email capture: no formAction in capture.config.json — no signup form rendered"
+  );
   log(`Stale domain rewritten in ${swept} file(s)`);
   log("Wrote sitemap.xml, robots.txt, .nojekyll");
   log(`Next: node scripts/verify-site.mjs to check the result`);

@@ -56,13 +56,13 @@ const privacyPolicy = `<!DOCTYPE html>
 <p><strong>Effective date:</strong> ${EFFECTIVE_DATE}</p>
 
 <h2>1. Information We Collect</h2>
-<p>${SITE_NAME} does not collect personal information from visitors to our micro-tools and articles. We do not use cookies, tracking scripts, or analytics that identify individual users.</p>
+<p>${SITE_NAME} does not collect personal information from visitors to our micro-tools and articles unless you choose to subscribe by email. Our tools run entirely in your browser, so nothing you type into a calculator is sent to us. We do not use cookies, tracking scripts, or analytics that identify individual users.</p>
 
 <h2>2. Email Subscriptions</h2>
-<p>If you subscribe to our newsletter, your email address is stored by our email service provider (Mailchimp, MailerLite, or similar). You can unsubscribe at any time using the unsubscribe link in any email.</p>
+<p>If you subscribe using the form on a tool page, that form submits your email address directly to our email service provider, which stores it so we can send you the newsletter. The address is not stored on this website. We never sell or share it, and every email includes an unsubscribe link that takes effect immediately.</p>
 
 <h2>3. Affiliate Links</h2>
-<p>Some pages on this site contain affiliate links. If you click an affiliate link and make a purchase, we may receive a commission at no additional cost to you. This helps support the site.</p>
+<p>This site currently contains no affiliate links and earns no commission from outbound links. If affiliate links are introduced, they will be disclosed on the page where they appear and listed on our <a href="affiliate-disclosure.html">affiliate disclosure</a> page before going live.</p>
 
 <h2>4. Third-Party Sites</h2>
 <p>Our site may link to external websites (GitHub Pages, Medium, Dev.to, Gumroad, etc.). We are not responsible for the privacy practices of those sites.</p>
