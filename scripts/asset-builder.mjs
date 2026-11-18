@@ -712,6 +712,30 @@ function build() {
   walk(OUTPUT);
   const nav = normalizePages(allHtml.filter((f) => f !== path.join(OUTPUT, "index.html")), siteUrl);
 
+  // 2b. Operator-only files must never ship: these were dashboards that
+  // presented hardcoded numbers as if they had been measured.
+  const LEGACY_OPERATOR_FILES = [
+    "analytics-dashboard.html",
+    "analytics-tracker.js",
+    "investment-dashboard.html",
+    "investment-data.json",
+    "link-tracker-dashboard.html",
+    "revenue-dashboard.html",
+    "revenue-data.json",
+    "tracking-data.json",
+  ];
+  const removedOperatorFiles = [];
+  for (const name of LEGACY_OPERATOR_FILES) {
+    const full = path.join(OUTPUT, name);
+    if (fs.existsSync(full)) {
+      fs.unlinkSync(full);
+      removedOperatorFiles.push(name);
+    }
+  }
+  if (removedOperatorFiles.length) {
+    log(`Removed operator-only file(s) from the public site: ${removedOperatorFiles.join(", ")}`);
+  }
+
   // 3. Rewrite any stale domain left in generated docs, tools or raw sources
   const swept = sweepStaleDomain(siteUrl);
 

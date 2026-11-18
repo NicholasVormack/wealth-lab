@@ -9,3 +9,6 @@
 # Dependencies / OS noise
 node_modules/
 .DS_Store
+
+# Operator-only dashboards and private business data (never published)
+ops/

@@ -38,7 +38,7 @@ Check each tool's usage:
 - How many use the tool (click the calculate button)?
 - How many click through to affiliate links?
 
-Use the Wealth Lab analytics tracker (output/analytics-tracker.js) to collect this data.
+Answer these with a real measurement tool: your host's analytics (for example Cloudflare Web Analytics) or server logs. A script that only writes to the visitor's own browser cannot measure anyone but that one visitor.
 
 ### Your Articles (Medium/Dev.to)
 

@@ -10,8 +10,9 @@ import { fileURLToPath } from "url";
 
 const LAB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(LAB, "output");
-const DATA_PATH = path.join(OUTPUT, "investment-data.json");
-const DASHBOARD_PATH = path.join(OUTPUT, "investment-dashboard.html");
+const OPS = path.join(LAB, "ops");
+const DATA_PATH = path.join(OPS, "investment-data.json");
+const DASHBOARD_PATH = path.join(OPS, "investment-dashboard.html");
 const HISTORY_PATH = path.join(LAB, "history.log");
 
 function log(message) {
@@ -23,6 +24,7 @@ function log(message) {
 
 function run() {
   if (!fs.existsSync(OUTPUT)) fs.mkdirSync(OUTPUT, { recursive: true });
+  if (!fs.existsSync(OPS)) fs.mkdirSync(OPS, { recursive: true });
 
   // Load or create investment data
   let data;

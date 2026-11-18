@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 
 const LAB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(LAB, "output");
+const OPS = path.join(LAB, "ops");
 const HISTORY_PATH = path.join(LAB, "history.log");
 
 function log(message) {
@@ -39,7 +40,8 @@ function run() {
     })),
   };
 
-  const trackingPath = path.join(OUTPUT, "tracking-data.json");
+  fs.mkdirSync(OPS, { recursive: true });
+  const trackingPath = path.join(OPS, "tracking-data.json");
   fs.writeFileSync(trackingPath, JSON.stringify(trackingData, null, 2));
   log(`Tracking data written to ${trackingPath}`);
 
@@ -113,7 +115,7 @@ function run() {
 </body>
 </html>`;
 
-  const dashboardPath = path.join(OUTPUT, "link-tracker-dashboard.html");
+  const dashboardPath = path.join(OPS, "link-tracker-dashboard.html");
   fs.writeFileSync(dashboardPath, html);
   log(`Link tracker dashboard written to ${dashboardPath}`);
   log(`Tracked ${TRACKED_LINKS.length} links. Replace placeholder URLs with real affiliate links when keys are available.`);

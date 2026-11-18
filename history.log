@@ -753,3 +753,17 @@ Generated 5 emails, CSV import, HTML templates, and instructions
 [2026-11-18T04:34:44.372Z] Landing page template written to output/landing-page-sample.html
 [2026-11-18T04:34:44.381Z] Landing page instructions written to output/landing-page-instructions.md
 [2026-11-18T04:34:44.382Z] === LANDING PAGE GENERATOR COMPLETE ===
+[2026-11-18T04:52:51.906Z] Legal pages generated: privacy-policy.html, terms-of-service.html, affiliate-disclosure.html
+[2026-11-18T04:52:51.916Z] These are required for GDPR compliance, affiliate program approval, and professional appearance.
+[2026-11-18T04:52:51.916Z] === LEGAL GENERATOR COMPLETE ===
+[2026-11-18T04:52:51.955Z] Revenue data written to /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/revenue-data.json
+[2026-11-18T04:52:51.956Z] Revenue dashboard written to /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/revenue-dashboard.html
+[2026-11-18T04:52:51.956Z] Total monthly revenue tracked: $0.00
+[2026-11-18T04:52:51.994Z] Tracking data written to /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/tracking-data.json
+[2026-11-18T04:52:51.996Z] Link tracker dashboard written to /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/link-tracker-dashboard.html
+[2026-11-18T04:52:51.996Z] Tracked 5 links. Replace placeholder URLs with real affiliate links when keys are available.
+[2026-11-18T04:53:08.907Z] Created investment data template at /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/investment-data.json
+[2026-11-18T04:53:08.945Z] Investment dashboard written to /Users/nicholasvormack/Documents/Default Project/wealth-lab/ops/investment-dashboard.html
+[2026-11-18T04:53:08.945Z] Total portfolio: $0 | Annual dividends: $0.00/yr
+[2026-11-18T04:53:08.945Z] === INVESTMENT TRACKER COMPLETE ===
+

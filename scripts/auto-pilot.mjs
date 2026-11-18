@@ -185,7 +185,7 @@ function autoPilot() {
 
   // 4. Run all tracking/analytics
   log("Running tracking & analytics...");
-  for (const script of ["publisher.mjs", "link-tracker.mjs", "revenue-tracker.mjs", "content-repurposer.mjs", "analytics-tracker.mjs"]) {
+  for (const script of ["publisher.mjs", "link-tracker.mjs", "revenue-tracker.mjs", "content-repurposer.mjs"]) {
     const r = runCommand(`node scripts/${script}`);
     log(`  ${script}: ${r.success ? "OK" : "FAILED — " + r.output.substring(0, 200)}`);
   }
@@ -227,8 +227,8 @@ function autoPilot() {
   log(`Content queued: ${queue.length} posts`);
   log(`Missing setup: ${readiness.missing.length} platforms need manual keys`);
   log("");
-  log("INVESTMENT TRACKER: output/investment-dashboard.html updated");
-  log("Investment data: output/investment-data.json (edit with real balances)");
+  log("INVESTMENT TRACKER: ops/investment-dashboard.html updated (not published)");
+  log("Investment data: ops/investment-data.json (edit with real balances)");
   log("");
   log("TO ENABLE FULL AUTO-PUBLISHING:");
   log("  1. Add API keys to ./wealth-lab/.env");

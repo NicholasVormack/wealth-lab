@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 
 const LAB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(LAB, "output");
+const OPS = path.join(LAB, "ops");
 const HISTORY_PATH = path.join(LAB, "history.log");
 
 function log(message) {
@@ -37,7 +38,8 @@ function run() {
   revenueData.totalMonthly = revenueData.streams.reduce((sum, s) => sum + s.monthly, 0);
   revenueData.progressToGoal = Math.round((revenueData.totalMonthly / revenueData.goal) * 100);
 
-  const trackingPath = path.join(OUTPUT, "revenue-data.json");
+  fs.mkdirSync(OPS, { recursive: true });
+  const trackingPath = path.join(OPS, "revenue-data.json");
   fs.writeFileSync(trackingPath, JSON.stringify(revenueData, null, 2));
   log(`Revenue data written to ${trackingPath}`);
 
@@ -124,7 +126,7 @@ document.getElementById("progressFill").style.width = "${revenueData.progressToG
 </body>
 </html>`;
 
-  const dashboardPath = path.join(OUTPUT, "revenue-dashboard.html");
+  const dashboardPath = path.join(OPS, "revenue-dashboard.html");
   fs.writeFileSync(dashboardPath, html);
   log(`Revenue dashboard written to ${dashboardPath}`);
   log(`Total monthly revenue tracked: \$${revenueData.totalMonthly.toFixed(2)}`);
