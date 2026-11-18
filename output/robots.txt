@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wealth-lab.github.io/sitemap.xml
+Sitemap: https://nicholasvormack.github.io/wealth-lab/sitemap.xml
