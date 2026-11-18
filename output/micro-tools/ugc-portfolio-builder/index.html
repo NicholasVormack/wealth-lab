@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>UGC Portfolio Builder — Free | Wealth Lab</title>
-<meta name="description"content="Generate UGC video scripts and portfolio pieces for brand deals. Zero followers needed. Brands pay $100-$500+ per video." />
+<title>UGC Video Script Generator — Free | Wealth Lab</title>
+<meta name="description" content="Generate a short-form UGC video script outline from your product and audience. Structure only — rates vary by brand." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
@@ -42,11 +42,11 @@
 <div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
 
 <div class="container">
-  <h1>UGC <span>Portfolio</span> Builder</h1>
-  <p class="sub">Generate UGC video scripts for brand deals. Zero followers needed. Brands pay $100–$500+ per video.</p>
+  <h1>UGC <span>Script</span> Generator</h1>
+  <p class="sub">Generate a short-form script outline for a brand deal. Rates vary widely by brand and format — this gives you the structure, not a rate.</p>
 
   <div class="rate-card">
-    <div class="rate">$100–$500+</div>
+    <div class="rate">Varies</div>
     <div class="label">Per UGC Video (No Followers Required)</div>
   </div>
 
@@ -102,29 +102,29 @@
 const scripts = {
   "problem-solution": (product, audience, platform) => [
     { t: "0:00-0:03", text: `Stop wasting money on ${product.split(' ')[0]} tools that cost $29/month.` },
-    { t: "0:03-0:10", text: `I was spending ${Math.floor(Math.random()*50+20)}/month on [competitor] until I found this free alternative.` },
-    { t: "0:10-0:25", text: `This ${product} does the exact same thing — calculate your [benefit] in seconds. No signup. No email. No ads.` },
-    { t: "0:25-0:40", text: `Here's how it works: [show screen recording]. Enter your [input 1], [input 2], click calculate. Done.` },
+    { t: "0:03-0:10", text: `I was paying for a tool like this until I found this free alternative.` },
+    { t: "0:10-0:25", text: `This ${product} does the exact same thing — calculate your the number you need in seconds. No signup. No email. No ads.` },
+    { t: "0:25-0:40", text: `Here's how it works: screen recording here. Enter your your numbers, click calculate. Done.` },
     { t: "0:40-0:60", text: `Link in my bio. It's completely free. Stop overpaying, start calculating.` }
   ],
   "listicle": (product, audience, platform) => [
     { t: "0:00-0:03", text: `3 free ${audience.split(',')[0]} tools you need in 2026.` },
-    { t: "0:03-0:15", text: `Number one: ${product}. [Show the tool in action].` },
-    { t: "0:15-0:25", text: `Number two: [second tool]. Brief demo.` },
-    { t: "0:25-0:35", text: `Number three: [third tool]. Brief demo.` },
+    { t: "0:03-0:15", text: `Number one: ${product}. show the tool in action.` },
+    { t: "0:15-0:25", text: `Number two: your second tool. Brief demo.` },
+    { t: "0:25-0:35", text: `Number three: your third tool. Brief demo.` },
     { t: "0:35-0:45", text: `All three are free. Links in bio. Which one are you trying first?` }
   ],
   "before-after": (product, audience, platform) => [
-    { t: "0:00-0:05", text: `Before this tool: [show messy spreadsheet / confused face].` },
-    { t: "0:05-0:20", text: `I spent hours trying to figure out my [problem]. It was frustrating.` },
-    { t: "0:20-0:35", text: `Then I found ${product}. [Show clean tool interface].` },
-    { t: "0:35-0:50", text: `After: [show clean result]. Answer in 30 seconds. Free forever.` },
+    { t: "0:00-0:05", text: `Before this tool: show the messy version.` },
+    { t: "0:05-0:20", text: `I spent hours trying to figure out my the problem. It was frustrating.` },
+    { t: "0:20-0:35", text: `Then I found ${product}. show the tool screen.` },
+    { t: "0:35-0:50", text: `After: show the result. Answer in 30 seconds. Free forever.` },
     { t: "0:50-0:60", text: `Get it free — link in bio.` }
   ],
   "day-in-life": (product, audience, platform) => [
-    { t: "0:00-0:05", text: `How I manage my [niche] work in 2026.` },
-    { t: "0:05-0:15", text: `Morning: check my numbers with ${product}. [Show tool].` },
-    { t: "0:15-0:30", text: `Midday: [show another quick task].` },
+    { t: "0:00-0:05", text: `How I manage my your niche work in 2026.` },
+    { t: "0:05-0:15", text: `Morning: check my numbers with ${product}. show the tool.` },
+    { t: "0:15-0:30", text: `Midday: show a second task.` },
     { t: "0:30-0:45", text: `Evening: review and plan tomorrow. All free tools.` },
     { t: "0:45-0:60", text: `Full setup linked in bio. No cost, no signup.` }
   ]

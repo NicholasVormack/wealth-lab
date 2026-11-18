@@ -75,9 +75,9 @@
     <div id="linkList"></div>
 
     <div class="rotated-link">
-      <h3>Rotator Page</h3>
-      <p style="font-size:12px; color:#94a3b8; margin-bottom:12px;">Save this code as an HTML file and host it on GitHub Pages. Each visitor gets sent to a random affiliate link.</p>
-      <a href="#" id="rotatedUrl" target="_blank" rel="noopener">your-rotator-page.html</a>
+      <h3>Your Rotator File</h3>
+      <p style="font-size:12px; color:#94a3b8; margin-bottom:12px;">Download the file and host it on any static host. Each visitor is sent to one of your links at random.</p>
+      <button class="cta" onclick="downloadRotator()">Download rotator.html</button>
     </div>
 
     <div style="margin-top:20px;">
@@ -115,7 +115,6 @@ function generate() {
   const results = document.getElementById("results");
   const linkList = document.getElementById("linkList");
   const rotatorCode = document.getElementById("rotatorCode");
-  const rotatedUrl = document.getElementById("rotatedUrl");
 
   if (links.length < 2) {
     alert("Please enter at least 2 links.");
@@ -152,9 +151,18 @@ window.location.href = randomLink.url;
 </html>`;
 
   rotatorCode.textContent = code;
-  rotatedUrl.textContent = "rotator.html (host on GitHub Pages)";
-  rotatedUrl.href = "#";
+  window.__rotatorCode = code;
   results.classList.add("show");
+}
+
+function downloadRotator() {
+  if (!window.__rotatorCode) return;
+  const blob = new Blob([window.__rotatorCode], { type: "text/html" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "rotator.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 
 function copyText(text) {

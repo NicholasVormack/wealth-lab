@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Keyword Research Tool — Free | Wealth Lab</title>
-<meta name="description" content="Generate long-tail keyword variations for SEO. Free keyword research tool. No signup." />
+<title>Keyword Variation Generator — Free | Wealth Lab</title>
+<meta name="description" content="Generate long-tail keyword variations from a seed term. No search-volume data — a structured list you can copy and check yourself." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
@@ -35,8 +35,8 @@
 <div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
 
 <div class="container">
-  <h1>Keyword <span>Research</span> Tool</h1>
-  <p class="sub">Enter a seed keyword and get long-tail SEO variations for your micro-tools and articles.</p>
+  <h1>Keyword <span>Variation</span> Generator</h1>
+  <p class="sub">Build long-tail variations from a seed term. This does not show search volume — it gives you a structured list to check yourself.</p>
 
   <div class="field">
     <label>Seed keyword</label>
@@ -95,7 +95,7 @@ function generate() {
   });
 
   // Deduplicate and shuffle
-  const unique = [...new Set(all)].sort(() => Math.random() - 0.5);
+  const unique = [...new Set(all)];
 
   unique.forEach(k => {
     const li = document.createElement("li");

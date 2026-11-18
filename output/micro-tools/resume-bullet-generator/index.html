@@ -84,7 +84,7 @@
 <script>
 const actionVerbs = {
   general: ["Spearheaded", "Orchestrated", "Directed", "Managed", "Executed", "Delivered"],
-  tech: ["Architected", "Engineered", "Deployed", "Optimized", "Deployed", "Scaled"],
+  tech: ["Architected", "Engineered", "Deployed", "Optimized", "Shipped", "Scaled"],
   marketing: ["Amplified", "Generated", "Positioned", "Launched", "Converted", "Grew"],
   finance: ["Audited", "Reconciled", "Forecasted", "Allocated", "Analyzed", "Streamlined"],
   healthcare: ["Administered", "Coordinated", "Assessed", "Implemented", "Monitored", "Educated"],
@@ -92,84 +92,65 @@ const actionVerbs = {
   education: ["Developed", "Facilitated", "Designed", "Instructed", "Mentored", "Evaluated"]
 };
 
-const templates = [
-  "Increased {metric} by {percent}% through {action}",
-  "Reduced {metric} by {percent}% by {action}",
-  "Managed {number} {asset} resulting in {outcome}",
-  "Led {number}-person team to {outcome}",
-  "Created {asset} that {outcome}",
-  "Streamlined {process} saving {time} per {period}",
-  "Generated ${amount} in {period} through {action}",
-  "Improved {metric} from {start} to {end} within {period}"
-];
+const weakPrefix = /^(helped (with|to)|assisted (with|in)|responsible for|worked on|tasked with|involved in|participated in)\s+/i;
 
-const metrics = ["sales", "revenue", "engagement", "efficiency", "productivity", "customer satisfaction", "retention", "conversion rate"];
-const assets = ["budgets", "projects", "campaigns", "databases", "workflows", "client accounts", "processes"];
-const outcomes = ["exceeding quarterly targets", "improving team collaboration", "reducing operational costs", "accelerating time-to-market", "enhancing user experience"];
+function cleanDuty(raw) {
+  let d = String(raw).replace(/^[-*\u2022\d.)\s]+/, "").trim();
+  d = d.replace(weakPrefix, "");
+  return d.replace(/\s+/g, " ").replace(/[.;,]+$/, "");
+}
 
 function generate() {
-  const jobTitle = document.getElementById("jobTitle").value.trim();
-  const duties = document.getElementById("duties").value.trim();
-  const industry = document.getElementById("industry").value;
-
-  const results = document.getElementById("results");
   const output = document.getElementById("bulletsOutput");
+  const results = document.getElementById("results");
 
-  if (!duties) {
-    alert("Please enter what you do at your job.");
+  const duties = document.getElementById("duties").value
+    .split(/[.;\n]+/)
+    .map(cleanDuty)
+    .filter((d) => d.length > 8);
+
+  if (!duties.length) {
+    alert("Paste at least one duty, written in plain language.");
     return;
   }
+
+  const industry = document.getElementById("industry").value;
+  const verbs = actionVerbs[industry] || actionVerbs.general;
 
   output.innerHTML = "";
   results.classList.add("show");
 
-  // Generate 5-7 bullets
-  const verbs = actionVerbs[industry] || actionVerbs.general;
-  const numBullets = 6;
-
-  for (let i = 0; i < numBullets; i++) {
-    const verb = verbs[Math.floor(Math.random() * verbs.length)];
-    const template = templates[Math.floor(Math.random() * templates.length)];
-    const metric = metrics[Math.floor(Math.random() * metrics.length)];
-    const percent = Math.floor(Math.random() * 45) + 10;
-    const asset = assets[Math.floor(Math.random() * assets.length)];
-    const outcome = outcome[Math.floor(Math.random() * outcome.length)];
-    const number = Math.floor(Math.random() * 20) + 2;
-    const time = Math.floor(Math.random() * 10) + 1;
-    const period = ["week", "month", "quarter", "year"][Math.floor(Math.random() * 4)];
-    const amount = Math.floor(Math.random() * 50000) + 5000;
-    const start = Math.floor(Math.random() * 40) + 50;
-    const end = start + Math.floor(Math.random() * 30) + 5;
-
-    let bullet = template
-      .replace("{metric}", metric)
-      .replace("{percent}", percent)
-      .replace("{action}", duties.split(".")[0].toLowerCase() || "cross-functional initiatives")
-      .replace("{number}", number)
-      .replace("{asset}", asset)
-      .replace("{outcome}", outcome)
-      .replace("{process}", "workflow processes")
-      .replace("{time}", time)
-      .replace("{period}", period)
-      .replace("{amount}", amount)
-      .replace("{start}", start)
-      .replace("{end}", end);
-
-    bullet = verb + " " + bullet.charAt(0).toLowerCase() + bullet.slice(1) + ".";
+  duties.slice(0, 6).forEach((duty, i) => {
+    const verb = verbs[i % verbs.length];
+    const lower = duty.charAt(0).toLowerCase() + duty.slice(1);
+    const bullet = verb + " " + lower + " — add one real number (X% or before → after)";
 
     const div = document.createElement("div");
     div.className = "bullet";
-    div.innerHTML = `<span class="bullet-text">${bullet}</span><button class="copy-btn" onclick="copyBullet(this)">Copy</button>`;
-    output.appendChild(div);
-  }
-}
 
-function copyBullet(btn) {
-  const text = btn.parentElement.querySelector(".bullet-text").textContent;
-  navigator.clipboard.writeText(text);
-  const original = btn.textContent;
-  btn.textContent = "Copied!";
-  setTimeout(() => btn.textContent = original, 1000);
+    const span = document.createElement("span");
+    span.className = "bullet-text";
+    span.textContent = bullet;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(bullet);
+      btn.textContent = "Copied!";
+      setTimeout(() => (btn.textContent = "Copy"), 1000);
+    });
+
+    div.appendChild(span);
+    div.appendChild(btn);
+    output.appendChild(div);
+  });
+
+  const note = document.createElement("div");
+  note.style.cssText = "margin-top:16px;font-size:12px;color:#94a3b8;line-height:1.6;";
+  note.textContent =
+    "These are rewrites of what you wrote. This tool does not invent percentages or dollar amounts — every number has to come from your own records.";
+  output.appendChild(note);
 }
 </script>
 

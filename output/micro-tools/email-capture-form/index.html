@@ -3,26 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Email Capture Form — Free | Wealth Lab</title>
-<meta name="description" content="Embeddable email capture form for your landing pages. Works with any email provider. Free." />
+<title>Email Signup Form Builder — Free | Wealth Lab</title>
+<meta name="description" content="Generate a copy-and-paste email signup form for your own site. You supply your email provider's form URL; this builds the HTML." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; display: flex; justify-content: center; align-items: center; }
-  .container { max-width: 500px; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-  h1 { font-size: 24px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 640px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
   h1 span { color: #22d3ee; }
-  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; line-height: 1.6; }
   .field { margin-bottom: 20px; }
   .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
-  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 15px; }
   .field input:focus { outline: none; border-color: #22d3ee; }
+  .field .hint { font-size: 11px; color: #64748b; margin-top: 6px; }
   .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
   .cta:hover { background: #67e8f9; }
-  .cta:loading { opacity: 0.8; cursor: not-allowed; }
-  .success { display: none; margin-top: 20px; padding: 16px; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; border-radius: 8px; color: #22c55e; font-size: 14px; }
+  .copy-btn { background: #1e293b; border: 1px solid #22d3ee; color: #22d3ee; border-radius: 6px; padding: 8px 14px; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+  .copy-btn:hover { background: #22d3ee; color: #0f172a; }
+  .results { display: none; margin-top: 28px; padding-top: 24px; border-top: 1px solid #334155; }
+  .results.show { display: block; }
+  textarea { width: 100%; min-height: 220px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 16px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #cbd5e1; resize: vertical; }
+  .note { font-size: 12px; color: #94a3b8; margin-top: 14px; line-height: 1.6; }
+  .preview { margin-top: 20px; padding: 20px; border: 1px dashed #475569; border-radius: 8px; text-align: center; }
+  .preview input { width: 100%; padding: 10px 14px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; margin-bottom: 10px; }
   .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
   .footer a { color: #22d3ee; text-decoration: none; }
-  .embed-note { font-size: 11px; color: #64748b; margin-top: 30px; padding-top: 20px; border-top: 1px solid #334155; }
 </style>
   <link rel="canonical" href="https://nicholasvormack.github.io/wealth-lab/micro-tools/email-capture-form/" />
 </head>
@@ -30,23 +36,41 @@
 <div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
 
 <div class="container">
-  <h1>Join <span>Our</span> Newsletter</h1>
-  <p class="sub">Get free micro-tools, SEO guides, and side hustle strategies delivered to your inbox.</p>
+  <h1>Signup Form <span>Builder</span></h1>
+  <p class="sub">Build a copy-and-paste email signup form for your own site. You bring your email provider's form URL; this writes the HTML. No account, no server, nothing collected here.</p>
 
-  <form id="emailForm">
-    <div class="field">
-      <label>Email address</label>
-      <input type="email" id="email" placeholder="you@example.com" required />
-    </div>
-    <button class="cta" type="submit" id="submitBtn">Join Free</button>
-  </form>
-
-  <div class="success" id="success">
-    <strong>Thanks!</strong> Check your inbox for your free resources.
+  <div class="field">
+    <label>Form action URL</label>
+    <input type="url" id="action" placeholder="https://example.us1.list-manage.com/subscribe/post?u=..." />
+    <div class="hint">From your email provider's embedded-form settings (Mailchimp, MailerLite, Kit, Brevo, Buttondown).</div>
+  </div>
+  <div class="field">
+    <label>Form heading</label>
+    <input type="text" id="heading" value="Get the free tools" />
+  </div>
+  <div class="field">
+    <label>Button label</label>
+    <input type="text" id="buttonText" value="Send them to me" />
   </div>
 
-  <div class="embed-note">
-    <strong>To use this form:</strong> Copy this HTML into your landing page. Update the form action to point to your email provider (Mailchimp, MailerLite, ConvertKit, etc.). Works with any provider that accepts HTML form submissions.
+  <button class="cta" onclick="build()">Build the form</button>
+
+  <div class="results" id="results">
+    <div class="preview">
+      <strong id="previewHeading" style="display:block;margin-bottom:12px;font-size:15px;"></strong>
+      <input type="email" placeholder="you@example.com" disabled />
+      <button class="cta" type="button" disabled id="previewButton"></button>
+      <div style="font-size:11px;color:#64748b;margin-top:8px;">Preview only — this page does not submit anywhere.</div>
+    </div>
+
+    <h3 style="margin-top:24px;margin-bottom:10px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#22d3ee;">Your embed code</h3>
+    <textarea id="code" readonly></textarea>
+    <button class="copy-btn" onclick="copyCode()">Copy code</button>
+
+    <div class="note">
+      Paste this into your page where the form should appear, then submit a test signup and confirm the address lands in your provider.
+      If your provider needs a hidden anti-bot field, add it from their embed snippet.
+    </div>
   </div>
 
   <div class="footer">
@@ -55,17 +79,45 @@
 </div>
 
 <script>
-document.getElementById("emailForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const btn = document.getElementById("submitBtn");
-  const success = document.getElementById("success");
-  btn.textContent = "Joining...";
-  btn.style.opacity = "0.8";
-  setTimeout(() => {
-    btn.style.display = "none";
-    success.style.display = "block";
-  }, 1000);
-});
+function escapeAttr(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function build() {
+  const action = document.getElementById("action").value.trim();
+  const heading = document.getElementById("heading").value.trim() || "Get the free tools";
+  const buttonText = document.getElementById("buttonText").value.trim() || "Subscribe";
+
+  if (!action) {
+    alert("Paste your email provider's form action URL first.");
+    return;
+  }
+  if (!/^https?:\/\//i.test(action)) {
+    alert("The form action must start with http:// or https://");
+    return;
+  }
+
+  document.getElementById("previewHeading").textContent = heading;
+  document.getElementById("previewButton").textContent = buttonText;
+
+  const code = `<!-- Signup form — action URL supplied by your email provider -->
+<form action="${escapeAttr(action)}" method="post" target="_blank" style="max-width:420px;margin:0 auto;text-align:center;">
+  <label for="signup-email" style="display:block;font-size:14px;margin-bottom:10px;">${heading.replace(/</g, "&lt;")}</label>
+  <input id="signup-email" type="email" name="EMAIL" required placeholder="you@example.com"
+         style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin-bottom:10px;" />
+  <button type="submit" style="width:100%;padding:12px;border:0;border-radius:8px;background:#111;color:#fff;font-weight:600;cursor:pointer;">
+    ${buttonText.replace(/</g, "&lt;")}
+  </button>
+</form>`;
+
+  document.getElementById("code").value = code;
+  document.getElementById("results").classList.add("show");
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(document.getElementById("code").value);
+  alert("Copied. Paste it into your page and send yourself a test signup.");
+}
 </script>
 
 </body>
