@@ -61,9 +61,15 @@ for (const file of htmlFiles) {
     if (/^(https?:|mailto:|tel:|javascript:|#)/i.test(raw)) continue;
     const clean = raw.split("#")[0].split("?")[0];
     if (!clean) continue;
-    let target = clean.startsWith("/")
-      ? path.join(OUTPUT, clean)
-      : path.resolve(path.dirname(file), clean);
+    // Root-relative hrefs resolve against the domain root, not the /repo/
+    // subpath, so they 404 on GitHub Pages project sites. They look fine
+    // locally because the file exists under output/, which hid 12 of them.
+    if (clean.startsWith("/")) {
+      brokenLinks.push(`${relPath(file)} -> ${raw} (root-relative, 404s on a /repo/ subpath)`);
+      linkCount++;
+      continue;
+    }
+    let target = path.resolve(path.dirname(file), clean);
     if (clean.endsWith("/")) target = path.join(target, "index.html");
     linkCount++;
     if (!fs.existsSync(target)) {

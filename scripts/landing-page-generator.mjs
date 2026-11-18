@@ -202,7 +202,7 @@ function run() {
     .replace(/{{META_DESCRIPTION}}/g, "Calculate your side hustle profit in 30 seconds. Free tool, no signup, no email required.")
     .replace(/{{HERO_HEADLINE}}/g, "Side Hustle ROI Calculator")
     .replace(/{{HERO_SUBHEADLINE}}/g, "Estimate your monthly side hustle profit based on hours, rate, fees, and tool costs. Free. No signup. No email required.")
-    .replace(/{{CTA_LINK}}/g, "/micro-tools/side-hustle-calculator/")
+    .replace(/{{CTA_LINK}}/g, "micro-tools/side-hustle-calculator/")
     .replace(/{{CTA_TEXT}}/g, "Use the Free Calculator")
     .replace(/{{PRODUCT_NAME}}/g, "Side Hustle Calculator");
 

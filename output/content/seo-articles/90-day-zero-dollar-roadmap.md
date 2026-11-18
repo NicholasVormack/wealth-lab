@@ -1,88 +1,85 @@
 ---
-title: The 90-Day $0 Roadmap to Your First $1,000 Online
-description: A day-by-day plan to go from zero dollars to first $1,000 online using free tools, micro-tools, and affiliate marketing.
-date: 2026-11-13
-tags: roadmap, 90-days, zero-dollar, make-money-online, affiliate-marketing
+title: The 90-Day $0 Roadmap — From Nothing to First Income
+description: A week-by-week plan for building an online income stream with no capital, including what to ship each fortnight and which numbers to watch.
+date: 2026-11-18
+tags: roadmap, zero-dollar, 90-day-plan, side-hustle, execution
 ---
 
-# The 90-Day $0 Roadmap to Your First $1,000 Online
+# The 90-Day $0 Roadmap — From Nothing to First Income
 
-You don't need money. You need 90 days of consistency. This is the exact day-by-day plan.
+Ninety days is long enough to build something real and short enough to stay focused. The plan below assumes no budget, no audience, and roughly an hour a day.
 
-## The Model
+The sequencing matters more than the speed. Most people start with the part that feels productive — building — and skip the part that decides whether anyone cares.
 
-Traffic Source (free micro-tools + SEO articles) → Distribution (Medium, Dev.to, Reddit, X) → Monetization (affiliate links + digital products)
+## Days 1–14: pick and prove the problem
 
-## Phase 1: Days 1–14 — Build Foundation
+**Do not build anything yet.**
 
-| Day | Task |
-|-----|------|
-| 1 | Pick one micro-niche (personal finance, fitness, side hustles, etc.) |
-| 2 | Build one micro-tool (calculator, generator, or planner) |
-| 3 | Host on GitHub Pages (free) |
-| 4 | Write SEO article #1 about the problem your tool solves |
-| 5 | Publish on Medium + Dev.to |
-| 6 | Share on Reddit (relevant subreddit, read rules first) |
-| 7 | Rest / review analytics |
-| 8 | Write SEO article #2 |
-| 9 | Publish on Medium + Dev.to |
-| 10 | Share on X (Twitter) |
-| 11 | Build micro-tool #2 |
-| 12 | Host on GitHub Pages |
-| 13 | Write SEO article #3 |
-| 14 | Publish + distribute |
+- Choose one narrow audience and one problem they already pay to solve
+- Read the places they gather: subreddits, forums, review sites, job postings
+- Note the exact words they use to describe the problem — this becomes your headline and your page titles
+- Write a one-page description of what you will make and who it is for
 
-**Goal by Day 14:** 2 micro-tools live, 3 articles published, first visitors arriving.
+**Ship:** one page stating the problem and the promised outcome.
 
-## Phase 2: Days 15–45 — Validate & Affiliate
+**Kill criterion:** if you cannot find ten separate instances of people describing this problem in their own words, pick another problem.
 
-| Day | Task |
-|-----|------|
-| 15 | Join Systeme.io affiliate (40% recurring, instant approval) |
-| 16 | Join ClickBank (instant approval, digital products) |
-| 17 | Add affiliate links to your articles and tool pages |
-| 18 | Write article #4: "Best [niche] tools and resources" |
-| 19 | Publish + distribute |
-| 20 | Build micro-tool #3 |
-| 21 | Rest / review what's getting traffic |
-| 22–45 | Repeat: 1 article + 1 tool promotion per week, distribute daily |
+## Days 15–45: build one small thing
 
-**Goal by Day 45:** First affiliate commissions ($10–$100), 500+ total visitors, 5+ articles published.
+One tool, one template, or one service offer. Small enough to finish in two weeks, useful enough that a stranger would bookmark it.
 
-## Phase 3: Days 46–90 — Launch Your Own Product
+- If it is a tool: single purpose, works in the browser, no login
+- If it is a template: solves one workflow completely, not five partially
+- If it is a service: fixed scope, fixed price, fixed turnaround
 
-| Day | Task |
-|-----|------|
-| 46 | Identify your most popular article/tool |
-| 47 | Create a digital product based on that demand (template, checklist, guide) |
-| 48 | List on Gumroad or Ko-fi (free) |
-| 49 | Add product link to your top-performing content |
-| 50 | Write article #5: case study of your own journey |
-| 51–90 | Scale: 2 articles/week, 1 tool promotion/week, reinvest earnings |
+**Ship:** the thing itself, plus a plain page explaining what it does.
 
-**Goal by Day 90:** First $1,000 total revenue, 10+ articles, 5+ micro-tools, own digital product live.
+**Kill criterion:** if you cannot describe the use case in one sentence, it is too broad.
 
-## The Daily Routine (30–60 minutes)
+## Days 46–70: publish the supporting content
 
-- **Morning (15 min):** Write or edit one article section
-- **Afternoon (15 min):** Distribute yesterday's content on one platform
-- **Evening (15 min):** Engage with comments, reply to questions, plan tomorrow
+Search engines and readers both need context around the tool. Publish six to eight pieces that answer the questions someone has just before and just after using it.
 
-## Metrics to Track
+- The main how-to for the problem
+- Comparisons people search for when choosing an approach
+- Common mistakes, with the fix
+- The maths, if money is involved — calculators make good pages
 
-| Metric | Target by Day 90 |
-|--------|-----------------|
-| Total visitors | 2,000+ |
-| Articles published | 12+ |
-| Micro-tools live | 5+ |
-| Affiliate clicks | 100+ |
-| Digital product sales | 5+ |
-| Total revenue | $1,000+ |
+Each piece should link to your tool and to one other article. Internal links are how a small site gets indexed properly.
 
-## What If You Make $0?
+**Ship:** six to eight published pages, all linked together.
 
-Most people quit at day 30 because they made $0. Don't. The assets you built (tools, articles, links) keep working. Month 4–6 is when compound effect kicks in. Keep publishing.
+## Days 71–90: distribution
 
----
+This is where most projects stop, which is why it is scheduled last and treated as mandatory.
 
-*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*
+- Post in the two or three communities where your audience already is, following their rules
+- Answer questions directly, linking only when the link genuinely answers it
+- Submit the sitemap to Google Search Console and Bing Webmaster Tools
+- Ask ten people who fit the audience to use it and tell you what confused them
+
+**Ship:** twenty pieces of distribution activity and one round of feedback-driven fixes.
+
+## The numbers to watch
+
+| Week | Metric | What good looks like |
+|---|---|---|
+| 2 | Problem evidence | 10+ real instances |
+| 6 | Built and working | One thing, finished |
+| 10 | Indexed pages | 6–8, all interlinked |
+| 13 | Visitors | Any, from search rather than your own posts |
+
+Traffic from your own social posts proves the content works; traffic from search proves the site works. Only the second compounds.
+
+## What not to do
+
+- Do not buy a domain in week one. Prove the idea on free hosting first.
+- Do not build a second tool before the first has visitors.
+- Do not redesign anything in the first ninety days.
+- Do not measure success by revenue alone in month one; measure by whether strangers use the thing.
+
+## Bottom line
+
+Prove the problem, build one small thing, surround it with content, then distribute deliberately. Ninety days will not make you rich. It will tell you, cheaply and honestly, whether this idea deserves another ninety.
+
+Start with the [day-one checklist](../../articles/niche-selection-guide/index.html) if you have not chosen a problem yet.

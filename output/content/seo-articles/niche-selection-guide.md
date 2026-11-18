@@ -1,103 +1,86 @@
 ---
 title: How to Pick a Profitable Niche (Zero Dollars Required)
-description: A step-by-step guide to choosing a niche for your online business with free research tools.
-date: 2026-11-14
-tags: niche-selection, niche-research, zero-dollar, make-money-online, online-business
+description: A practical framework for choosing a niche you can rank in and monetise, with free research methods and a scoring table.
+date: 2026-11-18
+tags: niche-selection, niche-research, zero-dollar, market-validation, online-business
 ---
 
 # How to Pick a Profitable Niche (Zero Dollars Required)
 
-Your niche determines everything: how fast you grow, how much you earn, and whether you quit. Pick wisely.
+Most side projects fail at the choice, not the execution. Pick a niche with no buyers and no amount of work saves it; pick one with buyers and weak competition and ordinary work compounds.
 
-## The Niche Formula
+This is the framework to tell the difference before you build anything.
 
-A profitable niche has three things:
+## The three tests
 
-1. **People with money** — They already spend on this topic
-2. **A painful problem** — They're actively searching for solutions
-3. **Low competition** — You can rank without a huge budget
+A workable niche passes all three. Fail any one and you will stall.
 
-If you miss any one of these, you'll struggle.
+1. **Someone already pays.** Not "might pay" — there are products, courses or services currently selling in this space.
+2. **The problem hurts.** People search for it in specific words, not just browse past it.
+3. **You can realistically compete.** The first page of results is not entirely huge brands with six-figure content budgets.
 
-## Step 1: Brainstorm 20 Ideas
+## Step 1: Write down 20 candidates
 
-Write down 20 topics you know something about or are curious about:
+Anything you know, have done, or have suffered through. Specific beats broad at this stage:
 
-- Personal finance for gig workers
-- Home workouts without equipment
-- Meal prep on a budget
-- Notion templates for students
-- Side hustle calculators
-- Freelance rate calculators
-- Skincare dupes
-- Phone photography tips
-- Budget travel planning
-- Pet care on a budget
-- And so on...
+- Budget meal planning for shift workers
+- Freelance rates for video editors
+- Notion setups for solo lawyers
+- Getting a first nursing job in a new state
 
-Don't filter yet. Just write.
+Broad ideas like "fitness" or "make money online" are not candidates — they are categories. Narrow until you can name the person.
 
-## Step 2: Validate with Free Research
+## Step 2: Test demand for free
 
-For each idea, check these three signals:
+You do not need paid keyword tools to check whether a topic has traffic.
 
-### Signal A: Google Autosuggest
-Type your topic into Google. Do suggestions appear?
-- "how to [topic]" → People are searching
-- "best [topic] for beginners" → Commercial intent
-- "[topic] calculator" → Tool demand
+**Google autocomplete.** Start typing the topic. If Google suggests completions, people are searching. Suggestions like "how to", "best for beginners" and "calculator" are strong signals — the last one especially, because it means people want a tool rather than an article.
 
-### Signal B: Reddit Activity
-Search Reddit for your topic. Are there active subreddits with questions?
-- r/personalfinance → Active, money-related
-- r/fitness → Active, broad
-- r/[yourtopic] → If it exists, there's interest
+**Google Trends.** Compare two or three candidates. Look for steady interest rather than a spike, unless you are deliberately riding a trend.
 
-### Signal C: Existing Products
-Are people already selling in this niche?
-- Gumroad search for your topic
-- Amazon bestsellers in related categories
-- Udemy courses on the topic
+**Reddit.** Find the subreddit. Active discussion with repeated questions is better evidence than subscriber count. Read for the same question asked weekly — that is your article or tool.
 
-If people are selling, there's money to be made.
+**Question sites.** Services like AnswerThePublic expose the phrasing people use, which is often more specific than what you would guess.
 
-## Step 3: Score Each Idea (1–10)
+## Step 3: Test commercial intent
 
-| Idea | Money (1–10) | Problem (1–10) | Competition (1–10, lower is better) | Total |
-|------|-------------|----------------|-------------------------------------|-------|
-| Personal finance for gig workers | 9 | 8 | 6 | 23 |
-| Home workouts no equipment | 7 | 6 | 4 | 17 |
-| Meal prep on a budget | 8 | 7 | 5 | 20 |
-| Notion templates for students | 6 | 5 | 7 | 18 |
+Demand is not the same as willingness to pay.
 
-Higher total = better niche.
+- **Amazon** — are there bestsellers in the category, and do they have substantial review counts? Reviews mean people bought.
+- **Gumroad and similar** — are independent creators selling templates or guides here?
+- **Udemy** — are there courses with meaningful enrolment?
+- **Job boards** — for service niches, are people hiring for this outcome?
 
-## Step 4: Validate with One Piece of Content
+If nobody anywhere is selling, you have probably found an untapped market — or, far more often, no market. Assume the second until proven otherwise.
 
-Before building anything, write ONE article or build ONE micro-tool for your top idea. Publish it. Share it. See if anyone engages.
+## Step 4: Score the shortlist
 
-- 0 engagement → Idea might not work. Move to next.
-- Some engagement → Promising. Build more.
-- Lots of engagement → You found your niche. Go all in.
+Rate each idea out of 10 on money, pain, and competition, where a higher competition score means *easier* to compete.
 
-## Niches to Avoid (For $0 Start)
+| Idea | Buyers | Pain | Can compete | Total |
+|---|---|---|---|---|
+| Freelance rates for video editors | 8 | 9 | 7 | 24 |
+| Budget meals for shift workers | 6 | 7 | 6 | 19 |
+| Notion setups for solo lawyers | 7 | 6 | 4 | 17 |
 
-- **Highly regulated**: Medical advice, legal advice, financial advice (you need credentials)
-- **Highly competitive**: "Make money online" generally (too broad, dominated by big players)
-- **No commercial intent**: "Cute cat photos" (fun, but nobody pays)
+These numbers are judgements, not measurements. The value is in forcing the comparison side by side.
 
-## Good Starter Niches for $0
+## Step 5: Publish one thing before building ten
 
-- Personal finance for a specific group (students, freelancers, gig workers)
-- Fitness for a specific situation (home workouts, postpartum, over 40)
-- Meal planning for a specific diet (budget keto, student cooking)
-- Productivity for a specific role (students, freelancers, remote workers)
-- Beauty dupes for a specific product type (skincare, makeup, haircare)
+Write one article or build one small tool aimed squarely at the niche. Then share it where that audience already is.
 
-## Bottom Line
+- **No response at all** — the audience may not be reachable, which is fatal regardless of demand
+- **Small response** — promising; make a second piece
+- **Clear response** — you have your answer; go deep
 
-Don't pick a niche because it sounds trendy. Pick it because people spend money, have a problem, and there's room for you. Validate with one piece of content before building anything.
+This single test saves months. It costs an afternoon.
 
----
+## Niches to avoid with no budget
 
-*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*
+- **Regulated advice** — medical, legal, or investment advice without credentials invites liability
+- **Pure "make money online"** — dominated by people who have spent years and real money on it
+- **No transaction anywhere** — hobby topics with no products, no services, no jobs
+
+## Bottom line
+
+Pick the intersection of people who spend, problems that hurt, and competition you can beat. Then prove it with one published piece before committing further. Tools for the maths side live in the [Money and investing section](../../index.html) — start with the [niche profit calculator](../../micro-tools/niche-profit-calculator/index.html) to sanity-check the economics.

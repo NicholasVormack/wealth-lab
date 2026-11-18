@@ -750,3 +750,6 @@ Generated 5 emails, CSV import, HTML templates, and instructions
 [2026-11-18T04:31:11.343Z] Email sequence instructions written to output/email-sequence-instructions.md
 [2026-11-18T04:31:11.343Z] === EMAIL SEQUENCE AUTOMATION COMPLETE ===
 Generated 5 emails, CSV import, HTML templates, and instructions
+[2026-11-18T04:34:44.372Z] Landing page template written to output/landing-page-sample.html
+[2026-11-18T04:34:44.381Z] Landing page instructions written to output/landing-page-instructions.md
+[2026-11-18T04:34:44.382Z] === LANDING PAGE GENERATOR COMPLETE ===

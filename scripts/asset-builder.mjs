@@ -289,7 +289,11 @@ function parseFrontmatter(raw) {
  * get noindex + are kept out of the sitemap rather than shipped to Google.
  */
 function findPlaceholders(html) {
-  const stripped = html.replace(/<a [^>]*>.*?<\/a>/g, " ");
+  const stripped = html
+    .replace(/<a [^>]*>.*?<\/a>/g, " ")
+    // Brackets inside code are syntax, not an unfilled placeholder.
+    .replace(/<pre[\s\S]*?<\/pre>/gi, " ")
+    .replace(/<code>[\s\S]*?<\/code>/gi, " ");
   const matches = stripped.match(/\[[^\]]{2,60}\]/g) || [];
   return [...new Set(matches)];
 }
@@ -333,7 +337,11 @@ function discoverArticles(siteUrl) {
       const h1 = (body.match(/^#\s+(.+)$/m) || [])[1];
       // Article footers were hardcoded to a domain that never existed.
       // Rewrite them to the real Pages host at render time so this cannot drift.
-      const html = mdToHtml(body).replace(/wealth-lab\.github\.io/g, bareHost);
+      // Root-relative hrefs are also rewritten: an href="/x" resolves against
+      // the domain root and 404s on a /repo/ Pages subpath.
+      const html = mdToHtml(body)
+        .replace(/wealth-lab\.github\.io/g, bareHost)
+        .replace(/href="\/(?!\/)/g, 'href="../../');
       const placeholders = findPlaceholders(html);
       return {
         slug,
@@ -449,6 +457,7 @@ function normalizePages(files, siteUrl) {
   let backLinksAdded = 0;
   let footerLinksFixed = 0;
   let canonicalsAdded = 0;
+  let rootLinksFixed = 0;
 
   for (const file of files) {
     let html = fs.readFileSync(file, "utf8");
@@ -482,10 +491,19 @@ function normalizePages(files, siteUrl) {
       canonicalsAdded++;
     }
 
+    // Rewrite root-relative links to be relative to this page. On a Pages
+    // project site, href="/x" points at the domain root and 404s.
+    if (/href="\/(?!\/)/.test(html)) {
+      const root = relativeRoot(file);
+      const prefix = root === "." ? "" : `${root}/`;
+      html = html.replace(/href="\/(?!\/)/g, () => `href="${prefix}`);
+      rootLinksFixed++;
+    }
+
     if (html !== before) fs.writeFileSync(file, html);
   }
 
-  return { backLinksAdded, footerLinksFixed, canonicalsAdded };
+  return { backLinksAdded, footerLinksFixed, canonicalsAdded, rootLinksFixed };
 }
 
 /* ------------------------------------------------------------------- pages */
@@ -667,6 +685,17 @@ function build() {
     else publishedArticles++;
   }
 
+  // Prune pages whose markdown source no longer exists, so a deleted article
+  // stops being served instead of lingering as an orphan page.
+  const liveSlugs = new Set(articles.map((a) => a.slug));
+  const removedArticles = [];
+  for (const name of fs.readdirSync(ARTICLES_OUT)) {
+    const dir = path.join(ARTICLES_OUT, name);
+    if (!fs.statSync(dir).isDirectory() || liveSlugs.has(name)) continue;
+    fs.rmSync(dir, { recursive: true, force: true });
+    removedArticles.push(name);
+  }
+
   // 2. Normalize every existing HTML page for navigation and crawlability
   const allHtml = [];
   const walk = (dir) => {
@@ -704,11 +733,12 @@ function build() {
   log(`Site URL: ${siteUrl}`);
   log(`${tools.length} micro-tools discovered`);
   log(`${publishedArticles} articles published, ${drafts.length} held back as thin/placeholder content`);
+  if (removedArticles.length) log(`Pruned ${removedArticles.length} orphaned article page(s): ${removedArticles.join(", ")}`);
   if (drafts.length) {
     log(`Held back (noindex, not in sitemap): ${drafts.map((d) => d.slug).join(", ")}`);
   }
   log(`Hub page rebuilt: ${tools.length} tools + ${hub.publishedCount} guides linked`);
-  log(`Nav: ${nav.backLinksAdded} back-links added, ${nav.footerLinksFixed} dead footer links fixed, ${nav.canonicalsAdded} canonicals added`);
+  log(`Nav: ${nav.backLinksAdded} back-links added, ${nav.footerLinksFixed} dead footer links fixed, ${nav.canonicalsAdded} canonicals added, ${nav.rootLinksFixed} root-relative link fixes`);
   log(`Stale domain rewritten in ${swept} file(s)`);
   log("Wrote sitemap.xml, robots.txt, .nojekyll");
   log(`Next: node scripts/verify-site.mjs to check the result`);

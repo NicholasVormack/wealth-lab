@@ -1,145 +1,87 @@
 ---
 title: Build an Email List With $0 — Step by Step
-description: How to build an email list from scratch using free tools, lead magnets, and organic traffic.
-date: 2026-11-14
+description: How to build an email list from scratch with free tools, a simple lead magnet, and organic traffic.
+date: 2026-11-18
 tags: email-list-building, list-building, zero-dollar, email-marketing, lead-magnet
 ---
 
 # Build an Email List With $0 — Step by Step
 
-Your email list is your most valuable asset. It's the only audience you truly own. Here's how to build one for free.
+An email list is the only audience you own outright. A social following lives on someone else's platform and disappears when the algorithm changes or an account gets restricted. An email address list moves with you.
 
-## Why Email Matters
+Here is the whole process, at zero cost.
 
-- **You own it**: Social media algorithms can change overnight. Your email list is yours.
-- **High ROI**: Email marketing returns $36 for every $1 spent (industry average).
-- **Direct access**: No algorithm between you and your audience.
-- **Higher conversion**: Email subscribers convert better than social media followers.
+## Step 1: Pick a free email platform
 
-## Step 1: Pick a Free Email Platform
+Every major provider has a free tier aimed at people with fewer than a few thousand subscribers. The exact limits change often, so check the current pricing page before committing.
 
-| Platform | Free Tier Limit | Best For |
-|----------|----------------|----------|
-| Mailchimp | 2,000 contacts, 1,000 emails/month | Beginners |
-| MailerLite | 1,000 subscribers, 12,000 emails/month | More features free |
-| ConvertKit | 1,000 subscribers | Creators, digital products |
-| Brevo | 300 emails/day, unlimited contacts | High volume |
+- **Mailchimp** — the best-known option, generous free tier, easiest for a first newsletter
+- **MailerLite** — more automation on the free plan, good editor
+- **Kit (ConvertKit)** — built for creators and digital products
+- **Brevo** — high daily send volume, useful if you email often
 
-Pick one. You can switch later.
+Pick one and move on. Migrating later is possible; deliberating for a week is not productive.
 
-## Step 2: Create a Lead Magnet (Free)
+## Step 2: Build one lead magnet
 
-People won't give you their email for nothing. Offer value:
+Nobody hands over an email address for nothing. You need one specific thing worth trading for it.
 
-| Lead Magnet Type | Tool to Create | Time to Build |
-|-----------------|---------------|---------------|
-| Checklist | Google Docs → PDF | 1 hour |
-| Template | Notion, Canva, Google Sheets | 2–4 hours |
-| Short guide | Google Docs → PDF | 3–5 hours |
-| Micro-tool | HTML/JavaScript | 4–10 hours |
-| Resource list | Google Docs → PDF | 1 hour |
+Good zero-cost lead magnets:
 
-Examples:
-- "7 Free Side Hustle Calculators" checklist
-- "Notion Finance Tracker" template
-- "Meal Prep on a Budget" guide
-- "Freelance Rate Calculator" micro-tool
+- **A checklist** — "The 9 things to confirm before quoting a freelance rate"
+- **A template** — a spreadsheet, a Notion page, a document outline
+- **A calculator** — a tool that does the maths for them
+- **A short guide** — five to ten pages, one problem, solved properly
 
-## Step 3: Create a Signup Form
+Bad lead magnets: "my newsletter", "free updates", or anything requiring the reader to guess what they get. One clear promise converts; a vague one does not.
 
-Your email platform will generate a signup form. You can:
+Build it in Google Docs or Sheets and export a PDF. It should take an afternoon, not a month.
 
-- **Embed it** on your micro-tool pages
-- **Use a hosted landing page** (provided by your email platform)
-- **Add it to your Linktree** (free tier)
-- **Put it in your social media bios**
+## Step 3: Create the signup form
 
-### Form Fields to Keep Minimal
+Your provider generates a hosted form and an embeddable version. Ask for the email address and nothing else. Every additional field reduces the number of people who finish.
 
-- **Email address** (required)
-- **First name** (optional, for personalization)
+Place it in three spots:
 
-That's it. Every extra field reduces conversions.
+1. **A dedicated page** you can link to from anywhere
+2. **Directly on your tools or articles**, where intent is highest
+3. **Your social bios**, replacing whatever link is there now
 
-## Step 4: Deliver the Lead Magnet
+## Step 4: Deliver immediately
 
-When someone signs up, they should immediately receive:
+The moment someone subscribes they should receive the thing you promised. A delivery email that arrives an hour later reads as a broken promise.
 
-1. **Confirmation email** (double opt-in, required by most platforms)
-2. **Welcome email** with the lead magnet link
-3. **Follow-up sequence** (3–5 emails over the first week)
+Set up:
 
-## Step 4: Drive Traffic to Your Signup Form
+- A confirmation email if you use double opt-in — required by most platforms and better for deliverability
+- A welcome email containing the lead magnet link
+- Three to five follow-up emails over the first week
 
-### On Your Micro-Tools
+If you want the wording, we publish a full welcome series you can copy and adapt: [Email Sequence Templates](../../articles/email-sequence-templates/index.html).
 
-Add a signup box on every tool page:
+## Step 5: Send consistently
 
-> "Get the spreadsheet version of this calculator → [signup link]"
+One email per week beats three emails one week and silence the next. Short emails get read: 200 to 400 words, one idea, one link.
 
-### On Your Articles
+Useful formats:
 
-Add a content upgrade at the end of every article:
+- A new tool or article you published
+- One specific thing you learned that week
+- A short walkthrough of a real number — what you charged, what it cost, what was left
 
-> "Want the PDF version of this guide? Enter your email below."
+## Step 6: Grow without paying
 
-### On Social Media
+- **Content upgrades** — an extended version of the article the reader is already on
+- **Tool pages** — offer the spreadsheet version of a calculator
+- **Answering questions in public** — forums and communities where your reader already is, following the rules
+- **Your own articles** — every one ends with a reason to subscribe
 
-- **Linktree bio**: Link to your signup page
-- **Pinned posts**: "Free [lead magnet] → signup link in bio"
-- **TikTok/Instagram**: "Link in bio for the free tool"
+## What to expect
 
-### On Reddit
+Realistically, the first 100 subscribers come slowly and mostly from people who already know you. The curve bends only after you have several pieces of content ranking or being shared.
 
-Share your lead magnet in relevant subreddits (read rules first). Don't spam.
+Do not judge the list by week two. Judge it by whether the open rate holds up as it grows — a small engaged list is worth more than a large dead one.
 
-## Step 5: Send Regular Emails
+## Bottom line
 
-### Frequency
-
-- **Start**: 1 email per week
-- **Scale**: 2 emails per week once you have 500+ subscribers
-
-### What to Send
-
-- New micro-tool announcements
-- New SEO articles you published
-- Affiliate product recommendations (disclose them)
-- Personal stories and lessons learned
-- Curated resource lists
-
-### Email Length
-
-200–400 words. People scan, they don't read.
-
-## Step 6: Grow to 1,000 Subscribers
-
-| Milestone | Tactics |
-|-----------|---------|
-| 0–100 | Personal network, Reddit, X, Pinterest |
-| 100–500 | Consistent content, SEO articles, guest posts |
-| 500–1,000 | Lead magnet optimization, partnerships, referrals |
-
-## Realistic Timeline
-
-- **Month 1**: 0–100 subscribers
-- **Month 2**: 100–500 subscribers
-- **Month 3**: 500–1,000 subscribers
-- **Month 6**: 1,000+ subscribers
-
-## Monetization Path
-
-| Subscriber Count | Monetization |
-|-----------------|-------------|
-| 100–500 | Affiliate links in every email |
-| 500–1,000 | Promote your own digital product |
-| 1,000+ | Paid newsletter tier ($5–$15/month) |
-| 5,000+ | Sponsored newsletter slots |
-
-## Bottom Line
-
-Start building your list from day one. Create one lead magnet. Put the signup form everywhere. Send one email per week. Your list is the only audience you truly own — protect it, grow it, monetize it.
-
----
-
-*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*
+One lead magnet, one form in three places, one email per week. That is the entire system. Everything else is optimisation.
