@@ -94,9 +94,11 @@ const actionVerbs = {
 
 const weakPrefix = /^(helped (with|to)|assisted (with|in)|responsible for|worked on|tasked with|involved in|participated in)\s+/i;
 
+const leadingVerb = /^(managed|wrote|helped|created|built|led|ran|handled|developed|designed|coordinated|organized|maintained|supported|assisted|worked|oversaw|trained|taught|sold|served|provided|processed|reviewed|analyzed|planned|launched|implemented|improved|reduced|increased|grew|delivered|executed|directed|spearheaded|orchestrated|owned|drove)\s+(a |an |the )?/i;
+
 function cleanDuty(raw) {
   let d = String(raw).replace(/^[-*\u2022\d.)\s]+/, "").trim();
-  d = d.replace(weakPrefix, "");
+  d = d.replace(weakPrefix, "").replace(leadingVerb, "");
   return d.replace(/\s+/g, " ").replace(/[.;,]+$/, "");
 }
 
