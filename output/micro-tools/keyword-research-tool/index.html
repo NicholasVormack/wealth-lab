@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Keyword Research Tool — Free | Wealth Lab</title>
+<meta name="description" content="Generate long-tail keyword variations for SEO. Free keyword research tool. No signup." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .results h3 { font-size: 15px; color: #22d3ee; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  ul.ideas { list-style: none; padding: 0; }
+  ul.ideas li { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
+  .copy-btn { background: #334155; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 11px; cursor: pointer; float: right; }
+  .copy-btn:hover { background: #475569; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Keyword <span>Research</span> Tool</h1>
+  <p class="sub">Enter a seed keyword and get long-tail SEO variations for your micro-tools and articles.</p>
+
+  <div class="field">
+    <label>Seed keyword</label>
+    <input type="text" id="keyword" placeholder="e.g., side hustle, freelance rate, savings" />
+  </div>
+
+  <button class="cta" onclick="generate()">Generate Keywords</button>
+
+  <div class="results" id="results">
+    <h3>Long-tail Variations</h3>
+    <ul class="ideas" id="ideasList"></ul>
+    <div style="margin-top:16px;">
+      <button class="copy-btn" onclick="copyKeywords()">Copy All</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+const modifiers = [
+  "free", "best", "how to", "calculator", "guide", "2026", "for beginners",
+  "step by step", "without money", "online", "template", "tool", "example",
+  "formula", "worksheet", "checklist", "strategy", "method", "system"
+];
+
+const questionModifiers = [
+  "how to calculate", "what is", "best way to", "how much", "how to start",
+  "where to find", "why use", "when to use"
+];
+
+function generate() {
+  const seed = document.getElementById("keyword").value.trim();
+  const results = document.getElementById("results");
+  const list = document.getElementById("ideasList");
+
+  if (!seed) {
+    alert("Please enter a seed keyword.");
+    return;
+  }
+
+  list.innerHTML = "";
+  const all = [];
+
+  // Modifiers
+  modifiers.forEach(m => {
+    all.push(`${m} ${seed}`);
+    all.push(`${seed} ${m}`);
+  });
+
+  // Questions
+  questionModifiers.forEach(q => {
+    all.push(`${q} ${seed}?`);
+  });
+
+  // Deduplicate and shuffle
+  const unique = [...new Set(all)].sort(() => Math.random() - 0.5);
+
+  unique.forEach(k => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span style="color:#22d3ee;">&#9654;</span> ${k} <button class="copy-btn" onclick="copyKeyword(this)">Copy</button>`;
+    list.appendChild(li);
+  });
+
+  results.classList.add("show");
+}
+
+function copyKeyword(btn) {
+  const li = btn.parentElement;
+  const text = li.innerText.replace("Copy", "").trim();
+  navigator.clipboard.writeText(text);
+  btn.textContent = "Copied!";
+  setTimeout(() => btn.textContent = "Copy", 1000);
+}
+
+function copyKeywords() {
+  const items = document.querySelectorAll("#ideasList li");
+  const texts = Array.from(items).map(li => li.innerText.replace("Copy", "").trim());
+  navigator.clipboard.writeText(texts.join("\n"));
+  alert(`Copied ${texts.length} keywords to clipboard.`);
+}
+</script>
+
+</body>
+</html>

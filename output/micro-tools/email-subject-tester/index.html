@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Email Subject Line Tester — Free | Wealth Lab</title>
+<meta name="description" content="Test email subject lines for length, spam words, and open-rate potential. Free tool." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .score-card { display: flex; gap: 16px; margin-bottom: 20px; }
+  .score-item { flex: 1; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 16px; text-align: center; }
+  .score-item .value { font-size: 32px; font-weight: 800; color: #22d3ee; }
+  .score-item .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .insights { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px; }
+  .insights h3 { font-size: 13px; color: #22d3ee; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .insights ul { list-style: none; padding: 0; }
+  .insights li { font-size: 13px; color: #cbd5e1; margin-bottom: 6px; padding-left: 18px; position: relative; }
+  .insights li::before { content: "•"; color: #22d3ee; position: absolute; left: 4px; font-weight: 800; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Email <span>Subject</span> Line Tester</h1>
+  <p class="sub">Test subject lines for spam words, length, and open-rate potential before you send.</p>
+
+  <div class="field">
+    <label>Subject line</label>
+    <input type="text" id="subject" placeholder="Your side hustle income just got easier" />
+  </div>
+
+  <button class="cta" onclick="test()">Test Subject Line</button>
+
+  <div class="results" id="results">
+    <div class="score-card">
+      <div class="score-item">
+        <div class="value" id="spamScore">0</div>
+        <div class="label">Spam Risk</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="lengthScore">0</div>
+        <div class="label">Length Score</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="overallScore">0</div>
+        <div class="label">Overall</div>
+      </div>
+    </div>
+    <div class="insights">
+      <h3>Insights</h3>
+      <ul id="insightsList"></ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+const spamWords = [
+  "free money", "make money fast", "earn cash", "get rich", "guaranteed", "no cost",
+  "risk-free", "act now", "limited time", "click here", "urgent", "winner", "congratulations",
+  "credit card", "loan", "debt", "cash bonus", "extra income", "work from home"
+];
+
+function test() {
+  const subject = document.getElementById("subject").value.trim();
+  const results = document.getElementById("results");
+  const spamScore = document.getElementById("spamScore");
+  const lengthScore = document.getElementById("lengthScore");
+  const overallScore = document.getElementById("overallScore");
+  const insightsList = document.getElementById("insightsList");
+
+  if (!subject) {
+    alert("Please enter a subject line.");
+    return;
+  }
+
+  const len = subject.length;
+  const words = subject.split(/\s+/).filter(w => w.length > 0).length;
+  const lower = subject.toLowerCase();
+
+  let spamRisk = 0;
+  const foundSpam = [];
+  spamWords.forEach(sw => {
+    if (lower.includes(sw)) {
+      spamRisk += 15;
+      foundSpam.push(sw);
+    }
+  });
+  spamRisk = Math.min(spamRisk, 100);
+
+  let lengthPts = 0;
+  if (len >= 30 && len <= 60) lengthPts = 40;
+  else if (len >= 20 && len <= 30) lengthPts = 30;
+  else if (len >= 60 && len <= 80) lengthPts = 25;
+  else lengthPts = 15;
+
+  let overall = Math.round(100 - spamRisk * 0.6 + lengthPts * 0.4);
+  overall = Math.min(Math.max(overall, 0), 100);
+
+  const insights = [];
+  if (spamRisk > 0) {
+    insights.push(`Spam words detected: ${foundSpam.join(", ")}. Consider removing them.`);
+  } else {
+    insights.push("No spam words detected — good for deliverability.");
+  }
+  if (len < 30) insights.push("Subject is short. Consider adding more context (30-60 chars is ideal).");
+  else if (len > 60) insights.push("Subject is long. Mobile users may see only the first 30-40 characters.");
+  else insights.push("Good length for mobile and desktop inboxes.");
+  if (!/[!?.]/.test(subject.slice(-1))) insights.push("Consider adding a question mark or exclamation point for engagement.");
+
+  spamScore.textContent = spamRisk + "%";
+  lengthScore.textContent = lengthPts + "/40";
+  overallScore.textContent = overall + "/100";
+  insightsList.innerHTML = insights.map(i => `<li>${i}</li>`).join("");
+  results.classList.add("show");
+}
+</script>
+
+</body>
+</html>

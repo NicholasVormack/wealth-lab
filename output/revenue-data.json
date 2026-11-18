@@ -1,0 +1,57 @@
+{
+  "updatedAt": "2026-11-18T04:22:32.447Z",
+  "streams": [
+    {
+      "name": "Systeme.io Affiliate",
+      "type": "recurring",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "40% recurring commission"
+    },
+    {
+      "name": "ClickBank Affiliate",
+      "type": "one-time",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Instant approval digital products"
+    },
+    {
+      "name": "Gumroad Products",
+      "type": "one-time",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Digital products storefront"
+    },
+    {
+      "name": "Ko-fi Donations",
+      "type": "one-time",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Donations + digital products"
+    },
+    {
+      "name": "Amazon Associates",
+      "type": "one-time",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Physical product affiliate"
+    },
+    {
+      "name": "Service Income",
+      "type": "project-based",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Freelance/consulting work"
+    },
+    {
+      "name": "YouTube Ad Revenue",
+      "type": "recurring",
+      "monthly": 0,
+      "currency": "USD",
+      "notes": "Requires 1,000 subs + 4,000 watch hours"
+    }
+  ],
+  "totalMonthly": 0,
+  "goal": 1000,
+  "progressToGoal": 0
+}

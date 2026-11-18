@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-11-18T04:22:32.405Z",
+  "links": [
+    {
+      "id": "link-0",
+      "name": "Systeme.io Affiliate",
+      "url": "https://systeme.io/?sa=YOUR_ID",
+      "type": "affiliate",
+      "clicks": 0,
+      "conversions": 0,
+      "ctr": 0
+    },
+    {
+      "id": "link-1",
+      "name": "ClickBank Marketplace",
+      "url": "https://clickbank.com/",
+      "type": "affiliate",
+      "clicks": 0,
+      "conversions": 0,
+      "ctr": 0
+    },
+    {
+      "id": "link-2",
+      "name": "Gumroad Storefront",
+      "url": "https://gumroad.com/",
+      "type": "storefront",
+      "clicks": 0,
+      "conversions": 0,
+      "ctr": 0
+    },
+    {
+      "id": "link-3",
+      "name": "Ko-fi Page",
+      "url": "https://ko-fi.com/",
+      "type": "storefront",
+      "clicks": 0,
+      "conversions": 0,
+      "ctr": 0
+    },
+    {
+      "id": "link-4",
+      "name": "Amazon Associates",
+      "url": "https://amazon.com/",
+      "type": "affiliate",
+      "clicks": 0,
+      "conversions": 0,
+      "ctr": 0
+    }
+  ]
+}

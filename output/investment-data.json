@@ -1,0 +1,65 @@
+{
+  "createdAt": "2026-11-14T07:48:36.998Z",
+  "accounts": [
+    {
+      "name": "Fidelity Brokerage",
+      "type": "taxable",
+      "balance": 0,
+      "monthlyContribution": 0
+    },
+    {
+      "name": "Roth IRA",
+      "type": "tax-advantaged",
+      "balance": 0,
+      "monthlyContribution": 0
+    },
+    {
+      "name": "Robinhood",
+      "type": "taxable",
+      "balance": 0,
+      "monthlyContribution": 0
+    }
+  ],
+  "holdings": [
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "type": "index",
+      "shares": 0,
+      "avgCost": 0,
+      "dividendYield": 0.03
+    },
+    {
+      "ticker": "VTI",
+      "name": "Vanguard Total Stock Market ETF",
+      "type": "index",
+      "shares": 0,
+      "avgCost": 0,
+      "dividendYield": 0.02
+    },
+    {
+      "ticker": "SCHD",
+      "name": "Schwab US Dividend Equity",
+      "type": "dividend",
+      "shares": 0,
+      "avgCost": 0,
+      "dividendYield": 0.035
+    },
+    {
+      "ticker": "FXAIX",
+      "name": "Fidelity 500 Index Fund",
+      "type": "index",
+      "shares": 0,
+      "avgCost": 0,
+      "dividendYield": 0.03
+    }
+  ],
+  "dcaSchedule": {
+    "monthlyAmount": 100,
+    "startDate": "2026-11-14",
+    "frequency": "monthly"
+  },
+  "dividendsReinvested": 0,
+  "totalContributions": 0,
+  "lastUpdated": "2026-11-14T07:48:36.999Z"
+}

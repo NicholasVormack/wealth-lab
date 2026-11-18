@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Brokerage Bonus Tracker — Free | Wealth Lab</title>
+<meta name="description" content="Track brokerage account sign-up bonuses, free stock offers, and cash rewards. Free tool. No signup." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 900px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  table { width: 100%; border-collapse: collapse; background: #0f172a; border: 1px solid #334155; border-radius: 8px; overflow: hidden; margin-top: 20px; }
+  th { text-align: left; padding: 12px 16px; color: #94a3b8; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+  td { padding: 12px 16px; border-bottom: 1px solid #334155; font-size: 13px; color: #cbd5e1; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: rgba(34, 211, 238, 0.05); }
+  .bonus { font-weight: 700; color: #22d3ee; }
+  .status { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+  .status.active { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+  .status.expired { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+  .note { font-size: 12px; color: #94a3b8; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Brokerage <span>Bonus</span> Tracker</h1>
+  <p class="sub">Track brokerage sign-up bonuses, free stock offers, and cash rewards. Claim them, then invest the proceeds into index funds.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Brokerage</th>
+        <th>Bonus Type</th>
+        <th>Bonus Value</th>
+        <th>Requirement</th>
+        <th>Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Robinhood</td>
+        <td>Free Stock</td>
+        <td><span class="bonus">$3–$225</span></td>
+        <td>Open account, link bank</td>
+        <td><span class="status active">Active</span></td>
+        <td>Stock tradable 2 days after credit</td>
+      </tr>
+      <tr>
+        <td>Webull</td>
+        <td>Free Stocks</td>
+        <td><span class="bonus">Up to $3,600</span></td>
+        <td>Open + fund account</td>
+        <td><span class="status active">Active</span></td>
+        <td>12 free stocks + 5% APY on cash</td>
+      </tr>
+      <tr>
+        <td>Moomoo</td>
+        <td>Free Stocks</td>
+        <td><span class="bonus">Varies</span></td>
+        <td>Open + fund account</td>
+        <td><span class="status active">Active</span></td>
+        <td>Number of shares depends on deposit</td>
+      </tr>
+      <tr>
+        <td>SoFi Active Investing</td>
+        <td>Free Stock</td>
+        <td><span class="bonus">Up to $3,000</span></td>
+        <td>Open + fund account</td>
+        <td><span class="status active">Active</span></td>
+        <td>Most people receive a small amount</td>
+      </tr>
+      <tr>
+        <td>Charles Schwab</td>
+        <td>Free Stock</td>
+        <td><span class="bonus">$50</span></td>
+        <td>Deposit $50 into new account</td>
+        <td><span class="status active">Active</span></td>
+        <td>Schwab Starter Kit</td>
+      </tr>
+      <tr>
+        <td>Charles Schwab (Referral)</td>
+        <td>Cash Bonus</td>
+        <td><span class="bonus">$100–$1,000</span></td>
+        <td>Referral link, deposit $25K–$500K+ in 45 days</td>
+        <td><span class="status active">Active</span></td>
+        <td>High deposit requirement</td>
+      </tr>
+      <tr>
+        <td>E*TRADE</td>
+        <td>Cash Bonus</td>
+        <td><span class="bonus">Up to $1,500</span></td>
+        <td>Fund within 60 days, amount varies</td>
+        <td><span class="status active">Active</span></td>
+        <td>Best for large deposits</td>
+      </tr>
+      <tr>
+        <td>J.P. Morgan Self-Directed</td>
+        <td>Cash Bonus</td>
+        <td><span class="bonus">Up to $1,000</span></td>
+        <td>Open + fund account</td>
+        <td><span class="status active">Active</span></td>
+        <td>Expires 2027-01-27</td>
+      </tr>
+      <tr>
+        <td>Interactive Brokers</td>
+        <td>Free Stock (IBKR)</td>
+        <td><span class="bonus">Up to $1,000</span></td>
+        <td>Referral link, deposit $300 per $1 stock</td>
+        <td><span class="status active">Active</span></td>
+        <td>$1 IBKR stock per $300 deposited</td>
+      </tr>
+      <tr>
+        <td>tastytrade</td>
+        <td>Cash Bonus</td>
+        <td><span class="bonus">$100</span></td>
+        <td>Open account with referral link</td>
+        <td><span class="status active">Active</span></td>
+        <td>Referral required</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>Strategy:</b> Claim all free stock bonuses. Hold or sell and move proceeds into your index fund (FXAIX, FZROX, VOO). These are your seed capital dollars — $0 out of pocket.
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+</body>
+</html>

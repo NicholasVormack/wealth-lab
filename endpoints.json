@@ -1,0 +1,135 @@
+[
+  {
+    "platform": "GitHub Pages",
+    "url": "https://pages.github.com/",
+    "env_key_needed": null,
+    "instructions_for_operator": "Create repo, enable Pages in Settings. No API key needed for static deployment via git.",
+    "status": "READY"
+  },
+  {
+    "platform": "Kit (ConvertKit)",
+    "url": "https://kit.com/",
+    "env_key_needed": "KIT_API_KEY",
+    "instructions_for_operator": "Create free account (10,000 subscribers free), get API key at kit.com/settings/account. Add KIT_API_KEY to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Medium",
+    "url": "https://medium.com/",
+    "env_key_needed": "MEDIUM_ACCESS_TOKEN",
+    "instructions_for_operator": "Create account, get integration token at medium.com/me/settings. Add MEDIUM_ACCESS_TOKEN to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Dev.to",
+    "url": "https://dev.to/",
+    "env_key_needed": "DEVTO_API_KEY",
+    "instructions_for_operator": "Create account, get API key at dev.to/settings/account. Add DEVTO_API_KEY to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Gumroad",
+    "url": "https://gumroad.com/",
+    "env_key_needed": "GUMROAD_ACCESS_TOKEN",
+    "instructions_for_operator": "Create account, generate token at gumroad.com/settings. Add GUMROAD_ACCESS_TOKEN to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Ko-fi",
+    "url": "https://ko-fi.com/",
+    "env_key_needed": "KOFI_API_KEY",
+    "instructions_for_operator": "Create account, get API key at ko-fi.com/developer. Add KOFI_API_KEY to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Payhip",
+    "url": "https://payhip.com/",
+    "env_key_needed": null,
+    "instructions_for_operator": "Create free account (5% fee on free plan). No API key needed for manual product listing.",
+    "status": "READY"
+  },
+  {
+    "platform": "Lemon Squeezy",
+    "url": "https://lemonsqueezy.com/",
+    "env_key_needed": "LEMONSQUEEZY_API_KEY",
+    "instructions_for_operator": "Create account, generate API key at lemonsqueezy.com/settings/api. Add LEMONSQUEEZY_API_KEY to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Amazon Associates",
+    "url": "https://affiliate-program.amazon.com/",
+    "env_key_needed": null,
+    "instructions_for_operator": "Apply for affiliate account. No API key needed for manual link generation. Add AMAZON_ASSOCIATE_TAG to .env when approved.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "X (Twitter)",
+    "url": "https://developer.twitter.com/",
+    "env_key_needed": "X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET",
+    "instructions_for_operator": "Create developer account and app. Add all four keys to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Reddit",
+    "url": "https://www.reddit.com/prefs/apps",
+    "env_key_needed": "REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD",
+    "instructions_for_operator": "Create app at reddit.com/prefs/apps. Add credentials to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "YouTube",
+    "url": "https://console.cloud.google.com/",
+    "env_key_needed": "YOUTUBE_API_KEY",
+    "instructions_for_operator": "Create Google Cloud project, enable YouTube Data API v3, create credentials.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Pinterest",
+    "url": "https://www.pinterest.com/business/",
+    "env_key_needed": "PINTEREST_ACCESS_TOKEN",
+    "instructions_for_operator": "Create business account, get access token at developers.pinterest.com/. Add PINTEREST_ACCESS_TOKEN to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "TikTok",
+    "url": "https://developers.tiktok.com/",
+    "env_key_needed": "TIKTOK_ACCESS_TOKEN, TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET",
+    "instructions_for_operator": "Create developer account and app. Add all three keys to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Influee",
+    "url": "https://influee.co/for-creators",
+    "env_key_needed": null,
+    "instructions_for_operator": "Create free creator account, apply to UGC campaigns. No API key needed for manual application.",
+    "status": "READY"
+  },
+  {
+    "platform": "Promote",
+    "url": "https://promote.sh/",
+    "env_key_needed": null,
+    "instructions_for_operator": "Create free creator account, browse live UGC campaigns. No API key needed.",
+    "status": "READY"
+  },
+  {
+    "platform": "UserTesting",
+    "url": "https://www.usertesting.com/get-paid-to-test",
+    "env_key_needed": null,
+    "instructions_for_operator": "Create free tester account, complete practice test. No API key needed.",
+    "status": "READY"
+  },
+  {
+    "platform": "SEOmatic",
+    "url": "https://seomatic.ai/",
+    "env_key_needed": "SEOMATIC_API_KEY",
+    "instructions_for_operator": "Create account, get API key at seomatic.ai/settings/api. Add SEOMATIC_API_KEY to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  },
+  {
+    "platform": "Vercel",
+    "url": "https://vercel.com/",
+    "env_key_needed": "VERCEL_TOKEN",
+    "instructions_for_operator": "Create account, generate token at vercel.com/account/tokens. Add VERCEL_TOKEN to .env.",
+    "status": "NEEDS_OPERATOR_KEY"
+  }
+]

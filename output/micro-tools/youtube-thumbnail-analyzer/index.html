@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>YouTube Thumbnail Analyzer — Free | Wealth Lab</title>
+<meta name="description" content="Test if your YouTube thumbnail text is readable at small sizes. Free tool. No signup." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input, .field textarea { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; font-family: inherit; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: #22d3ee; }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .score-card { display: flex; gap: 16px; margin-bottom: 20px; }
+  .score-item { flex: 1; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; text-align: center; }
+  .score-item .value { font-size: 32px; font-weight: 800; color: #22d3ee; }
+  .score-item .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .preview { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin-top: 20px; text-align: center; }
+  .preview img { max-width: 320px; border-radius: 8px; border: 2px solid #334155; margin-bottom: 16px; }
+  .preview-text { font-size: 48px; font-weight: 800; color: #f1f5f9; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 8px; }
+  .preview-sub { font-size: 18px; color: #cbd5e1; }
+  .insights { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px 20px; margin-top: 20px; }
+  .insights h4 { font-size: 14px; color: #22d3ee; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .insights ul { list-style: none; padding: 0; }
+  .insights li { font-size: 13px; color: #cbd5e1; margin-bottom: 6px; padding-left: 20px; position: relative; }
+  .insights li::before { content: "•"; color: #22d3ee; position: absolute; left: 4px; font-weight: 800; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>YouTube <span>Thumbnail</span> Analyzer</h1>
+  <p class="sub">Test if your thumbnail text is readable at mobile size. Free tool. No signup.</p>
+
+  <div class="field">
+    <label>Main Title Text (big text)</label>
+    <input type="text" id="mainText" placeholder="I Made $10,000 With This" />
+  </div>
+  <div class="field">
+    <label>Subtitle Text (smaller text)</label>
+    <input type="text" id="subText" placeholder="Side Hustle Secrets Revealed" />
+  </div>
+  <div class="field">
+    <label>Main Text Color</label>
+    <input type="color" id="mainColor" value="#22d3ee" />
+  </div>
+  <div class="field">
+    <label>Background Color</label>
+    <input type="color" id="bgColor" value="#0f172a" />
+  </div>
+
+  <button class="cta" onclick="analyze()">Analyze Thumbnail</button>
+
+  <div class="results" id="results">
+    <div class="score-card">
+      <div class="score-item">
+        <div class="value" id="readabilityScore">0</div>
+        <div class="label">Readability Score</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="contrastScore">0</div>
+        <div class="label">Contrast Score</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="lengthScore">0</div>
+        <div class="label">Length Score</div>
+      </div>
+    </div>
+
+    <div class="preview">
+      <div class="preview-text" id="previewMain"></div>
+      <div class="preview-sub" id="previewSub"></div>
+    </div>
+
+    <div class="insights">
+      <h4>Insights</h4>
+      <ul id="insightsList"></ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+function analyze() {
+  const mainText = document.getElementById("mainText").value.trim();
+  const subText = document.getElementById("subText").value.trim();
+  const mainColor = document.getElementById("mainColor").value;
+  const bgColor = document.getElementById("bgColor").value;
+
+  const results = document.getElementById("results");
+  const readabilityScore = document.getElementById("readabilityScore");
+  const contrastScore = document.getElementById("contrastScore");
+  const lengthScore = document.getElementById("lengthScore");
+  const insightsList = document.getElementById("insightsList");
+  const previewMain = document.getElementById("previewMain");
+  const previewSub = document.getElementById("previewSub");
+
+  if (!mainText) {
+    alert("Please enter main title text.");
+    return;
+  }
+
+  const mainLen = mainText.length;
+  const subLen = subText.length;
+
+  // Length score: ideal main text is 3-8 words
+  const wordCount = mainText.split(/\s+/).filter(w => w.length > 0).length;
+  let lengthPts = 50;
+  if (wordCount <= 3) lengthPts = 40;
+  else if (wordCount <= 6) lengthPts = 100;
+  else if (lengthPts <= 10) lengthPts = 70;
+  else lengthPts = 40;
+
+  // Contrast score: simple luminance check
+  function getLuminance(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  }
+  const mainLum = getLuminance(mainColor);
+  const bgLum = getLuminance(bgColor);
+  const contrast = Math.abs(mainLum - bgLum);
+  let contrastPts = Math.round(contrast * 100);
+
+  // Readability combined
+  let readability = Math.round((lengthPts * 0.4 + contrastPts * 0.4 + (mainLen <= 50 ? 20 : 10) * 0.2));
+  readability = Math.min(Math.max(readability, 0), 100);
+
+  const insights = [];
+  if (wordCount > 8) insights.push("Title is too long. Mobile users can't read it. Aim for 3-6 words.");
+  else if (wordCount >= 3) insights.push("Good title length for mobile readability.");
+  else insights.push("Title is very short. Consider adding one more impactful word.");
+
+  if (contrast < 0.5) insights.push("Low contrast between text and background. Increase contrast for readability.");
+  else insights.push("Good contrast — text will pop on mobile screens.");
+
+  if (!subText) insights.push("Add a subtitle for context and secondary keyword.");
+  else if (subLen > 30) insights.push("Subtitle is long. Keep it under 30 characters.");
+
+  readabilityScore.textContent = readability + "/100";
+  contrastScore.textContent = Math.round(contrastPts) + "/100";
+  lengthScore.textContent = lengthPts + "/100";
+
+  previewMain.textContent = mainText;
+  previewMain.style.color = mainColor;
+  previewSub.textContent = subText;
+  previewSub.style.color = mainColor;
+  document.querySelector(".preview").style.backgroundColor = bgColor;
+
+  insightsList.innerHTML = insights.map(i => `<li>${i}</li>`).join("");
+  results.classList.add("show");
+}
+</script>
+
+</body>
+</html>

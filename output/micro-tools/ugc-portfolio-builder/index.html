@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UGC Portfolio Builder — Free | Wealth Lab</title>
+<meta name="description"content="Generate UGC video scripts and portfolio pieces for brand deals. Zero followers needed. Brands pay $100-$500+ per video." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input, .field select, .field textarea { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; font-family: inherit; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #22d3ee; }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .script-card { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .script-card h3 { font-size: 15px; color: #22d3ee; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .script-card p { font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 8px; }
+  .script-card .timestamp { font-family: monospace; color: #94a3b8; font-size: 12px; margin-bottom: 4px; }
+  .copy-btn { background: #334155; color: #22d3ee; border: none; border-radius: 4px; padding: 6px 12px; font-size: 12px; cursor: pointer; float: right; }
+  .copy-btn:hover { background: #475569; }
+  .platform-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .platform-tag { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 4px 10px; border-radius: 20px; font-size: 11px; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+  .rate-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid #22d3ee; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center; }
+  .rate-card .rate { font-size: 32px; font-weight: 800; color: #22d3ee; }
+  .rate-card .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>UGC <span>Portfolio</span> Builder</h1>
+  <p class="sub">Generate UGC video scripts for brand deals. Zero followers needed. Brands pay $100–$500+ per video.</p>
+
+  <div class="rate-card">
+    <div class="rate">$100–$500+</div>
+    <div class="label">Per UGC Video (No Followers Required)</div>
+  </div>
+
+  <div class="field">
+    <label>Product or Service You're Promoting</label>
+    <input type="text" id="product" placeholder="Free Side Hustle ROI Calculator" />
+  </div>
+  <div class="field">
+    <label>Target Audience</label>
+    <input type="text" id="audience" placeholder="Freelancers, side hustlers, entrepreneurs" />
+  </div>
+  <div class="field">
+    <label>Platform</label>
+    <select id="platform">
+      <option value="tiktok">TikTok (9:16, 15-60s)</option>
+      <option value="reels">Instagram Reels (9:16, 15-90s)</option>
+      <option value="shorts">YouTube Shorts (9:16, up to 60s)</option>
+      <option value="ugc">UGC Raw (brand posts it, 9:16)</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Video Style</label>
+    <select id="style">
+      <option value="problem-solution">Problem → Solution (classic UGC)</option>
+      <option value="listicle">Top 3 / Best of format</option>
+      <option value="before-after">Before → After transformation</option>
+      <option value="day-in-life">Day in the life / How I use it</option>
+    </select>
+  </div>
+
+  <button class="cta" onclick="generate()">Generate UGC Script</button>
+
+  <div class="results" id="results">
+    <div class="platform-tags" id="platformTags"></div>
+    <div id="scriptOutput"></div>
+    <div style="margin-top:20px;">
+      <h4 style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Where to Find UGC Brand Deals</h4>
+      <ul style="font-size:13px; color:#cbd5e1; line-height:1.8; margin-left:20px;">
+        <li><a href="https://influee.co/for-creators" class="cta-link" target="_blank" rel="noopener">Influee</a> — No follower minimum, apply to brand campaigns</li>
+        <li><a href="https://promote.sh" class="cta-link" target="_blank" rel="noopener">Promote</a> — Live UGC campaigns across TikTok, Instagram, YouTube, X</li>
+        <li><a href="https://www.tiktok.com/creative-center" class="cta-link" target="_blank" rel="noopener">TikTok Creative Center</a> — Free ad library, see what brands are already buying</li>
+        <li><a href="https://www.fiverr.com" class="cta-link" target="_blank" rel="noopener">Fiverr</a> — Create a UGC creator gig, set your own rates</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+const scripts = {
+  "problem-solution": (product, audience, platform) => [
+    { t: "0:00-0:03", text: `Stop wasting money on ${product.split(' ')[0]} tools that cost $29/month.` },
+    { t: "0:03-0:10", text: `I was spending ${Math.floor(Math.random()*50+20)}/month on [competitor] until I found this free alternative.` },
+    { t: "0:10-0:25", text: `This ${product} does the exact same thing — calculate your [benefit] in seconds. No signup. No email. No ads.` },
+    { t: "0:25-0:40", text: `Here's how it works: [show screen recording]. Enter your [input 1], [input 2], click calculate. Done.` },
+    { t: "0:40-0:60", text: `Link in my bio. It's completely free. Stop overpaying, start calculating.` }
+  ],
+  "listicle": (product, audience, platform) => [
+    { t: "0:00-0:03", text: `3 free ${audience.split(',')[0]} tools you need in 2026.` },
+    { t: "0:03-0:15", text: `Number one: ${product}. [Show the tool in action].` },
+    { t: "0:15-0:25", text: `Number two: [second tool]. Brief demo.` },
+    { t: "0:25-0:35", text: `Number three: [third tool]. Brief demo.` },
+    { t: "0:35-0:45", text: `All three are free. Links in bio. Which one are you trying first?` }
+  ],
+  "before-after": (product, audience, platform) => [
+    { t: "0:00-0:05", text: `Before this tool: [show messy spreadsheet / confused face].` },
+    { t: "0:05-0:20", text: `I spent hours trying to figure out my [problem]. It was frustrating.` },
+    { t: "0:20-0:35", text: `Then I found ${product}. [Show clean tool interface].` },
+    { t: "0:35-0:50", text: `After: [show clean result]. Answer in 30 seconds. Free forever.` },
+    { t: "0:50-0:60", text: `Get it free — link in bio.` }
+  ],
+  "day-in-life": (product, audience, platform) => [
+    { t: "0:00-0:05", text: `How I manage my [niche] work in 2026.` },
+    { t: "0:05-0:15", text: `Morning: check my numbers with ${product}. [Show tool].` },
+    { t: "0:15-0:30", text: `Midday: [show another quick task].` },
+    { t: "0:30-0:45", text: `Evening: review and plan tomorrow. All free tools.` },
+    { t: "0:45-0:60", text: `Full setup linked in bio. No cost, no signup.` }
+  ]
+};
+
+function generate() {
+  const product = document.getElementById("product").value.trim();
+  const audience = document.getElementById("audience").value.trim();
+  const platform = document.getElementById("platform").value;
+  const style = document.getElementById("style").value;
+
+  const results = document.getElementById("results");
+  const scriptOutput = document.getElementById("scriptOutput");
+  const platformTags = document.getElementById("platformTags");
+
+  if (!product || !audience) {
+    alert("Please fill in product and audience.");
+    return;
+  }
+
+  const styleScripts = scripts[style] || scripts["problem-solution"];
+  const platformNames = { tiktok: "TikTok", reels: "Instagram Reels", shorts: "YouTube Shorts", ugc: "UGC Raw" };
+
+  platformTags.innerHTML = `
+    <span class="platform-tag">${platformNames[platform]}</span>
+    <span class="platform-tag">${style}</span>
+    <span class="platform-tag">${product}</span>
+  `;
+
+  let html = `<div class="script-card">
+    <h3>Video Script — ${platformNames[platform]} • ${style}</h3>
+    <p style="color:#94a3b8; font-size:12px; margin-bottom:12px;">Product: ${product} | Audience: ${audience}</p>
+  `;
+
+  styleScripts.forEach((segment) => {
+    html += `
+      <div style="margin-bottom:10px; padding-left:16px; border-left:2px solid #334155;">
+        <span class="timestamp">${segment.t}</span>
+        <p style="margin-top:2px;">${segment.text}</p>
+      </div>
+    `;
+  });
+
+  html += `
+    <div style="margin-top:16px; padding-top:16px; border-top:1px solid #334155;">
+      <p style="color:#94a3b8; font-size:12px; margin-bottom:8px;"><strong>Production Notes:</strong></p>
+      <ul style="color:#cbd5e1; font-size:13px; line-height:1.6; margin-left:20px;">
+        <li>Film vertically (9:16) on your phone</td>
+        <li>Use natural window light — free lighting</li>
+        <li>Record in a quiet room — phone mic is fine</td>
+        <li>Edit in CapCut (free) — add captions, trim dead air</td>
+        <li>Post 1-3 videos per day to test what converts</td>
+        <li>Link in bio: your micro-tool or affiliate page</td>
+      </ul>
+    </div>
+  `;
+  html += `</div>`;
+
+  scriptOutput.innerHTML = html;
+  results.classList.add("show");
+}
+</script>
+
+</body>
+</html>

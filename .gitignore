@@ -1,0 +1,11 @@
+# Never commit credentials
+.env
+.env.local
+.dev.vars
+
+# Freebuff workspace metadata
+.freebuff/
+
+# Dependencies / OS noise
+node_modules/
+.DS_Store

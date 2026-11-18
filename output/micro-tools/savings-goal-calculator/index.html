@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Savings Goal Calculator — Free | Wealth Lab</title>
+<meta name="description" content="Calculate how long it will take to reach your savings goal based on monthly savings and starting balance. Free tool." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .result-card { margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid #22d3ee; border-radius: 12px; display: none; }
+  .result-card.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .result-label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .result-value { font-size: 32px; font-weight: 800; color: #22d3ee; margin-bottom: 8px; }
+  .result-breakdown { font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+  .result-breakdown b { color: #f1f5f9; }
+  .cta { margin-top: 24px; padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Savings <span>Goal</span> Calculator</h1>
+  <p class="sub">Calculate how many months it will take to reach your savings goal.</p>
+
+  <div class="grid">
+    <div class="field">
+      <label>Target savings amount ($)</label>
+      <input type="number" id="goal" value="10000" min="0" step="100" />
+    </div>
+    <div class="field">
+      <label>Current savings ($)</label>
+      <input type="number" id="current" value="0" min="0" step="100" />
+    </div>
+    <div class="field">
+      <label>Monthly savings contribution ($)</label>
+      <input type="number" id="monthly" value="500" min="0" step="50" />
+    </div>
+    <div class="field">
+      <label>Annual interest rate (%)</label>
+      <input type="number" id="interest" value="4" min="0" max="20" step="0.5" />
+    </div>
+  </div>
+
+  <button class="cta" onclick="calculate()">Calculate Timeline</button>
+
+  <div class="result-card" id="result">
+    <div class="result-label">Months to Reach Goal</div>
+    <div class="result-value" id="months">0</div>
+    <div class="result-breakdown" id="breakdown"></div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+function calculate() {
+  const goal = parseFloat(document.getElementById("goal").value) || 0;
+  const current = parseFloat(document.getElementById("current").value) || 0;
+  const monthly = parseFloat(document.getElementById("monthly").value) || 0;
+  const annualRate = parseFloat(document.getElementById("interest").value) || 0;
+
+  const result = document.getElementById("result");
+  const monthsEl = document.getElementById("months");
+  const breakdown = document.getElementById("breakdown");
+
+  if (monthly <= 0) {
+    monthsEl.textContent = "N/A";
+    breakdown.innerHTML = "<b>Enter a monthly savings amount greater than 0.</b>";
+    result.classList.add("show");
+    return;
+  }
+
+  const remaining = goal - current;
+  if (remaining <= 0) {
+    monthsEl.textContent = "Already reached";
+    breakdown.innerHTML = "<b>You have already met or exceeded your savings goal.</b>";
+    result.classList.add("show");
+    return;
+  }
+
+  const monthlyRate = annualRate / 100 / 12;
+  let months = 0;
+  let balance = current;
+
+  while (balance < goal && months < 1200) {
+    balance = balance * (1 + monthlyRate) + monthly;
+    months++;
+  }
+
+  monthsEl.textContent = months;
+  const totalSaved = monthly * months;
+  breakdown.innerHTML = `
+    <b>Amount still needed:</b> $${remaining.toFixed(0)}<br>
+    <b>Monthly contribution:</b> $${monthly.toFixed(0)}<br>
+    <b>Total contributed:</b> $${totalSaved.toFixed(0)}<br>
+    <b>Estimated interest earned:</b> $${(balance - totalSaved).toFixed(0)}<br>
+    <b>Years:</b> ${(months / 12).toFixed(1)}
+  `;
+  result.classList.add("show");
+}
+</script>
+
+</body>
+</html>

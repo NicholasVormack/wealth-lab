@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Affiliate Link Rotator — Free | Wealth Lab</title>
+<meta name="description" content="Manage and rotate multiple affiliate links from one URL. Free tool for affiliate marketers." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .link-item { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .link-item .link-info { flex: 1; }
+  .link-item .link-name { font-weight: 700; color: #f1f5f9; }
+  .link-item .link-url { font-size: 12px; color: #64748b; word-break: break-all; margin-top: 4px; }
+  .link-item .copy-btn { background: #334155; color: #22d3ee; border: none; border-radius: 4px; padding: 6px 12px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  .link-item .copy-btn:hover { background: #475569; }
+  .rotated-link { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid #22d3ee; border-radius: 12px; padding: 24px; margin-top: 20px; text-align: center; }
+  .rotated-link h3 { font-size: 16px; color: #22d3ee; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .rotated-link a { display: inline-block; padding: 12px 24px; background: #22d3ee; color: #0f172a; border-radius: 8px; font-weight: 700; text-decoration: none; }
+  .rotated-link a:hover { background: #67e8f9; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Affiliate <span>Link</span> Rotator</h1>
+  <p class="sub">Enter multiple affiliate links and get one rotating URL that sends traffic to a random link each click.</p>
+
+  <div class="field">
+    <label>Link 1 name</label>
+    <input type="text" id="name1" placeholder="Systeme.io" />
+  </div>
+  <div class="field">
+    <label>Link 1 URL</label>
+    <input type="text" id="url1" placeholder="https://systeme.io/?sa=YOUR_ID" />
+  </div>
+  <div class="field">
+    <label>Link 2 name</label>
+    <input type="text" id="name2" placeholder="ClickBank" />
+  </div>
+  <div class="field">
+    <label>Link 2 URL</label>
+    <input type="text" id="url2" placeholder="https://clickbank.com/" />
+  </div>
+  <div class="field">
+    <label>Link 3 name (optional)</label>
+    <input type="text" id="name3" placeholder="Gumroad" />
+  </div>
+  <div class="field">
+    <label>Link 3 URL (optional)</label>
+    <input type="text" id="url3" placeholder="https://gumroad.com/" />
+  </div>
+
+  <button class="cta" onclick="generate()">Generate Rotator</button>
+
+  <div class="results" id="results">
+    <h3 style="color:#22d3ee; margin-bottom:16px; text-transform:uppercase; letter-spacing:1px; font-size:14px;">Your Links</h3>
+    <div id="linkList"></div>
+
+    <div class="rotated-link">
+      <h3>Rotator Page</h3>
+      <p style="font-size:12px; color:#94a3b8; margin-bottom:12px;">Save this code as an HTML file and host it on GitHub Pages. Each visitor gets sent to a random affiliate link.</p>
+      <a href="#" id="rotatedUrl" target="_blank" rel="noopener">your-rotator-page.html</a>
+    </div>
+
+    <div style="margin-top:20px;">
+      <h4 style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">How to Use</h4>
+      <ol style="font-size:13px; color:#cbd5e1; line-height:1.6; margin-left:20px;">
+        <li>Copy the generated HTML code below</li>
+        <li>Save it as <code>rotator.html</code></li>
+        <li>Host it on GitHub Pages (free)</li>
+        <li>Use your GitHub Pages URL as the single link in your social bios</li>
+        <li>Each click rotates to a different affiliate offer</li>
+      </ol>
+    </div>
+
+    <div style="margin-top:16px;">
+      <textarea id="rotatorCode" readonly style="width:100%; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:16px; font-family:monospace; font-size:13px; color:#cbd5e1; resize:vertical;"></textarea>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+function generate() {
+  const links = [];
+  for (let i = 1; i <= 3; i++) {
+    const name = document.getElementById(`name${i}`).value.trim();
+    const url = document.getElementById(`url${i}`).value.trim();
+    if (name && url) {
+      links.push({ name, url });
+    }
+  }
+
+  const results = document.getElementById("results");
+  const linkList = document.getElementById("linkList");
+  const rotatorCode = document.getElementById("rotatorCode");
+  const rotatedUrl = document.getElementById("rotatedUrl");
+
+  if (links.length < 2) {
+    alert("Please enter at least 2 links.");
+    return;
+  }
+
+  linkList.innerHTML = links.map(l => `
+    <div class="link-item">
+      <div class="link-info">
+        <div class="link-name">${l.name}</div>
+        <div class="link-url">${l.url}</div>
+      </div>
+      <button class="copy-btn" onclick="copyText('${l.url}')">Copy</button>
+    </div>
+  `).join("");
+
+  const jsLinks = links.map(l => `  { name: "${l.name}", url: "${l.url}" }`).concat();
+  const code = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Redirecting...</title>
+</head>
+<body>
+<script>
+const links = [
+${jsLinks.join(",\n")}
+];
+const randomLink = links[Math.floor(Math.random() * links.length)];
+window.location.href = randomLink.url;
+</script>
+</body>
+</html>`;
+
+  rotatorCode.textContent = code;
+  rotatedUrl.textContent = "rotator.html (host on GitHub Pages)";
+  rotatedUrl.href = "#";
+  results.classList.add("show");
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert("Copied to clipboard.");
+}
+</script>
+
+</body>
+</html>

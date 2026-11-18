@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Link Cloaker — Wealth Lab</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  table { width: 100%; border-collapse: collapse; background: #0f172a; border: 1px solid #334155; border-radius: 8px; overflow: hidden; margin-top: 20px; }
+  th { text-align: left; padding: 12px 16px; color: #94a3b8; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+  td { padding: 12px 16px; border-bottom: 1px solid #334155; font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: rgba(34, 211, 238, 0.05); }
+  .slug { font-family: "Courier New", monospace; color: #22d3ee; font-weight: 700; }
+  .url { color: #94a3b8; font-size: 11px; word-break: break-all; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+  .install { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 20px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Affiliate <span>Link</span> Cloaker</h1>
+  <p class="sub">Create clean, branded redirect URLs for your affiliate links. Use your own domain instead of ugly affiliate URLs.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Your Link</th>
+        <th>Destination</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td><span class="slug">/go/systeme</span></td>
+        <td class="url">https://systeme.io/?sa=YOUR_ID</td>
+        <td>All-in-one business platform — 40% recurring commission</td>
+      </tr>
+      
+      <tr>
+        <td><span class="slug">/go/clickbank</span></td>
+        <td class="url">https://clickbank.com/</td>
+        <td>Digital products marketplace — instant approval</td>
+      </tr>
+      
+      <tr>
+        <td><span class="slug">/go/gumroad</span></td>
+        <td class="url">https://gumroad.com/</td>
+        <td>Digital product storefront — free to start</td>
+      </tr>
+      
+      <tr>
+        <td><span class="slug">/go/kofi</span></td>
+        <td class="url">https://ko-fi.com/</td>
+        <td>Donations + digital products — free tier</td>
+      </tr>
+      
+      <tr>
+        <td><span class="slug">/go/amazon</span></td>
+        <td class="url">https://amazon.com/</td>
+        <td>Physical products affiliate — apply for account</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div class="install">
+    <h3 style="color:#22d3ee; margin-bottom:12px; font-size:14px; text-transform:uppercase; letter-spacing:1px;">How to Use</h3>
+    <p style="font-size:13px; color:#cbd5e1; margin-bottom:16px;">
+      1. Replace the placeholder URLs in <code>scripts/link-cloaker.mjs</code> with your real affiliate links<br>
+      2. Run <code>node scripts/link-cloaker.mjs</code> to regenerate redirect pages<br>
+      3. Deploy the <code>go/</code> folder to GitHub Pages alongside your micro-tools<br>
+      4. Use <code>yourdomain.com/go/systeme</code> instead of long affiliate URLs<br>
+      5. Each redirect page sends visitors to your affiliate link with a brief delay
+    </p>
+    <p style="font-size:12px; color:#64748b;">
+      Benefit: Clean links look more trustworthy, are easier to remember, and you can change the destination without updating all your content.
+    </p>
+  </div>
+
+  <div class="footer">
+    Built by <a href="index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+</body>
+</html>

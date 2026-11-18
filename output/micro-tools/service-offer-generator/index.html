@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Productized Service Offer Generator — Free | Wealth Lab</title>
+<meta name="description" content="Generate productized service offers for fast cash. Sell your time before you build a product." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .field { margin-bottom: 24px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .cta { padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .offer-card { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .offer-card h3 { font-size: 16px; color: #22d3ee; margin-bottom: 12px; }
+  .offer-card .price { font-size: 28px; font-weight: 800; color: #f1f5f9; margin-bottom: 8px; }
+  .offer-card p { font-size: 13px; color: #cbd5e1; line-height: 1.6; margin-bottom: 8px; }
+  .offer-card ul { list-style: none; padding: 0; margin-bottom: 16px; }
+  .offer-card li { margin-bottom: 6px; color: #cbd5e1; font-size: 13px; padding-left: 20px; position: relative; }
+  .offer-card li::before { content: "✓"; color: #22d3ee; position: absolute; left: 0; font-weight: 800; }
+  .copy-btn { background: #334155; color: #22d3ee; border: none; border-radius: 4px; padding: 6px 12px; font-size: 12px; cursor: pointer; float: right; margin-top: 8px; }
+  .copy-btn:hover { background: #475569; }
+  .platform-badge { display: inline-block; background: #1e293b; color: #94a3b8; padding: 4px 10px; border-radius: 20px; font-size: 11px; margin-right: 6px; margin-bottom: 6px; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Productized <span>Service</span> Offer</h1>
+  <p class="sub">Sell your time before you build a product. Fastest path to first $100–$1,000 online.</p>
+
+  <div class="field">
+    <label>Your Skill / Service</label>
+    <input type="text" id="service" placeholder="Freelance rate calculator setup" />
+  </div>
+  <div class="field">
+    <label>Target Customer</label>
+    <input type="text" id="customer" placeholder="Freelancers who don't know what to charge" />
+  </div>
+  <div class="field">
+    <label>Price ($)</label>
+    <input type="number" id="price" value="75" min="0" step="5" />
+  </div>
+  <div class="field">
+    <label>Delivery Time</label>
+    <input type="text" id="delivery" placeholder="24–48 hours" />
+  </div>
+
+  <button class="cta" onclick="generate()">Generate Offer</button>
+
+  <div class="results" id="results">
+    <div class="offer-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h3 id="offerTitle">Service Offer Title</h3>
+          <div class="price" id="offerPrice">$0</div>
+        </div>
+        <button class="copy-btn" onclick="copyOffer()">Copy Offer</button>
+      </div>
+      <p id="offerDescription"></p>
+      <ul id="offerIncludes"></ul>
+      <div style="margin-top:16px;">
+        <span class="platform-badge">Reddit r/forhire</span>
+        <span class="platform-badge">LinkedIn</span>
+        <span class="platform-badge">X (Twitter)</span>
+        <span class="platform-badge">Fiverr</span>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <h4 style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Outreach Script (Copy & Paste)</h4>
+      <div id="outreachScript" style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:16px; font-size:13px; color:#cbd5e1; line-height:1.6;"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+const serviceTemplates = {
+  default: (service, customer, price, delivery) => ({
+    title: `${service} — Done for You in ${delivery}`,
+    description: `I'll ${service.toLowerCase()} for ${customer}. Fast, affordable, done-for-you.`,
+    includes: [
+      "Custom setup tailored to your needs",
+      "Step-by-step instructions included",
+      "One revision round",
+      "Delivered within " + delivery
+    ],
+    outreach: `Hi [Name],\n\nI saw you're interested in [topic related to customer]. I built a done-for-you service that helps ${customer} with ${service}.\n\nHere's what you get:\n• Custom setup for your specific needs\n• Step-by-step instructions\n• One revision round\n• Delivered in ${delivery}\n\nPrice: $${price}\n\nNo long-term commitment. Just pay once, get it done.\n\nInterested? Reply and I'll send over the details.\n\nBest,\n[Your Name]`
+  })
+};
+
+function generate() {
+  const service = document.getElementById("service").value.trim();
+  const customer = document.getElementById("customer").value.trim();
+  const price = document.getElementById("price").value || 0;
+  const delivery = document.getElementById("delivery").value.trim();
+
+  const results = document.getElementById("results");
+  const title = document.getElementById("offerTitle");
+  const priceEl = document.getElementById("offerPrice");
+  const desc = document.getElementById("offerDescription");
+  const includes = document.getElementById("offerIncludes");
+  const outreach = document.getElementById("outreachScript");
+
+  if (!service || !customer) {
+    alert("Please fill in service and customer.");
+    return;
+  }
+
+  const t = serviceTemplates.default(service, customer, price, delivery);
+
+  title.textContent = t.title;
+  priceEl.textContent = `$${price}`;
+  desc.textContent = t.description;
+  includes.innerHTML = t.includes.map(i => `<li>${i}</li>`).join("");
+  outreach.textContent = t.outreach;
+
+  results.classList.add("show");
+}
+
+function copyOffer() {
+  const text = document.getElementById("outreachScript").textContent;
+  navigator.clipboard.writeText(text);
+  alert("Offer copied to clipboard.");
+}
+</script>
+
+</body>
+</html>

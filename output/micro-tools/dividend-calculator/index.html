@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dividend Reinvestment Calculator — Free | Wealth Lab</title>
+<meta name="description" content="Calculate dividend income and compound growth from DRIP (dividend reinvestment). Free tool. No signup." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
+  .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h1 span { color: #22d3ee; }
+  p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
+  .field input { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; }
+  .field input:focus { outline: none; border-color: #22d3ee; }
+  .cta { margin-top: 24px; padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
+  .cta:hover { background: #67e8f9; }
+  .results { margin-top: 32px; display: none; }
+  .results.show { display: block; animation: slideIn 0.4s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .score-card { display: flex; gap: 16px; margin-bottom: 20px; }
+  .score-item { flex: 1; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; text-align: center; }
+  .score-item .value { font-size: 32px; font-weight: 800; color: #22d3ee; }
+  .score-item .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .result-breakdown { font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+  .result-breakdown b { color: #f1f5f9; }
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
+  .footer a { color: #22d3ee; text-decoration: none; }
+  .warning { font-size: 11px; color: #94a3b8; margin-top: 16px; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wl-back" style="max-width:860px;margin:0 auto 14px;font-size:13px;"><a href="../../index.html" style="color:#22d3ee;text-decoration:none;">&larr; All Wealth Lab tools</a></div>
+
+<div class="container">
+  <h1>Dividend <span>Reinvestment</span> Calculator</h1>
+  <p class="sub">Calculate dividend income and compound growth from DRIP (automatic dividend reinvestment). Free tool.</p>
+
+  <div class="grid">
+    <div class="field">
+      <label>Initial investment ($)</label>
+      <input type="number" id="initial" value="1000" min="0" step="100" />
+    </div>
+    <div class="field">
+      <label>Monthly contribution ($)</label>
+      <input type="number" id="monthly" value="100" min="0" step="10" />
+    </div>
+    <div class="field">
+      <label>Dividend yield (%)</label>
+      <input type="number" id="yield" value="3.5" min="0" max="15" step="0.1" />
+    </div>
+    <div class="field">
+      <label>Years to hold</label>
+      <input type="number" id="years" value="20" min="1" step="1" />
+    </div>
+  </div>
+
+  <button class="cta" onclick="calculate()">Calculate Dividend Growth</button>
+
+  <div class="results" id="results">
+    <div class="score-card">
+      <div class="score-item">
+        <div class="value" id="totalValue">$0</div>
+        <div class="label">Final Value</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="annualDividends">$0</div>
+        <div class="label">Annual Dividends</div>
+      </div>
+      <div class="score-item">
+        <div class="value" id="monthlyDividends">$0</div>
+        <div class="label">Monthly Dividends</div>
+      </div>
+    </div>
+
+    <div class="result-breakdown" id="breakdown"></div>
+
+    <div class="warning">
+      <b>Disclaimer:</b> Dividend yields can change. Companies can cut or eliminate dividends. This is an estimate, not financial advice. Invest only what you can afford to leave invested for 5+ years.
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
+</div>
+
+<script>
+function calculate() {
+  const initial = parseFloat(document.getElementById("initial").value) || 0;
+  const monthly = parseFloat(document.getElementById("monthly").value) || 0;
+  const yieldPercent = parseFloat(document.getElementById("yield").value) || 0;
+  const years = parseFloat(document.getElementById("years").value) || 0;
+
+  const results = document.getElementById("results");
+  const totalValue = document.getElementById("totalValue");
+  const annualDiv = document.getElementById("annualDividends");
+  const monthlyDiv = document.getElementById("monthlyDividends");
+  const breakdown = document.getElementById("breakdown");
+
+  if (initial <= 0 && monthly <= 0) {
+    alert("Please enter an initial investment or monthly contribution.");
+    return;
+  }
+
+  const monthlyYield = yieldPercent / 100 / 12;
+  const months = years * 12;
+
+  let balance = initial;
+  let totalContributions = initial;
+
+  for (let m = 1; m <= months; m++) {
+    // Add contribution
+    balance += monthly;
+    totalContributions += monthly;
+    // Add dividend (yield applied to current balance)
+    balance = balance * (1 + monthlyYield);
+  }
+
+  const finalValue = balance;
+  const annualDividends = finalValue * (yieldPercent / 100);
+  const monthlyDividend = annualDividends / 12;
+  const totalContrib = totalContributions;
+  const growth = finalValue - totalContrib;
+
+  totalValue.textContent = `$${finalValue.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+  annualDiv.textContent = `$${annualDividends.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  monthlyDiv.textContent = `$${monthlyDividend.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+  breakdown.innerHTML = `
+    <b>Initial investment:</b> $${initial.toLocaleString()}<br>
+    <b>Monthly contribution:</b> $${monthly.toLocaleString()}<br>
+    <b>Dividend yield:</b> ${yieldPercent}%<br>
+    <b>Years:</b> ${years}<br>
+    <b>Total contributions:</b> $${totalContrib.toLocaleString()}<br>
+    <b>Dividend growth + compound:</b> $${growth.toLocaleString()}<br>
+    <b>Final value:</b> $${finalValue.toLocaleString()}<br>
+    <b>Estimated annual dividends at end:</b> $${annualDividends.toFixed(2)}<br>
+    <b>Estimated monthly dividends at end:</b> $${monthlyDividend.toFixed(2)}
+  `;
+
+  results.classList.add("show");
+}
+</script>
+
+</body>
+</html>

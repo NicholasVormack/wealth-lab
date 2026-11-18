@@ -1,0 +1,9 @@
+# Wealth Lab Link Cloaker Redirects
+# Add this to your .htaccess file if using Apache on a custom domain
+
+Redirect 302 /go/systeme https://systeme.io/?sa=YOUR_ID
+Redirect 302 /go/clickbank https://clickbank.com/
+Redirect 302 /go/gumroad https://gumroad.com/
+Redirect 302 /go/kofi https://ko-fi.com/
+Redirect 302 /go/amazon https://amazon.com/
+

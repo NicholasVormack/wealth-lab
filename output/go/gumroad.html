@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Redirecting to Gumroad...</title>
+<meta name="robots" content="noindex, follow" />
+<meta http-equiv="refresh" content="3;url=https://gumroad.com/" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .container { text-align: center; padding: 40px; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; }
+  .spinner { width: 40px; height: 40px; border: 3px solid #334155; border-top: 3px solid #22d3ee; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  h1 { font-size: 24px; margin-bottom: 8px; color: #f1f5f9; }
+  h1 span { color: #22d3ee; }
+  p { color: #94a3b8; margin-bottom: 20px; }
+  .link { color: #22d3ee; text-decoration: none; font-weight: 600; word-break: break-all; }
+  .link:hover { text-decoration: underline; }
+  .countdown { font-family: monospace; color: #64748b; font-size: 14px; margin-top: 16px; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="spinner"></div>
+    <h1>Redirecting to <span>Gumroad</span>...</h1>
+    <p>You'll be sent to <span class="link">https://gumroad.com/</span> in <span id="countdown">3</span> seconds.</p>
+    <p style="margin-top:24px;">Not redirected? <a href="https://gumroad.com/" class="link">Click here</a></p>
+    <div class="countdown" id="countdownDisplay"></div>
+  </div>
+  <script>
+    let seconds = 3;
+    const display = document.getElementById('countdownDisplay');
+    const interval = setInterval(() => {
+      seconds--;
+      display.textContent = `Redirecting in ${seconds}...`;
+      if (seconds <= 0) clearInterval(interval);
+    }, 1000);
+  </script>
+</body>
+</html>
