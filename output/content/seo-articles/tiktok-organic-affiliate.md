@@ -87,4 +87,4 @@ TikTok organic is a numbers game. Post daily, keep videos under 60 seconds, alwa
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

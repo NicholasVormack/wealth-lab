@@ -25,4 +25,4 @@ Stop staring at a blank page. This free blog post outline generator gives you in
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

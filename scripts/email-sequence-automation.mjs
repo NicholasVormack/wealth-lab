@@ -7,6 +7,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { resolveSiteUrl } from "./lib/site.mjs";
 
 const LAB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(LAB, "output");
@@ -22,13 +23,15 @@ function log(message) {
 const SEQUENCE_NAME = "Welcome Series — $0 Side Hustle";
 const FROM_NAME = "Wealth Lab";
 const FROM_EMAIL = "hello@wealthlab.example.com";
+// Email links must point at the live site, not a domain that does not exist.
+const SITE_URL = resolveSiteUrl();
 
 const emails = [
   {
     day: 0,
     subject: "Your free tools are here 🎁",
     preview: "Start with the side hustle calculator",
-    body: `<h2>Welcome to Wealth Lab</h2><p>Here are the free tools you asked for:</p><ul><li><a href="https://wealth-lab.github.io/micro-tools/side-hustle-calculator/">Side Hustle ROI Calculator</a></li><li><a href="https://wealth-lab.github.io/micro-tools/affiliate-commission-calculator/">Affiliate Commission Calculator</a></li><li><a href="https://wealth-lab.github.io/micro-tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li></ul><p>No signup. No email required. Just use them.</p><p>Tomorrow I'll show you how to promote these tools and earn your first affiliate commission.</p>`,
+    body: `<h2>Welcome to Wealth Lab</h2><p>Here are the free tools you asked for:</p><ul><li><a href="${SITE_URL}/micro-tools/side-hustle-calculator/">Side Hustle ROI Calculator</a></li><li><a href="${SITE_URL}/micro-tools/affiliate-commission-calculator/">Affiliate Commission Calculator</a></li><li><a href="${SITE_URL}/micro-tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li></ul><p>No signup. No email required. Just use them.</p><p>Tomorrow I'll show you how to promote these tools and earn your first affiliate commission.</p>`,
   },
   {
     day: 1,

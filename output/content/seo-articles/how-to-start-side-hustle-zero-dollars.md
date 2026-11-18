@@ -88,4 +88,4 @@ $0 capital doesn't mean $0 effort. It means your only investment is time. Build 
 
 ---
 
-*Built by Wealth Lab. Free tools at wealth-lab.github.io*
+*Built by Wealth Lab. Free tools at nicholasvormack.github.io/wealth-lab*

@@ -109,4 +109,4 @@ LinkedIn rewards consistency and genuine helpfulness. Post 3x/week, comment dail
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

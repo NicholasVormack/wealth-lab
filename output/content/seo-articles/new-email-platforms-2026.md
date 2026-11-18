@@ -72,4 +72,4 @@ Don't start with Mailchimp's 250-contact limit. Start with Kit's 10,000-subscrib
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

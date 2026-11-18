@@ -81,4 +81,4 @@ GitHub Pages is free, reliable, and requires no server maintenance. Build your m
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

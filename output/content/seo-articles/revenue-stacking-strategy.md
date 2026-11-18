@@ -115,4 +115,4 @@ Revenue stacking reduces risk and increases income. Start with affiliate + servi
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

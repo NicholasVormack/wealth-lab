@@ -745,3 +745,8 @@ Generated 5 emails, CSV import, HTML templates, and instructions
 [2026-11-18T04:22:32.933Z] Steps: 6 | Time saved: ~10 hours per week per article
 [2026-11-18T04:22:32.933Z] === AI ACCELERATION PIPELINE COMPLETE ===
 
+[2026-11-18T04:31:11.331Z] Email sequence CSV written to output/email-sequence-import.csv (5 emails)
+[2026-11-18T04:31:11.342Z] Email sequence HTML files written to output/email-sequences/ (5 files)
+[2026-11-18T04:31:11.343Z] Email sequence instructions written to output/email-sequence-instructions.md
+[2026-11-18T04:31:11.343Z] === EMAIL SEQUENCE AUTOMATION COMPLETE ===
+Generated 5 emails, CSV import, HTML templates, and instructions

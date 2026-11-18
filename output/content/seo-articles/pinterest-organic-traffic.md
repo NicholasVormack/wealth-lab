@@ -87,4 +87,4 @@ Pinterest organic traffic is slow to start but compounds beautifully. Create 5 p
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

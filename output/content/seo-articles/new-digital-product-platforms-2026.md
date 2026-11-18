@@ -74,4 +74,4 @@ Start with Gumroad or Ko-fi (free to start). Move to Payhip Plus once you're mak
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

@@ -26,4 +26,4 @@ Don't guess. Test your email subject line tester free with this free analyzer an
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

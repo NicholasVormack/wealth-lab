@@ -78,4 +78,4 @@ Digital products + free storefronts + organic traffic = a $0-capital business th
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

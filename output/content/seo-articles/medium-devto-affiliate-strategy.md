@@ -66,4 +66,4 @@ Medium + Dev.to + instant-approval affiliates = a zero-dollar affiliate machine.
 
 ---
 
-*Built by Wealth Lab — Free micro-tools and guides at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools and guides at nicholasvormack.github.io/wealth-lab*

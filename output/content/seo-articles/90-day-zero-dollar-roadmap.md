@@ -85,4 +85,4 @@ Most people quit at day 30 because they made $0. Don't. The assets you built (to
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

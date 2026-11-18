@@ -103,4 +103,4 @@ Scaling from $1K to $5K is about multiplication, not addition. Multiply your bes
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

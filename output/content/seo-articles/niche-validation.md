@@ -134,4 +134,4 @@ Validation isn't about certainty. It's about reducing risk. Test cheap, fail fas
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

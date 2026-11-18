@@ -29,4 +29,4 @@ Built as part of Wealth Lab's mission to provide zero-cost tools for online buil
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

@@ -102,4 +102,4 @@ Automation multiplies your time. Start with one free tool, automate one repetiti
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

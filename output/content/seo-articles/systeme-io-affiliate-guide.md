@@ -79,4 +79,4 @@ Systeme.io is the best starting affiliate program for $0-capital builders. Insta
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

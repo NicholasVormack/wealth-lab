@@ -98,4 +98,4 @@ Outsource when you're making money, not before. Start with one task, one person,
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

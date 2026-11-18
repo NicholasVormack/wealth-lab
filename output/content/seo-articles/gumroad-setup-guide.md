@@ -83,4 +83,4 @@ Gumroad is free to start. Create one product, list it, and start sharing your li
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

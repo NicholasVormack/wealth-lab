@@ -16,6 +16,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { resolveSiteUrl } from "./lib/site.mjs";
 
 const LAB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(LAB, "output");
@@ -98,7 +99,7 @@ if (!fs.existsSync(sitemapPath)) {
     const rel = relPath(f);
     if (rel === "index.html") return false;
     if (PUBLIC_ROOT_PAGES.includes(rel)) return true;
-    if (!/^(micro-tools|articles)\/./.test(rel)) return false;
+    if (!/^(micro-tools|articles)\/[^/]+\//.test(rel)) return false;
     if (!rel.endsWith("/index.html")) return false;
     return !/name="robots"[^>]*noindex/i.test(fs.readFileSync(f, "utf8"));
   });
@@ -164,7 +165,7 @@ for (const file of htmlFiles) {
   // dashboards, email templates and redirect pages never get one.
   const isPublic =
     rel === "index.html" ||
-    /^(micro-tools|articles)\/.\/index\.html$/.test(rel) ||
+    /^(micro-tools|articles)\/[^/]+\/index\.html$/.test(rel) ||
     ["privacy-policy.html", "terms-of-service.html", "affiliate-disclosure.html"].includes(rel);
   if (isPublic && !/name="description"/i.test(html)) missingDesc++;
 }
@@ -172,6 +173,52 @@ for (const [title, pages] of titles) {
   if (pages.length > 1) warn(`duplicate <title> "${title}" on: ${pages.join(", ")}`);
 }
 if (missingDesc) warn(`${missingDesc} page(s) have no meta description`);
+
+/* ----------------------------------------------------------- stale domain */
+
+// A single leftover reference to a domain that does not exist is a dead link
+// for a reader and a wrong signal for a crawler.
+const STALE = "wealth-lab.github.io";
+const staleFiles = files
+  .filter((f) => /\.(html|md|txt|xml|json|js|yml|csv)$/.test(f))
+  .filter((f) => fs.readFileSync(f, "utf8").includes(STALE));
+if (staleFiles.length) {
+  err(`${staleFiles.length} file(s) still reference ${STALE}:`);
+  staleFiles.slice(0, 8).forEach((f) => err(`    ${relPath(f)}`));
+}
+
+/* -------------------------------------------------------------- canonicals */
+
+// Every page we ask search engines to index must declare the Pages URL as
+// canonical. A canonical pointing at the wrong host silently de-indexes the site.
+const SITE_URL = resolveSiteUrl();
+const expectedCanonical = (rel) => {
+  if (rel === "index.html") return `${SITE_URL}/`;
+  if (rel.endsWith("/index.html")) return `${SITE_URL}/${rel.slice(0, -"index.html".length)}`;
+  return `${SITE_URL}/${rel}`;
+};
+const canonicalise = (u) => u.replace(/\/+$/, "");
+let canonChecked = 0;
+
+for (const file of htmlFiles) {
+  const rel = relPath(file);
+  const isPublicPage =
+    rel === "index.html" ||
+    /^(micro-tools|articles)\/[^/]+\/index\.html$/.test(rel) ||
+    ["privacy-policy.html", "terms-of-service.html", "affiliate-disclosure.html"].includes(rel);
+  if (!isPublicPage) continue;
+
+  const found = (fs.readFileSync(file, "utf8").match(/rel="canonical" href="([^"]+)"/) || [])[1];
+  if (!found) {
+    err(`${rel}: missing canonical tag`);
+    continue;
+  }
+  if (canonicalise(found) !== canonicalise(expectedCanonical(rel))) {
+    err(`${rel}: canonical is ${found}, expected ${expectedCanonical(rel)}`);
+    continue;
+  }
+  canonChecked++;
+}
 
 /* ------------------------------------------------------------------ report */
 
@@ -189,6 +236,7 @@ console.log(`Micro-tools:    ${toolDirs.length}`);
 console.log(`Articles:       ${articleCount}`);
 console.log(`Internal links: ${linkCount}`);
 console.log(`Sitemap URLs:   ${sitemapCount}`);
+console.log(`Canonicals OK:  ${canonChecked}`);
 console.log("");
 
 for (const w of warnings) console.log(`WARN  ${w}`);

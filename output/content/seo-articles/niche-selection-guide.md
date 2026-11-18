@@ -100,4 +100,4 @@ Don't pick a niche because it sounds trendy. Pick it because people spend money,
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

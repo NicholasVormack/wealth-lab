@@ -89,4 +89,4 @@ Start with Mailchimp free (2,000 contacts). Create one lead magnet. Put the sign
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

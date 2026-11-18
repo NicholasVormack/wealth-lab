@@ -135,4 +135,4 @@ Publish less, audit more. One well-optimized article outperforms ten neglected o
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

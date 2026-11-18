@@ -25,4 +25,4 @@ Stop staring at a blank page. This free content idea generator for bloggers give
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

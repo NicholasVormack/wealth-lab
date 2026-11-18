@@ -98,4 +98,4 @@ YouTube SEO is free. Research with autosuggest, write keyword-rich titles, make 
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

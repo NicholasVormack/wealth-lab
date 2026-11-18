@@ -321,7 +321,8 @@ function discoverTools() {
     .sort((a, b) => a.title.localeCompare(b.title));
 }
 
-function discoverArticles() {
+function discoverArticles(siteUrl) {
+  const bareHost = siteUrl.replace(/^https?:\/\//, "");
   if (!fs.existsSync(ARTICLES_SRC)) return [];
   return fs
     .readdirSync(ARTICLES_SRC)
@@ -330,7 +331,9 @@ function discoverArticles() {
       const slug = file.replace(/\.md$/, "");
       const { meta, body } = parseFrontmatter(fs.readFileSync(path.join(ARTICLES_SRC, file), "utf8"));
       const h1 = (body.match(/^#\s+(.+)$/m) || [])[1];
-      const html = mdToHtml(body);
+      // Article footers were hardcoded to a domain that never existed.
+      // Rewrite them to the real Pages host at render time so this cannot drift.
+      const html = mdToHtml(body).replace(/wealth-lab\.github\.io/g, bareHost);
       const placeholders = findPlaceholders(html);
       return {
         slug,
@@ -405,9 +408,47 @@ ${article.draft ? '<meta name="robots" content="noindex, follow" />\n' : ""}<sty
  * (a dead end) and no way back to the hub. Internal links are what make the
  * tool network crawlable, so normalize them idempotently on each build.
  */
-function normalizePages(files) {
+/**
+ * Older generators hardcoded a domain that never existed. Rewrite it to the
+ * real Pages host everywhere in the built output so no page, doc or raw
+ * markdown source advertises a dead URL.
+ */
+function sweepStaleDomain(siteUrl) {
+  const bareHost = siteUrl.replace(/^https?:\/\//, "");
+  const exts = new Set([".html", ".md", ".txt", ".xml", ".json", ".js", ".yml", ".csv"]);
+  let changed = 0;
+
+  const walkFiles = (dir, acc = []) => {
+    for (const name of fs.readdirSync(dir)) {
+      const full = path.join(dir, name);
+      if (fs.statSync(full).isDirectory()) walkFiles(full, acc);
+      else acc.push(full);
+    }
+    return acc;
+  };
+
+  for (const file of walkFiles(OUTPUT)) {
+    if (!exts.has(path.extname(file))) continue;
+    const src = fs.readFileSync(file, "utf8");
+    if (!src.includes("wealth-lab.github.io")) continue;
+    fs.writeFileSync(file, src.replace(/wealth-lab\.github\.io/g, bareHost));
+    changed++;
+  }
+  return changed;
+}
+
+/** Canonical URL for a generated file, e.g. micro-tools/x/index.html -> <site>/micro-tools/x/ */
+function canonicalFor(file, siteUrl) {
+  const rel = path.relative(OUTPUT, file).split(path.sep).join("/");
+  if (rel === "index.html") return `${siteUrl}/`;
+  if (rel.endsWith("/index.html")) return `${siteUrl}/${rel.slice(0, -"index.html".length)}`;
+  return `${siteUrl}/${rel}`;
+}
+
+function normalizePages(files, siteUrl) {
   let backLinksAdded = 0;
   let footerLinksFixed = 0;
+  let canonicalsAdded = 0;
 
   for (const file of files) {
     let html = fs.readFileSync(file, "utf8");
@@ -431,15 +472,25 @@ function normalizePages(files) {
       footerLinksFixed++;
     }
 
+    // The hand-written tool pages shipped without a canonical, so search
+    // engines had no signal that the Pages URL is authoritative.
+    if (!/rel="canonical"/i.test(html)) {
+      html = html.replace(
+        /<\/head>/i,
+        `  <link rel="canonical" href="${canonicalFor(file, siteUrl)}" />\n</head>`
+      );
+      canonicalsAdded++;
+    }
+
     if (html !== before) fs.writeFileSync(file, html);
   }
 
-  return { backLinksAdded, footerLinksFixed };
+  return { backLinksAdded, footerLinksFixed, canonicalsAdded };
 }
 
 /* ------------------------------------------------------------------- pages */
 
-function buildHub(tools, articles) {
+function buildHub(tools, articles, siteUrl) {
   const bySlug = new Map(tools.map((t) => [t.slug, t]));
   const used = new Set();
   const sections = [];
@@ -498,6 +549,7 @@ ${published.map((a) => `        <li><a href="articles/${a.slug}/index.html">${es
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>${SITE_NAME} — ${tools.length} Free Tools for Money, SEO & Side Hustles</title>
 <meta name="description" content="${tools.length} free browser tools for side hustle math, affiliate commissions, SEO, pricing and investing. No signup, no ads, no email required." />
+<link rel="canonical" href="${siteUrl}/" />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(180deg, #020617 0%, #0f172a 100%); color: #f1f5f9; min-height: 100vh; padding: 48px 20px 64px; }
@@ -602,7 +654,7 @@ function build() {
 
   const siteUrl = resolveSiteUrl();
   const tools = discoverTools();
-  const articles = discoverArticles();
+  const articles = discoverArticles(siteUrl);
 
   // 1. Publish articles as real pages
   let publishedArticles = 0;
@@ -629,17 +681,22 @@ function build() {
     }
   };
   walk(OUTPUT);
-  const nav = normalizePages(allHtml.filter((f) => f !== path.join(OUTPUT, "index.html")));
+  const nav = normalizePages(allHtml.filter((f) => f !== path.join(OUTPUT, "index.html")), siteUrl);
 
-  // 3. Hub page (built after tools exist, before the sitemap)
-  const hub = buildHub(tools, articles);
+  // 3. Rewrite any stale domain left in generated docs, tools or raw sources
+  const swept = sweepStaleDomain(siteUrl);
+
+  // 4. Hub page (built after tools exist, before the sitemap)
+  const hub = buildHub(tools, articles, siteUrl);
   fs.writeFileSync(path.join(OUTPUT, "index.html"), hub.html);
 
-  // 4. Crawl + hosting files
+  // 5. Crawl + hosting files
   fs.writeFileSync(path.join(OUTPUT, "sitemap.xml"), buildSitemap(siteUrl, tools, articles));
   fs.writeFileSync(
     path.join(OUTPUT, "robots.txt"),
-    `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
+    // /content/ holds raw markdown sources that are also published as pages;
+    // keep crawlers out of the duplicates.
+    `User-agent: *\nAllow: /\nDisallow: /content/\n\nSitemap: ${siteUrl}/sitemap.xml\n`
   );
   fs.writeFileSync(path.join(OUTPUT, ".nojekyll"), "");
   writeCname(siteUrl);
@@ -651,7 +708,8 @@ function build() {
     log(`Held back (noindex, not in sitemap): ${drafts.map((d) => d.slug).join(", ")}`);
   }
   log(`Hub page rebuilt: ${tools.length} tools + ${hub.publishedCount} guides linked`);
-  log(`Nav: ${nav.backLinksAdded} back-links added, ${nav.footerLinksFixed} dead footer links fixed`);
+  log(`Nav: ${nav.backLinksAdded} back-links added, ${nav.footerLinksFixed} dead footer links fixed, ${nav.canonicalsAdded} canonicals added`);
+  log(`Stale domain rewritten in ${swept} file(s)`);
   log("Wrote sitemap.xml, robots.txt, .nojekyll");
   log(`Next: node scripts/verify-site.mjs to check the result`);
 }

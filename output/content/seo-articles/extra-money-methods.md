@@ -194,4 +194,4 @@ You don't need money to start investing. You need **extra income** to fund it. T
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

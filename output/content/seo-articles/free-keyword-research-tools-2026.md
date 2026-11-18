@@ -72,4 +72,4 @@ Start with Google Autosuggest and People Also Ask. Validate with Keyword Planner
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

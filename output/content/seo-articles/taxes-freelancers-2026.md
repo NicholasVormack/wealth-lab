@@ -87,4 +87,4 @@ Set aside 25–30% of every dollar you earn for taxes. Track income and expenses
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

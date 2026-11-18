@@ -96,4 +96,4 @@ Productivity isn't about apps. It's about showing up daily, doing the main task,
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

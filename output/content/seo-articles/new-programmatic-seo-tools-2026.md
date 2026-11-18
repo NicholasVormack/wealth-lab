@@ -65,4 +65,4 @@ Start with SEOmatic's free tools and Google Sheets. Build one programmatic templ
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

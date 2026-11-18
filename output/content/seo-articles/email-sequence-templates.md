@@ -135,4 +135,4 @@ Email is the only audience you truly own. Build your list from day one. Send val
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*

@@ -54,4 +54,4 @@ Brokerage bonuses are free seed capital. Claim them, then invest everything into
 
 ---
 
-*Built by Wealth Lab — Free micro-tools at wealth-lab.github.io*
+*Built by Wealth Lab — Free micro-tools at nicholasvormack.github.io/wealth-lab*
