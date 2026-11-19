@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Brokerage Bonus Calculator — Free | Wealth Lab</title>
-<meta name="description" content="Calculate total bonus value from multiple brokerage sign-up offers. Free tool. No signup." />
+<meta name="description" content="Add up brokerage sign-up bonuses and see what they could become if invested, plus the deposit, holding-period and tax rules that change the answer." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
@@ -23,15 +23,28 @@
   .results { margin-top: 32px; display: none; }
   .results.show { display: block; animation: slideIn 0.4s ease; }
   @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .score-card { display: flex; gap: 16px; margin-bottom: 20px; }
-  .score-item { flex: 1; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; text-align: center; }
-  .score-item .value { font-size: 32px; font-weight: 800; color: #22d3ee; }
-  .score-item .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-  .result-breakdown { font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+  .score-card { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .score-item { flex: 1 1 140px; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; text-align: center; }
+  .score-item .value { font-size: 30px; font-weight: 800; color: #22d3ee; }
+  .score-item .label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .result-breakdown { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
   .result-breakdown b { color: #f1f5f9; }
+  h2 { font-size: 19px; margin: 40px 0 12px; color: #f1f5f9; letter-spacing: -0.2px; }
+  h3 { font-size: 15px; margin: 24px 0 8px; color: #e2e8f0; }
+  .prose p, .prose li { font-size: 14px; color: #cbd5e1; line-height: 1.7; margin-bottom: 12px; }
+  .prose ul, .prose ol { margin: 0 0 16px 20px; }
+  .prose a { color: #22d3ee; text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .formula { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; font-size: 13px; color: #cbd5e1; line-height: 1.9; }
+  .formula b { color: #f1f5f9; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+  th { color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .faq h3 { margin: 20px 0 6px; }
+  .faq p { margin-bottom: 0; }
   .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
   .footer a { color: #22d3ee; text-decoration: none; }
-  .note { font-size: 11px; color: #94a3b8; margin-top: 16px; font-style: italic; }
 </style>
   <link rel="canonical" href="https://nicholasvormack.github.io/wealth-lab/micro-tools/brokerage-bonus-calculator/" />
 </head>
@@ -40,7 +53,7 @@
 
 <div class="container">
   <h1>Brokerage <span>Bonus</span> Calculator</h1>
-  <p class="sub">Calculate total bonus value from multiple brokerage sign-up offers. Free tool. No signup.</p>
+  <p class="sub">Add up sign-up bonuses, count the accounts they require, and see what the total could be worth if it stayed invested.</p>
 
   <div class="grid">
     <div class="field">
@@ -96,16 +109,72 @@
     </div>
 
     <div class="result-breakdown" id="breakdown"></div>
-
-    <div class="note">
-      <b>Strategy:</b> Claim all free stock bonuses. Hold or sell and move proceeds into your index fund (FXAIX, FZROX, VOO). These are your seed capital dollars — $0 out of pocket.
-    </div>
-
-    <div class="footer">
-      Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
-    </div>
   </div>
 
+  <section class="prose">
+    <h2>How the math works</h2>
+    <p>Two sums, one assumption. The first sum is just arithmetic on the offers you enter. The second compounds that total for ten years at an assumed 7% annual return, compounded monthly:</p>
+    <div class="formula">
+      <b>Total bonus</b> = sum of the bonuses you will actually qualify for<br />
+      <b>Accounts</b> = number of entries above zero<br />
+      <b>Future value</b> = total &times; (1 + 0.07 &divide; 12)<sup>120</sup>
+    </div>
+    <p>At 7% compounded monthly for ten years the multiplier is about 2.01, so the "if invested" figure is roughly double the bonus. That is the whole point of the third number: a $50 bonus is not $50 of income, it is a small piece of an index fund that keeps working after the promotion is over.</p>
+    <p>The 7% is an assumption, not a quote. It is a common long-run figure for broad US stock index returns before inflation, and any ten-year window can come in well above or below it. The calculator does not compound monthly contributions, because it is only asking what happens to this one lump of bonus money with nothing else added.</p>
+
+    <h2>Worked example</h2>
+    <p>Using the defaults — $10, $100, $50, $50 and $50 from five brokers — the total is $260 across five accounts:</p>
+    <table>
+      <tr><th>Line</th><th>Calculation</th><th class="num">Result</th></tr>
+      <tr><td>Total bonus</td><td>10 + 100 + 50 + 50 + 50</td><td class="num">$260</td></tr>
+      <tr><td>Accounts</td><td>entries above zero</td><td class="num">5</td></tr>
+      <tr><td>Value in 10 years</td><td>$260 &times; 2.0096</td><td class="num">$523</td></tr>
+    </table>
+    <p>Enter a $200 cash bonus instead and the total jumps to $460, worth about $924 in ten years. This is why the above-zero entries matter more than the count: a $10 free share adds $20 over a decade, while a $200 deposit-match bonus adds $400. The accounts column is there to remind you that each bonus costs an application, an identity check and usually a funding step.</p>
+
+    <h2>What the number leaves out</h2>
+    <ul>
+      <li><b>Deposit requirements.</b> Many "free stock" offers need a first deposit, sometimes $50 to $250, and some hold it for 90 days. The bonus is not free money if it locks up money you needed.</li>
+      <li><b>Holding periods.</b> Selling a free share too early can forfeit it. Read the terms before treating the value as cash.</li>
+      <li><b>Tax.</b> Bonuses and free shares are generally taxable income, reported on a 1099. The calculator shows face value, not after-tax value.</li>
+      <li><b>Share price moves.</b> A "free stock worth $10" is $10 at the moment it lands. It can be $6 by the time you sell.</li>
+      <li><b>Account costs.</b> Inactivity fees, transfer fees and minimum balances can quietly eat a small bonus.</li>
+      <li><b>Your time and credit checks.</b> Every application is paperwork, and some brokers run identity and credit checks.</li>
+    </ul>
+
+    <h2>How to use it honestly</h2>
+    <p>Enter only the bonuses whose conditions you will actually meet — the deposit, the direct deposit, the trade, the holding period. Then treat the total as seed capital rather than spending money: leave it invested, and it is the start of a position rather than a discount on dinner.</p>
+    <p>Opening accounts you will not use to chase $10 is a bad trade. The better question is which two or three of these accounts you would genuinely keep, and what the bonus is worth on those.</p>
+
+    <h2 class="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <h3>Do brokerage bonuses require a deposit?</h3>
+      <p>Often. Cash bonuses usually require a deposit, sometimes a direct deposit or a minimum balance held for a set period. Some free-share offers only require a signup and an identity check. Check each offer's terms rather than assuming.</p>
+
+      <h3>Are sign-up bonuses taxable?</h3>
+      <p>In the US, generally yes — they are usually reported as interest or miscellaneous income on a 1099. This calculator does not model tax. Ask a tax professional about your situation.</p>
+
+      <h3>Can I withdraw the bonus immediately?</h3>
+      <p>Usually not. Free shares and cash bonuses typically come with a holding period, often 90 to 180 days. Withdrawing early can forfeit the bonus or trigger a clawback.</p>
+
+      <h3>Is the 7% return realistic?</h3>
+      <p>It is a common long-run assumption for broad stock index funds, not a guarantee, and it is before inflation and taxes. Ten years is short enough that actual results can differ substantially.</p>
+
+      <h3>Should I open every account on the list?</h3>
+      <p>No. Open the ones whose terms you meet and whose platform you would keep using. The $10 offers are worth less than the paperwork they generate.</p>
+    </div>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="../../articles/new-brokerage-bonuses-2026/index.html">Brokerage bonuses in 2026</a> — current offers and the requirements behind them.</li>
+      <li><a href="../../articles/extra-money-methods/index.html">Extra money methods</a> — other ways to fund a first investment without capital.</li>
+      <li><a href="../../articles/90-day-zero-dollar-roadmap/index.html">The 90-day $0 roadmap</a> — where bonus money fits in the order of operations.</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
+  </div>
 </div>
 
 <script>

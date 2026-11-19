@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Freelance Hourly Rate Calculator — Free | Wealth Lab</title>
-<meta name="description" content="Calculate your ideal freelance hourly rate based on expenses, taxes, and profit goals. Free tool. No signup." />
+<meta name="description" content="Turn a take-home income target into an hourly rate that covers expenses and tax, with the formula, worked examples and a short FAQ." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
-  .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  .container { max-width: 760px; margin: 0 auto; background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
   h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
   h1 span { color: #22d3ee; }
   p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
@@ -27,6 +27,20 @@
   .result-breakdown b { color: #f1f5f9; }
   .cta { margin-top: 24px; padding: 14px 24px; background: #22d3ee; color: #0f172a; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; }
   .cta:hover { background: #67e8f9; }
+  h2 { font-size: 19px; margin: 40px 0 12px; color: #f1f5f9; letter-spacing: -0.2px; }
+  h3 { font-size: 15px; margin: 24px 0 8px; color: #e2e8f0; }
+  .prose p, .prose li { font-size: 14px; color: #cbd5e1; line-height: 1.7; margin-bottom: 12px; }
+  .prose ul, .prose ol { margin: 0 0 16px 20px; }
+  .prose a { color: #22d3ee; text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .formula { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; font-size: 13px; color: #cbd5e1; line-height: 1.9; }
+  .formula b { color: #f1f5f9; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+  th { color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .faq h3 { margin: 20px 0 6px; }
+  .faq p { margin-bottom: 0; }
   .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
   .footer a { color: #22d3ee; text-decoration: none; }
 </style>
@@ -37,7 +51,7 @@
 
 <div class="container">
   <h1>Freelance <span>Rate</span> Calculator</h1>
-  <p class="sub">Calculate your ideal hourly rate based on annual income goal, expenses, taxes, and billable hours.</p>
+  <p class="sub">Turn the money you need to take home into the hourly rate that actually produces it, after expenses and tax.</p>
 
   <div class="grid">
     <div class="field">
@@ -65,6 +79,75 @@
     <div class="result-value" id="rate">$0/hr</div>
     <div class="result-breakdown" id="breakdown"></div>
   </div>
+
+  <section class="prose">
+    <h2>How the math works</h2>
+    <p>An hourly rate is not a salary divided by hours. It is revenue, and revenue has to cover tax and business costs before any of it becomes take-home pay. The calculator works backwards from the take-home figure:</p>
+    <div class="formula">
+      <b>Revenue needed</b> = (take-home target + business expenses) &divide; (1 &minus; tax rate)<br />
+      <b>Billable hours per year</b> = billable hours per week &times; 50<br />
+      <b>Hourly rate</b> = revenue needed &divide; billable hours per year
+    </div>
+    <p>The division by (1 &minus; tax rate) is the step most people skip. If you want $60,000 after 25% tax, you do not need $60,000 plus 25% — that would leave you short. You need $60,000 &divide; 0.75 = $80,000, because quarter of $80,000 is $20,000. The same logic applies to the broader rate you actually pay once self-employment tax and state tax are included.</p>
+    <p>Fifty weeks, not 52, is deliberate: two weeks a year disappear into holidays, illness and the days between projects. A rate built on 52 weeks assumes you never stop, and it breaks the first time you take a week off.</p>
+
+    <h2>Worked example</h2>
+    <p>$60,000 take-home, $5,000 of business expenses, a 25% tax rate, and 20 billable hours a week:</p>
+    <table>
+      <tr><th>Step</th><th>Calculation</th><th class="num">Result</th></tr>
+      <tr><td>Revenue needed</td><td>($60,000 + $5,000) &divide; 0.75</td><td class="num">$86,667</td></tr>
+      <tr><td>Billable hours</td><td>20 &times; 50</td><td class="num">1,000</td></tr>
+      <tr><td>Hourly rate</td><td>$86,667 &divide; 1,000</td><td class="num">$86.67/hr</td></tr>
+      <tr><td>Weekly revenue target</td><td>$86,667 &divide; 50</td><td class="num">$1,733</td></tr>
+    </table>
+    <p>The same income target at different billable hours shows why capacity, not ambition, sets the rate:</p>
+    <table>
+      <tr><th>Billable hours/week</th><th>Hours/year</th><th class="num">Rate needed</th></tr>
+      <tr><td>15</td><td>750</td><td class="num">$115.56/hr</td></tr>
+      <tr><td>20</td><td>1,000</td><td class="num">$86.67/hr</td></tr>
+      <tr><td>25</td><td>1,250</td><td class="num">$69.33/hr</td></tr>
+      <tr><td>30</td><td>1,500</td><td class="num">$57.78/hr</td></tr>
+    </table>
+    <p>Scaling billable hours down does not make the business easier; it raises the price of every hour. Most freelancers can sustain 20 to 25 billable hours in a 40-hour week once sales, admin and revisions are counted, which is why the middle rows are the realistic ones.</p>
+
+    <h2>What counts as a billable hour</h2>
+    <p>Only hours you can invoice. Not proposals, not discovery calls you lose, not invoicing, not learning the client's tool, not the third revision nobody scoped. A quick test: if you worked 40 hours last week, how many appeared on an invoice? That is your billable figure, and it is usually lower than people assume — often 50% to 65% of the working week.</p>
+    <p>Set the rate from the honest number. Then if a client asks for a fixed fee, divide the fee by your estimate of billable hours and compare it with the rate. A $3,000 project you expect to take 45 hours is $66.67 an hour, which may be below your floor even though the invoice looks large.</p>
+
+    <h2>What the number leaves out</h2>
+    <ul>
+      <li><b>Self-employment tax.</b> In the US this sits on top of income tax. If your 25% figure is only income tax, raise it or the rate will come out low.</li>
+      <li><b>Benefits you now fund yourself.</b> Health insurance, retirement contributions and paid time off were part of a salary. Put them in expenses or in the income target.</li>
+      <li><b>Payment lag.</b> Net-30 terms mean this month's work pays for next month's rent. The rate does not fix cash flow.</li>
+      <li><b>Scope creep.</b> The rate is a floor for a defined scope. Unbilled extra work quietly cuts it.</li>
+      <li><b>Utilisation.</b> Fifty weeks assumes you can fill them. New freelancers often bill 50% to 70% of that in year one.</li>
+    </ul>
+
+    <h2 class="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <h3>Why divide by (1 &minus; tax) rather than adding the tax on top?</h3>
+      <p>Because tax is charged on the revenue, not on your target. Adding 25% to $65,000 gives $81,250, and 25% of that leaves you $60,938 — close, but it drifts further as the tax rate rises. Dividing is exact at any rate.</p>
+
+      <h3>Should the income target be gross salary or take-home?</h3>
+      <p>Take-home: the amount that reaches your bank account. Expenses and tax are handled separately, so including them twice would inflate the rate.</p>
+
+      <h3>Why 50 working weeks?</h3>
+      <p>Two weeks a year for holidays, illness and gaps between clients. If you genuinely bill 52 weeks, change the assumption in your own maths — but most people who claim 52 do not.</p>
+
+      <h3>Do I include health insurance and retirement?</h3>
+      <p>Yes, and the simplest place is annual business expenses. They are real costs of being self-employed, and leaving them out produces a rate that funds the work but not the person doing it.</p>
+
+      <h3>My market will not pay this rate. What now?</h3>
+      <p>Three levers: lower the income target, raise billable hours (usually by cutting admin or raising prices to reduce volume), or change what you sell so the work commands more per hour. Dropping the rate below your floor is not one of them — it just moves the shortfall to your household budget.</p>
+    </div>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="../../articles/taxes-freelancers-2026/index.html">Tax basics for freelancers</a> — what to set aside and when to pay it.</li>
+      <li><a href="../../articles/how-to-start-side-hustle-zero-dollars/index.html">How to start a side hustle with $0</a> — finding the first client before quitting anything.</li>
+      <li><a href="../side-hustle-calculator/index.html">Side hustle ROI calculator</a> — check what a gig clears after platform fees.</li>
+    </ul>
+  </section>
 
   <div class="footer">
     Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.

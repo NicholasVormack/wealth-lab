@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Side Hustle ROI Calculator — Free | Wealth Lab</title>
-<meta name="description" content="Calculate how much your side hustle can earn per month. Free tool. No signup. No ads." />
+<meta name="description" content="Work out what a side hustle actually clears per month after platform fees and tool costs, with the formula, worked examples and a short FAQ." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -15,7 +15,7 @@
     padding: 40px 20px;
   }
   .container {
-    max-width: 700px;
+    max-width: 760px;
     margin: 0 auto;
     background: rgba(30, 41, 59, 0.7);
     border: 1px solid #334155;
@@ -67,6 +67,21 @@
     width: 100%;
   }
   .cta:hover { background: #67e8f9; }
+  h2 { font-size: 19px; margin: 40px 0 12px; color: #f1f5f9; letter-spacing: -0.2px; }
+  h3 { font-size: 15px; margin: 24px 0 8px; color: #e2e8f0; }
+  .prose p, .prose li { font-size: 14px; color: #cbd5e1; line-height: 1.7; margin-bottom: 12px; }
+  .prose ul, .prose ol { margin: 0 0 16px 20px; }
+  .prose a { color: #22d3ee; text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .prose code { background: #0f172a; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+  .formula { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; font-size: 13px; color: #cbd5e1; line-height: 1.9; }
+  .formula b { color: #f1f5f9; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+  th { color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .faq h3 { margin: 20px 0 6px; }
+  .faq p { margin-bottom: 0; }
   .footer {
     margin-top: 40px;
     padding-top: 20px;
@@ -84,7 +99,7 @@
 
 <div class="container">
   <h1>Side Hustle <span>ROI</span> Calculator</h1>
-  <p class="subtitle">Estimate monthly profit from any side hustle. Free. No signup. No email required.</p>
+  <p class="sub">Estimate what a side hustle clears per month after platform fees and tool costs — not what it bills.</p>
 
   <div class="grid">
     <div class="field">
@@ -112,6 +127,70 @@
     <div class="result-value" id="monthly">$0</div>
     <div class="result-breakdown" id="breakdown"></div>
   </div>
+
+  <section class="prose">
+    <h2>How the math works</h2>
+    <p>The calculator does what an invoice does not: it takes the platform's cut and your monthly subscriptions out before it calls anything profit.</p>
+    <div class="formula">
+      <b>Gross per month</b> = hours per week &times; hourly rate &times; 4.33<br />
+      <b>Platform fees</b> = gross &times; (fee % &divide; 100)<br />
+      <b>Net per month</b> = gross &minus; platform fees &minus; tool costs<br />
+      <b>Effective hourly</b> = net &divide; (hours per week &times; 4.33)
+    </div>
+    <p>The 4.33 is 52 weeks divided by 12 months. Using 4 would understate a month by roughly 8%, which is the difference between a hustle looking viable and actually being viable.</p>
+    <p>The order of operations matters. Platform fees are charged on gross, not on profit, so a 20% fee on $1,300 of work costs $260 whether or not you spent anything to earn it. Tool costs are flat: they are the same $40 whether you work two hours or twenty.</p>
+
+    <h2>Worked example</h2>
+    <p>Ten hours a week at $30 an hour through a platform that takes 20%, with $40 a month in software:</p>
+    <table>
+      <tr><th>Line</th><th>Calculation</th><th class="num">Amount</th></tr>
+      <tr><td>Gross</td><td>10 &times; $30 &times; 4.33</td><td class="num">$1,299</td></tr>
+      <tr><td>Platform fees</td><td>20% of $1,299</td><td class="num">&minus;$260</td></tr>
+      <tr><td>Tool costs</td><td>flat monthly</td><td class="num">&minus;$40</td></tr>
+      <tr><td>Net profit</td><td>$1,299 &minus; $260 &minus; $40</td><td class="num">$999</td></tr>
+      <tr><td>Effective hourly</td><td>$999 &divide; 43.3 hours</td><td class="num">$23.08/hr</td></tr>
+    </table>
+    <p>Same work, same hours, sold directly at 0% fees and no software: $1,299 net, or $30.00 an hour. The platform did not cost you $260 — it cost you $6.92 for every hour you worked. That is the number to compare against the alternative, not the headline rate.</p>
+    <p>Half the fee, at 10%, with the same $40 in tools, lands at $1,169 net and $27.00 an hour. A 10-point fee difference is worth about $3 an hour here, which is usually more than the subscriptions people agonise over.</p>
+
+    <h2>What the number leaves out</h2>
+    <ul>
+      <li><b>Tax.</b> Nothing here is set aside for income or self-employment tax. Treat the result as pre-tax cash.</li>
+      <li><b>Unpaid time.</b> Pitching, admin, invoices and revisions are not in the hours field unless you put them there. If you bill 10 hours but work 14, enter 14 and the effective rate tells the truth.</li>
+      <li><b>One-off costs.</b> Equipment, courses and setup fees are annual costs. Divide by 12 and add them to the monthly tool figure.</li>
+      <li><b>Demand.</b> Hours &times; rate assumes you can fill every hour at that rate. Most hustles cannot in month one.</li>
+      <li><b>Refunds and payout fees.</b> Chargebacks and currency conversion come out of your side, not the platform's.</li>
+    </ul>
+
+    <h2>How to read the result</h2>
+    <p>Compare the effective hourly against what the same hours would pay elsewhere, including the cost of the work itself. A $23/hour effective rate on work you enjoy can beat a $30/hour rate on work you dread, but it is not a $30/hour hustle, and pricing it like one is how people end up working weekends for pocket money.</p>
+    <p>If the effective rate is far below the headline rate, the fee line is almost always the cause. Moving the same service to direct invoicing, or raising the rate to absorb the fee, fixes more than working longer hours does.</p>
+
+    <h2 class="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <h3>Should I enter the rate I charge or the rate I get paid?</h3>
+      <p>The rate you charge. Fees are applied separately by the calculator, so entering a post-fee rate would subtract them twice.</p>
+
+      <h3>Why 4.33 weeks instead of 4?</h3>
+      <p>Because a month is 52 &divide; 12 = 4.33 weeks long. Using 4 understates monthly income by about 8% and makes thin margins look thinner than they are.</p>
+
+      <h3>Where do annual costs go?</h3>
+      <p>Divide them by 12 and add them to the monthly tool costs. A $120 domain and hosting bill is $10 a month, not nothing.</p>
+
+      <h3>Does this include taxes?</h3>
+      <p>No. It stops at pre-tax profit. The <a href="../../articles/taxes-freelancers-2026/index.html">freelancer tax guide</a> covers what to set aside.</p>
+
+      <h3>What if I am paid per project, not per hour?</h3>
+      <p>Convert it. Take the project fee, divide by the hours you expect it to take including revisions, and use that as the hourly rate. Then check the hours against what it actually took.</p>
+    </div>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="../../articles/how-to-start-side-hustle-zero-dollars/index.html">How to start a side hustle with $0</a> — the first 30 days, without buying a course.</li>
+      <li><a href="../freelance-rate-calculator/index.html">Freelance rate calculator</a> — work backwards from the income you need to the rate you should charge.</li>
+      <li><a href="../affiliate-commission-calculator/index.html">Affiliate commission calculator</a> — for hustles paid per sale rather than per hour.</li>
+    </ul>
+  </section>
 
   <div class="footer">
     Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool. Hosted on GitHub Pages.

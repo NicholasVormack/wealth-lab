@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>High-Ticket Affiliate Outreach — Free | Wealth Lab</title>
-<meta name="description" content="Generate outreach scripts for high-ticket affiliate partnerships. Recurring commissions compound faster than low-ticket volume." />
+<meta name="description" content="Work out how many customers a commission needs and generate outreach scripts for affiliate partnerships, with the math, examples and honest caveats." />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; min-height: 100vh; padding: 40px 20px; }
@@ -12,6 +12,8 @@
   h1 { font-size: 26px; margin-bottom: 8px; letter-spacing: -0.5px; }
   h1 span { color: #22d3ee; }
   p.sub { color: #94a3b8; font-size: 14px; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
   .field { margin-bottom: 24px; }
   .field label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 8px; font-weight: 600; }
   .field input, .field select { width: 100%; padding: 12px 16px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 16px; font-family: inherit; }
@@ -23,17 +25,32 @@
   @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   .math-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid #22d3ee; border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
   .math-card .number { font-size: 36px; font-weight: 800; color: #22d3ee; }
-  .math-card .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .math-card .label { font-size: 12px; color: #94a3b8; letter-spacing: 0.5px; margin-top: 6px; line-height: 1.6; }
   .script-card { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-  .script-card h3 { font-size: 15px; color: #22d3ee; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .script-card h3 { font-size: 14px; color: #22d3ee; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
   .script-card p { font-size: 13px; color: #cbd5e1; line-height: 1.6; white-space: pre-wrap; }
   .copy-btn { background: #334155; color: #22d3ee; border: none; border-radius: 4px; padding: 6px 12px; font-size: 12px; cursor: pointer; float: right; }
   .copy-btn:hover { background: #475569; }
-  .program-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .program-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 12px; }
   .program-card { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 16px; }
   .program-card h4 { font-size: 14px; color: #22d3ee; margin-bottom: 8px; }
   .program-card p { font-size: 12px; color: #94a3b8; margin-bottom: 8px; }
   .program-card .commission { font-size: 13px; color: #f1f5f9; font-weight: 700; }
+  .disclaimer { font-size: 11px; color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+  h2 { font-size: 19px; margin: 40px 0 12px; color: #f1f5f9; letter-spacing: -0.2px; }
+  h3 { font-size: 15px; margin: 24px 0 8px; color: #e2e8f0; }
+  .prose p, .prose li { font-size: 14px; color: #cbd5e1; line-height: 1.7; margin-bottom: 12px; }
+  .prose ul, .prose ol { margin: 0 0 16px 20px; }
+  .prose a { color: #22d3ee; text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+  .formula { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; font-size: 13px; color: #cbd5e1; line-height: 1.9; }
+  .formula b { color: #f1f5f9; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+  th { color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .faq h3 { margin: 20px 0 6px; }
+  .faq p { margin-bottom: 0; }
   .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 11px; color: #64748b; text-align: center; }
   .footer a { color: #22d3ee; text-decoration: none; }
 </style>
@@ -44,38 +61,50 @@
 
 <div class="container">
   <h1>High-Ticket <span>Affiliate</span> Outreach</h1>
-  <p class="sub">Fewer sales needed. Recurring commissions compound. High-ticket > low-ticket volume.</p>
+  <p class="sub">Work out how many customers a commission needs, then generate the messages that start the conversation.</p>
 
   <div class="math-card">
-    <div class="number" id="mathNumber">$0</div>
-    <div class="label" id="mathLabel">Monthly Recurring Revenue</div>
+    <div class="number" id="mathNumber">$10.80</div>
+    <div class="label" id="mathLabel">per customer / month &middot; 93 customers = $1K/mo, 463 customers = $5K/mo</div>
   </div>
 
   <div class="program-list">
     <div class="program-card">
       <h4>Systeme.io</h4>
-      <p class="commission">40% recurring lifetime</p>
-      <p>All-in-one business platform. Instant approval.</p>
+      <p class="commission">40% recurring</p>
+      <p>All-in-one funnel and email platform. Instant approval.</p>
     </div>
     <div class="program-card">
       <h4>ClickBank</h4>
-      <p class="commission">Up to 90% per sale</p>
-      <p>Digital products. Instant approval.</p>
+      <p class="commission">Commission set per offer</p>
+      <p>Digital products across many niches. Instant approval.</p>
     </div>
     <div class="program-card">
       <h4>HubSpot</h4>
       <p class="commission">30% recurring</p>
-      <p>B2B CRM. High LTV per customer.</p>
+      <p>B2B CRM. Fewer, larger customers.</p>
     </div>
     <div class="program-card">
       <h4>Shopify</h4>
-      <p class="commission">20-30% recurring</p>
-      <p>Ecommerce platform. Up to $2,000+ per customer.</p>
+      <p class="commission">20% recurring (2 years)</p>
+      <p>Ecommerce platform, paid on subscription revenue.</p>
     </div>
     <div class="program-card">
       <h4>Gumroad</h4>
       <p class="commission">Varies by creator</p>
-      <p>Digital products. Instant sign-up.</p>
+      <p>Digital products, creator-set commissions.</p>
+    </div>
+  </div>
+  <p class="disclaimer">Commission terms are set by each program and change without notice. Confirm the current rate and cookie window on the program's own page before you quote a number to anyone, including yourself.</p>
+
+  <div class="grid">
+    <div class="field">
+      <label>Product price ($)</label>
+      <input type="number" id="price" value="27" min="0" step="1" oninput="updateMath()" />
+    </div>
+    <div class="field">
+      <label>Your commission (%)</label>
+      <input type="number" id="commissionRate" value="40" min="0" max="100" step="1" oninput="updateMath()" />
     </div>
   </div>
 
@@ -110,7 +139,69 @@
       <p id="followupScript"></p>
       <button class="copy-btn" onclick="copyScript('followupScript')">Copy</button>
     </div>
+    <p class="disclaimer">These are templates, not testimonials. Only claim to use a product you actually use, and keep the disclosure line in anything you publish.</p>
   </div>
+
+  <section class="prose">
+    <h2>How the math works</h2>
+    <p>Affiliate income is commission per customer multiplied by customers. What changes between low-ticket and high-ticket offers is how many customers you need before the number matters:</p>
+    <div class="formula">
+      <b>Commission per customer</b> = product price &times; (commission % &divide; 100)<br />
+      <b>Customers for $1,000</b> = $1,000 &divide; commission per customer<br />
+      <b>Customers for $5,000</b> = $5,000 &divide; commission per customer
+    </div>
+    <p>With a recurring program, that commission arrives every month the customer stays, so "customers" means active customers rather than total signups. That is the appeal of a high-ticket recurring offer: three customers at $400 a month is $1,200 before you have written a second article.</p>
+    <p>Nothing in this formula says high-ticket is easier. It says the arithmetic is more forgiving, and it says where your effort has to go: if you need three customers, you can write to twenty people. If you need four hundred, you need distribution, not outreach.</p>
+
+    <h2>Worked example</h2>
+    <p>Four offers, from small subscription to serious B2B, and what each needs to produce the same income:</p>
+    <table>
+      <tr><th>Offer</th><th>Commission per customer</th><th class="num">Customers for $1K/mo</th><th class="num">For $5K/mo</th></tr>
+      <tr><td>$27/mo at 40% recurring</td><td>$10.80/mo</td><td class="num">93</td><td class="num">463</td></tr>
+      <tr><td>$99/mo at 30% recurring</td><td>$29.70/mo</td><td class="num">34</td><td class="num">169</td></tr>
+      <tr><td>$500 one-time at 30%</td><td>$150 once</td><td class="num">7</td><td class="num">34</td></tr>
+      <tr><td>$2,000 one-time at 20%</td><td>$400 once</td><td class="num">3</td><td class="num">13</td></tr>
+    </table>
+    <p>The $27 offer is not a bad product; it simply requires volume. Ninety-three customers is achievable with an audience and a content engine, and very hard with cold email. Seven customers at $150 is achievable by hand, one conversation at a time, which is why the scripts below are written for the second case.</p>
+    <p>Change the two fields above to your own offer and the card at the top updates. Enter a one-time commission and the customers count is the number you need in total, not per month.</p>
+
+    <h2>What the outreach has to do</h2>
+    <p>A cold message has one job: earn a reply. It is not the place to explain the product's feature list, and it is certainly not the place to claim a result you cannot show. Three things make a message worth answering:</p>
+    <ul>
+      <li><b>A specific reason you are writing to this person.</b> "I saw you run a bookkeeping service for restaurants and your pricing page mentions..." beats "I love your content".</li>
+      <li><b>A plain description of what the product does for someone in their position.</b> One sentence, no adjectives.</li>
+      <li><b>An easy way to decline.</b> "No pressure either way" is not weakness; it is what keeps the reply rate up and the list clean.</li>
+    </ul>
+    <p>Follow up once, a week later, then stop. Two messages is persistence; five is spam, and it is also how affiliate accounts get terminated. Read each program's terms on unsolicited email before sending anything — some prohibit it, and the rules on disclosure apply whether the message is a DM or an article.</p>
+
+    <h2>What this cannot do</h2>
+    <p>The generator writes text; it does not know whether your offer is good, whether the person you are writing to has a reason to care, or whether the program allows the approach. It also cannot verify the commission rate, so confirm it with the program. Treat every script as a first draft you edit until it sounds like a person who has actually used the product.</p>
+
+    <h2 class="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <h3>Is cold outreach allowed by affiliate programs?</h3>
+      <p>Often for direct one-to-one messages, rarely for bulk unsolicited email. Rules differ by program and by jurisdiction, so read the terms and the anti-spam law that applies where the recipient lives. When in doubt, do not send.</p>
+
+      <h3>Do I need an audience to start?</h3>
+      <p>No. With a high commission you can start with a short list of people who plausibly need the product. What you cannot skip is relevance — a generic message to a stranger is spam regardless of the commission.</p>
+
+      <h3>How many messages before I get a reply?</h3>
+      <p>There is no reliable number, and anyone quoting one is guessing. Track your own send and reply counts in a spreadsheet, and change the message rather than the volume when replies are zero.</p>
+
+      <h3>Do I have to disclose the affiliate link?</h3>
+      <p>Yes, in most jurisdictions, and in practice everywhere: a short line like "that's my affiliate link" is enough. Hiding it risks the account and the relationship. See the <a href="../../affiliate-disclosure.html">affiliate disclosure</a> for how this site handles it.</p>
+
+      <h3>Should I use the same message for everyone?</h3>
+      <p>No. The first line has to be about them, and that cannot be templated. Use the script for the structure — reason, product, link, out — and rewrite the opening sentence for every recipient.</p>
+    </div>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="../../articles/new-affiliate-programs-2026/index.html">Recurring commission programs</a> — which programs pay monthly instead of once.</li>
+      <li><a href="../../articles/systeme-io-affiliate-guide/index.html">Systeme.io affiliate guide</a> — the 40% recurring example in detail.</li>
+      <li><a href="../affiliate-commission-calculator/index.html">Affiliate commission calculator</a> — model traffic and conversion instead of customers.</li>
+    </ul>
+  </section>
 
   <div class="footer">
     Built by <a href="../../index.html">Wealth Lab</a> — Free micro-tool.
@@ -118,6 +209,26 @@
 </div>
 
 <script>
+function updateMath() {
+  const price = parseFloat(document.getElementById("price").value) || 0;
+  const ratePct = parseFloat(document.getElementById("commissionRate").value) || 0;
+  const mathNumber = document.getElementById("mathNumber");
+  const mathLabel = document.getElementById("mathLabel");
+
+  const commissionPerCustomer = price * (ratePct / 100);
+  if (commissionPerCustomer <= 0) {
+    mathNumber.textContent = "$0.00";
+    mathLabel.textContent = "Enter a product price and commission rate to see the math";
+    return;
+  }
+
+  const customersFor1k = Math.ceil(1000 / commissionPerCustomer);
+  const customersFor5k = Math.ceil(5000 / commissionPerCustomer);
+
+  mathNumber.textContent = `$${commissionPerCustomer.toFixed(2)}`;
+  mathLabel.textContent = `per customer &middot; ${customersFor1k} customers = $1K, ${customersFor5k} customers = $5K`;
+}
+
 function generate() {
   const niche = document.getElementById("niche").value.trim();
   const product = document.getElementById("product").value.trim();
@@ -127,23 +238,13 @@ function generate() {
   const coldScript = document.getElementById("coldScript");
   const contentScript = document.getElementById("contentScript");
   const followupScript = document.getElementById("followupScript");
-  const mathNumber = document.getElementById("mathNumber");
-  const mathLabel = document.getElementById("mathLabel");
 
   if (!niche || !product) {
     alert("Please fill in niche and product.");
     return;
   }
 
-  // Math: recurring commission model
-  const recurringCommission = 40; // Systeme.io example
-  const productPrice = 27;
-  const commissionPerCustomer = productPrice * (recurringCommission / 100);
-  const customersFor1k = Math.ceil(1000 / commissionPerCustomer);
-  const customersFor5k = Math.ceil(5000 / commissionPerCustomer);
-
-  mathNumber.textContent = `$${commissionPerCustomer.toFixed(2)}`;
-  mathLabel.textContent = `Per Customer / Month (${customersFor1k} customers = $1K/mo, ${customersFor5k} customers = $5K/mo)`;
+  updateMath();
 
   coldScript.textContent = `Subject: Quick question about [their business]\n\nHi [Name],\n\nI've been using ${product} for my ${niche} work and it's saved me hours every week.\n\nI thought you might find it useful too — especially for [specific pain point they have].\n\nHere's my link if you want to check it out:\n${link}\n\nNo pressure at all. Just wanted to share a tool that actually helped me.\n\nBest,\n[Your Name]`;
 
@@ -159,6 +260,8 @@ function copyScript(id) {
   navigator.clipboard.writeText(text);
   alert("Script copied to clipboard.");
 }
+
+updateMath();
 </script>
 
 </body>
