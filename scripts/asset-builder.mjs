@@ -600,6 +600,74 @@ ${urls.map((u) => `  <url><loc>${siteUrl}${u.loc}</loc><lastmod>${today}</lastmo
 `;
 }
 
+/**
+ * GitHub Pages serves this file for any missing path, but at the original URL:
+ * a request for /wealth-lab/micro-tools/old-tool/ renders 404.html as though
+ * it lived in /wealth-lab/micro-tools/old-tool/. Every link here is therefore
+ * absolute, resolved from the configured site URL, or it would 404 again.
+ */
+function build404(tools, siteUrl) {
+  const base = siteUrl.replace(/\/$/, "");
+  const cards = tools
+    .map(
+      (t) => `      <a class="card" href="${base}/micro-tools/${t.slug}/">
+        <h2>${escapeHtml(t.title)}</h2>
+        <p>${escapeHtml(t.description || "Free tool, no signup.")}</p>
+      </a>`
+    )
+    .join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Page not found | ${SITE_NAME}</title>
+<meta name="description" content="That page is not here. Browse the five free Wealth Lab tools or the full guide library." />
+<meta name="robots" content="noindex, follow" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(180deg, #020617 0%, #0f172a 100%); color: #e2e8f0; min-height: 100vh; padding: 48px 20px 64px; line-height: 1.65; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: #22d3ee; margin-bottom: 8px; }
+  h1 { font-size: 30px; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .lede { color: #94a3b8; font-size: 15px; max-width: 620px; margin-bottom: 8px; }
+  .hint { color: #64748b; font-size: 13px; max-width: 620px; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .card { display: block; background: rgba(30, 41, 59, 0.55); border: 1px solid #334155; border-radius: 12px; padding: 18px; text-decoration: none; }
+  .card:hover { border-color: #22d3ee; }
+  .card h2 { font-size: 14px; color: #f1f5f9; margin-bottom: 6px; }
+  .card p { font-size: 12px; color: #94a3b8; line-height: 1.5; }
+  .hub { display: inline-block; padding: 12px 22px; background: #22d3ee; color: #0f172a; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; }
+  .hub:hover { background: #67e8f9; }
+  .footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid #334155; color: #64748b; font-size: 12px; }
+  .footer a { color: #94a3b8; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">404</p>
+  <h1>That page isn&#39;t here</h1>
+  <p class="lede">The link is broken or the page has been retired. In November 2026 this site dropped a set of thin tools rather than keep publishing pages that did not answer anything, so some older links no longer resolve.</p>
+  <p class="hint">Nothing is broken on your side. Start with one of the five tools that are still here.</p>
+
+  <div class="grid">
+${cards}
+  </div>
+
+  <a class="hub" href="${base}/">Browse all tools and guides</a>
+
+  <div class="footer">
+    <a href="${base}/privacy-policy.html">Privacy</a> &middot;
+    <a href="${base}/terms-of-service.html">Terms</a> &middot;
+    <a href="${base}/affiliate-disclosure.html">Affiliate disclosure</a>
+  </div>
+</div>
+</body>
+</html>
+`;
+}
+
 function writeCname(siteUrl) {
   const cnamePath = path.join(OUTPUT, "CNAME");
   const host = siteUrl.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
@@ -803,6 +871,9 @@ function build() {
   fs.writeFileSync(path.join(OUTPUT, "index.html"), hub.html);
 
   // 5. Crawl + hosting files
+  // Written after normalizePages so the back-link injector does not add a
+  // second hub link to it; 404 pages need no canonical and are noindex.
+  fs.writeFileSync(path.join(OUTPUT, "404.html"), build404(tools, siteUrl));
   fs.writeFileSync(path.join(OUTPUT, "sitemap.xml"), buildSitemap(siteUrl, tools, articles));
   fs.writeFileSync(
     path.join(OUTPUT, "robots.txt"),
@@ -828,7 +899,7 @@ function build() {
       : "Email capture: no formAction in capture.config.json — no signup form rendered"
   );
   log(`Stale domain rewritten in ${swept} file(s)`);
-  log("Wrote sitemap.xml, robots.txt, .nojekyll");
+  log(`Wrote 404.html (${tools.length} tool links, absolute URLs), sitemap.xml, robots.txt, .nojekyll`);
   log(`Next: node scripts/verify-site.mjs to check the result`);
 }
 

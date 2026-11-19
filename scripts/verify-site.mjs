@@ -151,6 +151,28 @@ const toolDirs = fs.existsSync(path.join(OUTPUT, "micro-tools"))
 const unlinkedTools = toolDirs.filter((d) => !hub.includes(`micro-tools/${d}/`));
 if (unlinkedTools.length) err(`hub page does not link ${unlinkedTools.length} tool(s): ${unlinkedTools.join(", ")}`);
 
+/* ------------------------------------------------------------------ 404 */
+
+// GitHub Pages serves 404.html at the missing URL, so a relative link in it
+// resolves against a path that does not exist and fails again. Every link on
+// the not-found page must be absolute.
+const notFoundPath = path.join(OUTPUT, "404.html");
+if (!fs.existsSync(notFoundPath)) {
+  err("404.html missing — deleted tool and article URLs will show the bare GitHub Pages error");
+} else {
+  const html = stripCode(fs.readFileSync(notFoundPath, "utf8"));
+  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+  const relative = hrefs.filter((h) => !/^(https?:|mailto:|#)/i.test(h));
+  if (relative.length) {
+    err(`404.html has ${relative.length} non-absolute link(s), which break at an arbitrary URL depth: ${relative.join(", ")}`);
+  }
+  if (!/name="robots"[^>]*noindex/i.test(html)) err("404.html should be noindex");
+  const hubHost = resolveSiteUrl().replace(/^https?:\/\//, "").replace(/\/$/, "");
+  if (!hrefs.some((h) => h.startsWith(`https://${hubHost}/`) || h.startsWith(`http://${hubHost}/`))) {
+    err(`404.html does not link the hub at ${hubHost}`);
+  }
+}
+
 /* --------------------------------------------------------- email capture */
 
 // A signup form is only useful if it posts to a real provider endpoint. An
@@ -278,6 +300,7 @@ console.log(`Micro-tools:    ${toolDirs.length}`);
 console.log(`Articles:       ${articleCount}`);
 console.log(`Internal links: ${linkCount}`);
 console.log(`Sitemap URLs:   ${sitemapCount}`);
+console.log(`404 page:       ${fs.existsSync(notFoundPath) ? "present" : "MISSING"}`);
 console.log(`Canonicals OK:  ${canonChecked}`);
 console.log("");
 
