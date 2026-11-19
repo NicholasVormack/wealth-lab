@@ -112,5 +112,5 @@
     "Brokerage Bonus Tracker micro-tool"
   ],
   "next_task": "Add operator keys to .env (or publish manually) to leave READY_FOR_OPERATION",
-  "memory": "Cycle 20. Phase READY_FOR_OPERATION. 34 tools, 48 articles, 0 keys."
+  "memory": "Cycle 20. Phase READY_FOR_OPERATION. 5 tools, 34 articles, 0 keys."
 }

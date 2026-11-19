@@ -15,6 +15,7 @@
  */
 import fs from "fs";
 import path from "path";
+import { execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { resolveSiteUrl } from "./lib/site.mjs";
 
@@ -585,17 +586,59 @@ ${guides}
   return { html, publishedCount: published.length };
 }
 
-function buildSitemap(siteUrl, tools, articles) {
-  const today = new Date().toISOString().split("T")[0];
-  const urls = [{ loc: "/", priority: "1.0" }];
-  for (const t of tools) urls.push({ loc: `/micro-tools/${t.slug}/`, priority: "0.8" });
-  for (const a of articles.filter((x) => !x.draft)) urls.push({ loc: `/articles/${a.slug}/`, priority: "0.6" });
-  for (const page of ["privacy-policy.html", "terms-of-service.html", "affiliate-disclosure.html"]) {
-    urls.push({ loc: `/${page}`, priority: "0.2" });
+/**
+ * Last date the *source* of a page changed, from git. Stamping the build date
+ * on every URL told crawlers all 43 pages changed on every deploy, which is
+ * both false and the fastest way to have lastmod ignored. Returns null when
+ * there is no usable history (no repo, or a shallow clone with no commits for
+ * the file), in which case the entry ships without a lastmod rather than a
+ * made-up one. CI checks out full history so this resolves there.
+ */
+function sourceLastModified(file, cache) {
+  const rel = path.relative(LAB, file).split(path.sep).join("/");
+  if (cache.has(rel)) return cache.get(rel);
+
+  let date = null;
+  try {
+    const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", rel], {
+      cwd: LAB,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(out)) date = out;
+  } catch {
+    date = null;
   }
+
+  cache.set(rel, date);
+  return date;
+}
+
+function buildSitemap(siteUrl, tools, articles) {
+  const cache = new Map();
+  const urls = [{ loc: "/", priority: "1.0", file: path.join(OUTPUT, "index.html") }];
+  for (const t of tools) urls.push({ loc: `/micro-tools/${t.slug}/`, priority: "0.8", file: t.file });
+  for (const a of articles.filter((x) => !x.draft)) {
+    // The markdown is the article's content; its page is regenerated on each
+    // build, so the generated file would date every guide the same day.
+    urls.push({ loc: `/articles/${a.slug}/`, priority: "0.6", file: path.join(ARTICLES_SRC, `${a.slug}.md`) });
+  }
+  for (const page of ["privacy-policy.html", "terms-of-service.html", "affiliate-disclosure.html"]) {
+    urls.push({ loc: `/${page}`, priority: "0.2", file: path.join(OUTPUT, page) });
+  }
+
+  const entries = urls.map((u) => {
+    const date = sourceLastModified(u.file, cache);
+    const lastmod = date ? `<lastmod>${date}</lastmod>` : "";
+    return `  <url><loc>${siteUrl}${u.loc}</loc>${lastmod}<priority>${u.priority}</priority></url>`;
+  });
+
+  const undated = entries.filter((e) => !e.includes("<lastmod>")).length;
+  if (undated) log(`Sitemap: ${undated} of ${entries.length} URLs have no git history for a lastmod`);
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${siteUrl}${u.loc}</loc><lastmod>${today}</lastmod><priority>${u.priority}</priority></url>`).join("\n")}
+${entries.join("\n")}
 </urlset>
 `;
 }
@@ -833,7 +876,11 @@ function build() {
     }
   };
   walk(OUTPUT);
-  const nav = normalizePages(allHtml.filter((f) => f !== path.join(OUTPUT, "index.html")), siteUrl);
+  // The hub is rebuilt below and 404.html is generated with absolute links
+  // only, so normalizing either would just be overwritten (and would add a
+  // canonical the not-found page must not carry).
+  const skipNormalize = new Set([path.join(OUTPUT, "index.html"), path.join(OUTPUT, "404.html")]);
+  const nav = normalizePages(allHtml.filter((f) => !skipNormalize.has(f)), siteUrl);
 
   // 2a. One email capture surface on every tool page, driven by
   // capture.config.json. With no formAction configured nothing is rendered.
@@ -899,7 +946,7 @@ function build() {
       : "Email capture: no formAction in capture.config.json — no signup form rendered"
   );
   log(`Stale domain rewritten in ${swept} file(s)`);
-  log(`Wrote 404.html (${tools.length} tool links, absolute URLs), sitemap.xml, robots.txt, .nojekyll`);
+  log(`Wrote 404.html (${tools.length} tool links, absolute URLs), sitemap.xml (per-page lastmod from git), robots.txt, .nojekyll`);
   log(`Next: node scripts/verify-site.mjs to check the result`);
 }
 
