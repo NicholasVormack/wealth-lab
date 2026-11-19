@@ -83,4 +83,4 @@ This single test saves months. It costs an afternoon.
 
 ## Bottom line
 
-Pick the intersection of people who spend, problems that hurt, and competition you can beat. Then prove it with one published piece before committing further. Tools for the maths side live in the [Money and investing section](../../index.html) — start with the [niche profit calculator](../../micro-tools/niche-profit-calculator/index.html) to sanity-check the economics.
+Pick the intersection of people who spend, problems that hurt, and competition you can beat. Then prove it with one published piece before committing further. Tools for the maths side live in the [Money and investing section](../../index.html) — start with the [side hustle ROI calculator](../../micro-tools/side-hustle-calculator/index.html) to sanity-check the economics.

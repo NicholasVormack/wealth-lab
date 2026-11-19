@@ -26,9 +26,9 @@ If you have multiple tools, organize them in folders:
 micro-tools/
   freelance-rate-calculator/
     index.html
-  savings-goal-calculator/
+  side-hustle-calculator/
     index.html
-  content-idea-generator/
+  affiliate-commission-calculator/
     index.html
 index.html  (landing page linking to all tools)
 ```

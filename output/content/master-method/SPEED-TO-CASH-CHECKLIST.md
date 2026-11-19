@@ -23,7 +23,6 @@
 - [ ] Create productized service: "I'll build your [calculator/tracker/site]" — $50–$150
 - [ ] Post offer on Reddit (r/forhire, r/slavelabour), LinkedIn, X
 - [ ] Send 5 direct messages to potential clients
-- [ ] Use Service Offer Generator (output/micro-tools/service-offer-generator/)
 
 ### Day 4 — Affiliate Foundation
 - [ ] Join Systeme.io (40% recurring, instant approval)
@@ -34,7 +33,7 @@
 ### Day 5 — Email Capture
 - [ ] Create lead magnet: "7 Free Calculators" checklist or similar
 - [ ] Set up Mailchimp/MailerLite free tier (2,000 contacts)
-- [ ] Connect email capture form (already in output/micro-tools/email-capture-form/)
+- [ ] Configure the site-wide email capture form (capture.config.json)
 - [ ] Load 5-email welcome sequence (already in output/email-sequences/)
 
 ### Day 6 — Launch Content

@@ -33,67 +33,20 @@ const CATEGORIES = [
     slugs: [
       "side-hustle-calculator",
       "freelance-rate-calculator",
-      "pricing-calculator",
-      "investment-calculator",
-      "dividend-calculator",
-      "savings-goal-calculator",
       "brokerage-bonus-calculator",
-      "brokerage-bonus-tracker",
       "affiliate-commission-calculator",
-      "affiliate-program-comparison",
-      "niche-profit-calculator",
     ],
   },
   {
-    name: "SEO & content",
-    blurb: "Free replacements for the paid SEO tools you would otherwise rent.",
-    slugs: [
-      "keyword-research-tool",
-      "keyword-clusterer",
-      "meta-tag-generator",
-      "meta-description-analyzer",
-      "headline-analyzer",
-      "blog-outline-generator",
-      "content-idea-generator",
-      "url-slug-generator",
-      "broken-link-checker",
-      "youtube-thumbnail-analyzer",
-      "social-image-specs",
-    ],
-  },
-  {
-    name: "Marketing & growth",
-    blurb: "Capture, schedule and route an audience without a paid stack.",
-    slugs: [
-      "email-capture-form",
-      "email-subject-tester",
-      "email-platform-selector",
-      "social-post-scheduler",
-      "link-rotator",
-      "high-ticket-affiliate-outreach",
-      "ugc-portfolio-builder",
-    ],
-  },
-  {
-    name: "Business & career",
-    blurb: "Package what you can do, and sell it in plain language.",
-    slugs: [
-      "service-offer-generator",
-      "product-idea-validator",
-      "resume-bullet-generator",
-      "linkedin-headshot-generator",
-      "slogan-generator",
-    ],
+    name: "Affiliate outreach",
+    blurb: "Turn a commission rate into a pitch a real business will answer.",
+    slugs: ["high-ticket-affiliate-outreach"],
   },
 ];
 
 const START_HERE = [
   "side-hustle-calculator",
-  "investment-calculator",
   "freelance-rate-calculator",
-  "keyword-research-tool",
-  "email-subject-tester",
-  "savings-goal-calculator",
 ];
 
 /* ---------------------------------------------------------------- helpers */
@@ -565,8 +518,8 @@ ${published.map((a) => `        <li><a href="articles/${a.slug}/index.html">${es
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>${SITE_NAME} — ${tools.length} Free Tools for Money, SEO & Side Hustles</title>
-<meta name="description" content="${tools.length} free browser tools for side hustle math, affiliate commissions, SEO, pricing and investing. No signup, no ads, no email required." />
+<title>${SITE_NAME} — ${tools.length} Free Tools for Money & Affiliate Income</title>
+<meta name="description" content="${tools.length} free browser tools for side hustle math, freelance rates, affiliate commissions and brokerage bonuses. No signup, no ads, no email required." />
 <link rel="canonical" href="${siteUrl}/" />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -609,7 +562,7 @@ ${published.map((a) => `        <li><a href="articles/${a.slug}/index.html">${es
 
 ${startHere.length ? `  <section class="start">
     <h2>Start here</h2>
-    <p class="blurb">The six tools that answer the questions people actually start with.</p>
+    <p class="blurb">Work out what you earn, then what you should charge for it.</p>
     <div class="grid">
 ${startHere.map(card).join("\n")}
     </div>

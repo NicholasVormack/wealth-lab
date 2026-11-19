@@ -30,8 +30,8 @@ const TOOLS = [
   "side-hustle-calculator",
   "affiliate-commission-calculator",
   "freelance-rate-calculator",
-  "savings-goal-calculator",
-  "content-idea-generator",
+  "brokerage-bonus-calculator",
+  "high-ticket-affiliate-outreach",
 ];
 const ARTICLES = [
   "how-to-start-side-hustle-zero-dollars",

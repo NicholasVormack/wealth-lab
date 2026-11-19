@@ -18,7 +18,7 @@ Before posting anything, fix the profile. Visitors decide whether to read your p
 - **About section** — first two lines are all that shows before the cutoff. Make them a specific claim, not a mission statement.
 - **Featured** — pin one piece of work, one tool, or one case study.
 
-If your profile links to a tool, use the [headline analyser](../../micro-tools/headline-analyzer/index.html) on your headline. It is a crude check, but it catches the worst offenders.
+Read your headline back as a stranger: can they tell what you produce, or only what your job is called? That crude check catches the worst offenders.
 
 ## Choose two topics and stay on them
 

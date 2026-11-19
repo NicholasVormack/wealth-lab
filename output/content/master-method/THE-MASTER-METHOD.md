@@ -53,7 +53,7 @@ Place affiliate links naturally in micro-tool descriptions and articles.
 ### Day 6: Email Capture Setup (1 hour)
 - Create lead magnet: "7 Free Side Hustle Calculators" checklist
 - Set up Mailchimp/MailerLite free tier (2,000 contacts free)
-- Add email capture form to landing page (already built in output/micro-tools/email-capture-form/)
+- Configure the site-wide email capture form (capture.config.json) so every tool page carries it
 - 5-email welcome sequence already generated (output/email-sequences/)
 
 ### Day 7: Launch & Distribute (ongoing daily)

@@ -62,7 +62,7 @@ TikTok does not allow clickable links in captions for most accounts. Options:
 - **A redirect page you control**, so the destination can change without re-recording videos
 - **Searchable product name**, for items people will look up anyway
 
-If you run several products, a small redirect page per product keeps your bio tidy and lets you swap destinations later. This site includes a [link rotator](../../micro-tools/link-rotator/index.html) for exactly that purpose.
+If you run several products, a small redirect page per product keeps your bio tidy and lets you swap destinations later.
 
 ## Disclose clearly
 

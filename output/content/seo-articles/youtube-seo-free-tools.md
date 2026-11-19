@@ -39,7 +39,7 @@ Rules that save you from the worst mistakes:
 
 The thumbnail carries as much weight as the title. Text should be three or four words maximum, large enough to read at phone size. High contrast beats pretty. One subject beats a collage.
 
-You can sanity-check both with the [headline analyser](../../micro-tools/headline-analyzer/index.html) and the small screen in mind rather than a laptop.
+Sanity-check both on a phone screen rather than a laptop: that is how most of the audience will meet them.
 
 ## Step 3: Descriptions and chapters
 

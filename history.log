@@ -770,3 +770,8 @@ Generated 5 emails, CSV import, HTML templates, and instructions
 [2026-11-18T04:57:56.623Z] Legal pages generated: privacy-policy.html, terms-of-service.html, affiliate-disclosure.html
 [2026-11-18T04:57:56.631Z] These are required for GDPR compliance, affiliate program approval, and professional appearance.
 [2026-11-18T04:57:56.631Z] === LEGAL GENERATOR COMPLETE ===
+[2026-11-19T05:12:11.197Z] === CONTENT CALENDAR GENERATED ===
+[2026-11-19T05:12:11.297Z] Wrote 90-day calendar to /Users/nicholasvormack/Documents/Default Project/wealth-lab/output/content-calendar.md
+[2026-11-19T05:12:11.297Z] Total tool promotions: 26
+[2026-11-19T05:12:11.297Z] Total article publishes: 39
+[2026-11-19T05:12:11.297Z] === CONTENT CALENDAR COMPLETE ===
